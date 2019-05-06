@@ -1,0 +1,774 @@
+-1
+_init):	
+7
+_start):	
+13
+deregister_tm_clones):	
+17
+register_tm_clones):	
+20
+__do_global_dtors_aux):	
+9
+frame_dummy):	
+13
+MAIN__):	
+212
+Loop entry; ------- Loop 0 0
+12
+Loop exit; ------- Loop 0
+17
+Loop entry; ------- Loop 1 126-127
+8
+Loop exit; ------- Loop 1
+8
+Loop entry; ------- Loop 2 140-141
+8
+Loop exit; ------- Loop 2
+7
+Loop entry; ------- Loop 5 145-153
+33
+Loop exit; ------- Loop 5
+90
+Loop entry; ------- Loop 3 182-183
+11
+Loop exit; ------- Loop 3
+16
+Loop entry; ------- Loop 4 189-201
+167
+Loop exit; ------- Loop 4
+5
+main):	
+9
+initialize_):	
+17
+Loop entry; ------- Loop 24 26-30
+5
+Loop entry; ------- Loop 29 27-30
+9
+Loop entry; ------- Loop 31 28-30
+4
+Loop entry; ------- Loop 30 29-30
+4
+Loop exit; ------- Loop 30
+2
+Loop exit; ------- Loop 31
+2
+Loop exit; ------- Loop 29
+2
+Loop exit; ------- Loop 24
+1
+Loop entry; ------- Loop 25 43-75
+14
+Loop entry; ------- Loop 26 45-75
+16
+Loop entry; ------- Loop 28 47-75
+65
+Loop entry; ------- Loop 27 65-75
+32
+Loop exit; ------- Loop 27
+2
+Loop exit; ------- Loop 28
+3
+Loop exit; ------- Loop 26
+3
+Loop exit; ------- Loop 25
+5
+Loop entry; ------- Loop 21 91-97
+11
+Loop entry; ------- Loop 23 93-97
+17
+Loop entry; ------- Loop 22 96-97
+5
+Loop exit; ------- Loop 22
+2
+Loop exit; ------- Loop 23
+2
+Loop exit; ------- Loop 21
+10
+Loop entry; ------- Loop 18 108-114
+11
+Loop entry; ------- Loop 20 110-114
+18
+Loop entry; ------- Loop 19 113-114
+5
+Loop exit; ------- Loop 19
+2
+Loop exit; ------- Loop 20
+2
+Loop exit; ------- Loop 18
+5
+Loop entry; ------- Loop 15 124-130
+11
+Loop entry; ------- Loop 17 126-130
+14
+Loop entry; ------- Loop 16 129-130
+5
+Loop exit; ------- Loop 16
+2
+Loop exit; ------- Loop 17
+2
+Loop exit; ------- Loop 15
+13
+Loop entry; ------- Loop 12 141-147
+12
+Loop entry; ------- Loop 14 143-147
+14
+Loop entry; ------- Loop 13 146-147
+5
+Loop exit; ------- Loop 13
+2
+Loop exit; ------- Loop 14
+2
+Loop exit; ------- Loop 12
+5
+Loop entry; ------- Loop 9 157-163
+14
+Loop entry; ------- Loop 11 159-163
+14
+Loop entry; ------- Loop 10 162-163
+5
+Loop exit; ------- Loop 10
+2
+Loop exit; ------- Loop 11
+2
+Loop exit; ------- Loop 9
+10
+Loop entry; ------- Loop 6 173-179
+15
+Loop entry; ------- Loop 8 175-179
+14
+Loop entry; ------- Loop 7 178-179
+5
+Loop exit; ------- Loop 7
+2
+Loop exit; ------- Loop 8
+2
+Loop exit; ------- Loop 6
+8
+lhsinit_):	
+7
+Loop entry; ------- Loop 33 205-212
+2
+Loop entry; ------- Loop 32 206-212
+10
+Loop exit; ------- Loop 32
+2
+Loop exit; ------- Loop 33
+2
+Loop entry; ------- Loop 34 219-221
+5
+Loop exit; ------- Loop 34
+1
+exact_solution_):	
+4
+Loop entry; ------- Loop 35 18-23
+36
+Loop exit; ------- Loop 35
+1
+exact_rhs_):	
+16
+Loop entry; ------- Loop 70 22-26
+5
+Loop entry; ------- Loop 71 23-26
+9
+Loop entry; ------- Loop 73 24-26
+5
+Loop entry; ------- Loop 72 25-26
+5
+Loop exit; ------- Loop 72
+2
+Loop exit; ------- Loop 73
+2
+Loop exit; ------- Loop 71
+2
+Loop exit; ------- Loop 70
+6
+Loop entry; ------- Loop 50 5-125
+14
+Loop entry; ------- Loop 63 5-125
+9
+Loop entry; ------- Loop 69 40-58
+17
+Loop entry; ------- Loop 67 44-45
+7
+Loop exit; ------- Loop 67
+1
+Loop entry; ------- Loop 68 50-51
+7
+Loop exit; ------- Loop 68
+26
+Loop exit; ------- Loop 69
+35
+Loop entry; ------- Loop 66 62-93
+152
+Loop exit; ------- Loop 66
+12
+Loop entry; ------- Loop 61 100-107
+27
+Loop exit; ------- Loop 61
+9
+Loop entry; ------- Loop 65 110-114
+3
+Loop entry; ------- Loop 64 111-114
+20
+Loop exit; ------- Loop 64
+4
+Loop exit; ------- Loop 65
+15
+Loop entry; ------- Loop 62 118-125
+29
+Loop exit; ------- Loop 62
+2
+Loop exit; ------- Loop 63
+3
+Loop exit; ------- Loop 50
+7
+Loop entry; ------- Loop 51 5-222
+18
+Loop entry; ------- Loop 54 5-222
+9
+Loop entry; ------- Loop 60 139-157
+17
+Loop entry; ------- Loop 58 143-144
+7
+Loop exit; ------- Loop 58
+1
+Loop entry; ------- Loop 59 149-150
+7
+Loop exit; ------- Loop 59
+26
+Loop exit; ------- Loop 60
+32
+Loop entry; ------- Loop 57 160-191
+152
+Loop exit; ------- Loop 57
+13
+Loop entry; ------- Loop 52 197-204
+27
+Loop exit; ------- Loop 52
+10
+Loop entry; ------- Loop 56 207-211
+3
+Loop entry; ------- Loop 55 208-211
+20
+Loop exit; ------- Loop 55
+4
+Loop exit; ------- Loop 56
+20
+Loop entry; ------- Loop 53 215-222
+29
+Loop exit; ------- Loop 53
+2
+Loop exit; ------- Loop 54
+3
+Loop exit; ------- Loop 51
+6
+Loop entry; ------- Loop 36 5-320
+23
+Loop entry; ------- Loop 43 5-320
+9
+Loop entry; ------- Loop 49 237-255
+17
+Loop entry; ------- Loop 47 241-242
+7
+Loop exit; ------- Loop 47
+1
+Loop entry; ------- Loop 48 247-248
+7
+Loop exit; ------- Loop 48
+26
+Loop exit; ------- Loop 49
+32
+Loop entry; ------- Loop 46 258-289
+152
+Loop exit; ------- Loop 46
+13
+Loop entry; ------- Loop 41 295-302
+27
+Loop exit; ------- Loop 41
+10
+Loop entry; ------- Loop 45 305-309
+3
+Loop entry; ------- Loop 44 306-309
+20
+Loop exit; ------- Loop 44
+4
+Loop exit; ------- Loop 45
+17
+Loop entry; ------- Loop 42 313-320
+29
+Loop exit; ------- Loop 42
+2
+Loop exit; ------- Loop 43
+4
+Loop exit; ------- Loop 36
+12
+Loop entry; ------- Loop 37 329-333
+5
+Loop entry; ------- Loop 38 330-333
+9
+Loop entry; ------- Loop 40 331-333
+5
+Loop entry; ------- Loop 39 332-333
+6
+Loop exit; ------- Loop 39
+2
+Loop exit; ------- Loop 40
+2
+Loop exit; ------- Loop 38
+2
+Loop exit; ------- Loop 37
+20
+set_constants_):	
+296
+adi_):	
+13
+compute_rhs_):	
+22
+Loop entry; ------- Loop 74 21-33
+6
+Loop entry; ------- Loop 128 22-33
+11
+Loop entry; ------- Loop 129 23-33
+38
+Loop exit; ------- Loop 129
+2
+Loop exit; ------- Loop 128
+2
+Loop exit; ------- Loop 74
+0
+Loop entry; ------- Loop 75 44-48
+5
+Loop entry; ------- Loop 125 45-48
+9
+Loop entry; ------- Loop 127 46-48
+5
+Loop entry; ------- Loop 126 47-48
+5
+Loop exit; ------- Loop 126
+2
+Loop exit; ------- Loop 127
+2
+Loop exit; ------- Loop 125
+2
+Loop exit; ------- Loop 75
+61
+Loop entry; ------- Loop 113 59-156
+11
+Loop entry; ------- Loop 114 60-110
+16
+Loop entry; ------- Loop 124 61-110
+145
+Loop exit; ------- Loop 124
+2
+Loop exit; ------- Loop 114
+4
+Loop entry; ------- Loop 117 117-129
+9
+Loop entry; ------- Loop 115 119-122
+13
+Loop exit; ------- Loop 115
+-1
+Loop entry; ------- Loop 116 126-129
+16
+Loop exit; ------- Loop 116
+2
+Loop exit; ------- Loop 117
+9
+Loop entry; ------- Loop 118 133-139
+12
+Loop entry; ------- Loop 123 134-139
+1
+Loop entry; ------- Loop 122 135-139
+19
+Loop exit; ------- Loop 122
+3
+Loop exit; ------- Loop 123
+2
+Loop exit; ------- Loop 118
+4
+Loop entry; ------- Loop 121 144-156
+19
+Loop entry; ------- Loop 119 146-149
+18
+Loop exit; ------- Loop 119
+3
+Loop entry; ------- Loop 120 153-156
+14
+Loop exit; ------- Loop 120
+2
+Loop exit; ------- Loop 121
+3
+Loop exit; ------- Loop 113
+76
+Loop entry; ------- Loop 99 166-262
+18
+Loop entry; ------- Loop 111 167-212
+29
+Loop entry; ------- Loop 112 168-212
+172
+Loop exit; ------- Loop 112
+5
+Loop exit; ------- Loop 111
+12
+Loop entry; ------- Loop 108 220-224
+10
+Loop entry; ------- Loop 107 221-224
+13
+Loop exit; ------- Loop 107
+2
+Loop exit; ------- Loop 108
+3
+Loop entry; ------- Loop 110 229-233
+12
+Loop entry; ------- Loop 109 230-233
+16
+Loop exit; ------- Loop 109
+2
+Loop exit; ------- Loop 110
+12
+Loop entry; ------- Loop 100 237-243
+27
+Loop entry; ------- Loop 106 238-243
+14
+Loop entry; ------- Loop 105 239-243
+18
+Loop exit; ------- Loop 105
+2
+Loop exit; ------- Loop 106
+3
+Loop exit; ------- Loop 100
+15
+Loop entry; ------- Loop 102 249-253
+12
+Loop entry; ------- Loop 101 250-253
+17
+Loop exit; ------- Loop 101
+2
+Loop exit; ------- Loop 102
+2
+Loop entry; ------- Loop 104 258-262
+10
+Loop entry; ------- Loop 103 259-262
+14
+Loop exit; ------- Loop 103
+2
+Loop exit; ------- Loop 104
+3
+Loop exit; ------- Loop 99
+51
+Loop entry; ------- Loop 96 272-319
+19
+Loop entry; ------- Loop 97 273-319
+23
+Loop entry; ------- Loop 98 274-319
+171
+Loop exit; ------- Loop 98
+3
+Loop exit; ------- Loop 97
+4
+Loop exit; ------- Loop 96
+13
+Loop entry; ------- Loop 90 328-333
+11
+Loop entry; ------- Loop 95 329-333
+10
+Loop entry; ------- Loop 94 330-333
+13
+Loop exit; ------- Loop 94
+2
+Loop exit; ------- Loop 95
+2
+Loop exit; ------- Loop 90
+3
+Loop entry; ------- Loop 91 339-344
+12
+Loop entry; ------- Loop 93 340-344
+12
+Loop entry; ------- Loop 92 341-344
+16
+Loop exit; ------- Loop 92
+2
+Loop exit; ------- Loop 93
+2
+Loop exit; ------- Loop 91
+20
+Loop entry; ------- Loop 80 349-356
+22
+Loop entry; ------- Loop 87 350-356
+17
+Loop entry; ------- Loop 89 351-356
+14
+Loop entry; ------- Loop 88 352-356
+18
+Loop exit; ------- Loop 88
+2
+Loop exit; ------- Loop 89
+2
+Loop exit; ------- Loop 87
+4
+Loop exit; ------- Loop 80
+26
+Loop entry; ------- Loop 81 363-368
+14
+Loop entry; ------- Loop 86 364-368
+12
+Loop entry; ------- Loop 85 365-368
+17
+Loop exit; ------- Loop 85
+2
+Loop exit; ------- Loop 86
+2
+Loop exit; ------- Loop 81
+3
+Loop entry; ------- Loop 82 374-379
+13
+Loop entry; ------- Loop 84 375-379
+10
+Loop entry; ------- Loop 83 376-379
+14
+Loop exit; ------- Loop 83
+2
+Loop exit; ------- Loop 84
+2
+Loop exit; ------- Loop 82
+17
+Loop entry; ------- Loop 76 385-389
+5
+Loop entry; ------- Loop 77 386-389
+9
+Loop entry; ------- Loop 79 387-389
+5
+Loop entry; ------- Loop 78 388-389
+6
+Loop exit; ------- Loop 78
+2
+Loop exit; ------- Loop 79
+2
+Loop exit; ------- Loop 77
+2
+Loop exit; ------- Loop 76
+5
+Loop entry; ------- Loop 99 166-262
+2
+Loop exit; ------- Loop 99
+37
+x_solve_):	
+21
+Loop entry; ------- Loop 130 5-388
+12
+Loop entry; ------- Loop 131 5-388
+39
+Loop entry; ------- Loop 137 46-128
+171
+Loop exit; ------- Loop 137
+40
+Loop entry; ------- Loop 136 135-298
+425
+Loop exit; ------- Loop 136
+25
+Loop entry; ------- Loop 135 331-353
+30
+Loop exit; ------- Loop 135
+35
+Loop entry; ------- Loop 134 384-388
+14
+Loop entry; ------- Loop 133 385-388
+2
+Loop entry; ------- Loop 132 386-388
+11
+Loop exit; ------- Loop 132
+2
+Loop exit; ------- Loop 133
+2
+Loop exit; ------- Loop 134
+3
+Loop exit; ------- Loop 131
+3
+Loop exit; ------- Loop 130
+13
+y_solve_):	
+21
+Loop entry; ------- Loop 138 4-387
+12
+Loop entry; ------- Loop 139 4-387
+31
+Loop entry; ------- Loop 145 44-126
+177
+Loop exit; ------- Loop 145
+40
+Loop entry; ------- Loop 144 134-297
+425
+Loop exit; ------- Loop 144
+25
+Loop entry; ------- Loop 143 326-349
+35
+Loop exit; ------- Loop 143
+48
+Loop entry; ------- Loop 142 383-387
+23
+Loop entry; ------- Loop 141 384-387
+2
+Loop entry; ------- Loop 140 385-387
+11
+Loop exit; ------- Loop 140
+2
+Loop exit; ------- Loop 141
+2
+Loop exit; ------- Loop 142
+3
+Loop exit; ------- Loop 139
+3
+Loop exit; ------- Loop 138
+13
+matvec_sub_):	
+86
+matmul_sub_):	
+484
+binvcrhs_):	
+829
+binvrhs_):	
+292
+z_solve_):	
+21
+Loop entry; ------- Loop 146 4-400
+14
+Loop entry; ------- Loop 147 4-400
+33
+Loop entry; ------- Loop 153 44-126
+181
+Loop exit; ------- Loop 153
+40
+Loop entry; ------- Loop 152 135-298
+425
+Loop exit; ------- Loop 152
+25
+Loop entry; ------- Loop 151 332-356
+32
+Loop exit; ------- Loop 151
+42
+Loop entry; ------- Loop 150 396-400
+17
+Loop entry; ------- Loop 149 397-400
+2
+Loop entry; ------- Loop 148 398-400
+11
+Loop exit; ------- Loop 148
+2
+Loop exit; ------- Loop 149
+2
+Loop exit; ------- Loop 150
+3
+Loop exit; ------- Loop 147
+3
+Loop exit; ------- Loop 146
+13
+add_):	
+19
+Loop entry; ------- Loop 154 18-22
+5
+Loop entry; ------- Loop 155 19-22
+9
+Loop entry; ------- Loop 157 20-22
+5
+Loop entry; ------- Loop 156 21-22
+6
+Loop exit; ------- Loop 156
+2
+Loop exit; ------- Loop 157
+2
+Loop exit; ------- Loop 155
+2
+Loop exit; ------- Loop 154
+14
+error_norm_):	
+18
+Loop entry; ------- Loop 159 23-33
+13
+Loop entry; ------- Loop 160 25-33
+15
+Loop entry; ------- Loop 162 27-33
+14
+Loop entry; ------- Loop 161 31-33
+8
+Loop exit; ------- Loop 161
+2
+Loop exit; ------- Loop 162
+2
+Loop exit; ------- Loop 160
+3
+Loop exit; ------- Loop 159
+13
+Loop entry; ------- Loop 158 39-43
+9
+Loop exit; ------- Loop 158
+8
+rhs_norm_):	
+23
+Loop entry; ------- Loop 164 67-72
+5
+Loop entry; ------- Loop 165 68-72
+9
+Loop entry; ------- Loop 167 69-72
+5
+Loop entry; ------- Loop 166 70-72
+8
+Loop exit; ------- Loop 166
+2
+Loop exit; ------- Loop 167
+2
+Loop exit; ------- Loop 165
+2
+Loop exit; ------- Loop 164
+11
+Loop entry; ------- Loop 163 78-82
+9
+Loop exit; ------- Loop 163
+7
+verify_):	
+19
+Loop entry; ------- Loop 168 36-37
+8
+Loop exit; ------- Loop 168
+3
+Loop entry; ------- Loop 169 44-46
+7
+Loop exit; ------- Loop 169
+228
+Loop entry; ------- Loop 170 271-274
+17
+Loop exit; ------- Loop 170
+90
+Loop entry; ------- Loop 171 308-315
+92
+Loop exit; ------- Loop 171
+23
+Loop entry; ------- Loop 172 327-334
+92
+Loop exit; ------- Loop 172
+51
+print_results_):	
+362
+elapsed_time_):	
+7
+timer_clear_):	
+3
+timer_start_):	
+7
+timer_stop_):	
+10
+timer_read_):	
+3
+wtime_):	
+32
+__libc_csu_init):	
+18
+Loop entry; ------- Loop 173 0
+7
+Loop exit; ------- Loop 173
+10
+__libc_csu_fini):	
+1
+_fini):	
+3
+.plt.got@start):	
