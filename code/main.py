@@ -15,6 +15,7 @@ import logging
 #Library to execute the cfg module
 import modules.cfg.call_graph as call_graph
 import modules.cfg.call_graph_source_code as cg_source_code
+import modules.cfg.call_graph_binaries as cg_binaries
 #Library to estimate the instructions of an application
 import modules.estimate_instructions as estimate
 
@@ -37,6 +38,7 @@ def main():
         os.chdir('modules/cfg')
         cg, labels = call_graph.main()
         cg_source_code.generate_code_paths(cg, labels)
+        cg_binaries.main()
         #Back to original workspace
         os.chdir('../../')
         
