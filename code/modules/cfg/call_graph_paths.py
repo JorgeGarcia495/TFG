@@ -11,7 +11,7 @@ def main():
     paths = complete_paths(paths)
     paths = delete_repeated_paths(paths)
     result = rename_dict(paths, labels)
-    return result
+    return result, labels
 
 def get_paths():
     """ Analyze the cfg and returns the paths contained on it

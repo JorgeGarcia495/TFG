@@ -25,7 +25,7 @@ def main():
         #Creation of the script
         with open(directory+dirs+'/make_bin.sh', 'w') as bin_file:
             bin_file.write('#! /bin/bash\n')
-            bin_file.write(make_clean+'\n')
+            #bin_file.write(make_clean+'\n')
             bin_file.write('make BT CLASS=B\n')
             bin_file.write('mv '+bin_directory+'bt.B.x '+bin_directory+dirs+'\n')
             bin_file.write(make_clean)
@@ -35,8 +35,10 @@ def main():
             os.chmod(directory+dirs+'/make_bin.sh', 0o777)
             #Move to directory where script is to be executed
             cwd = os.getcwd()
+            #Change cwd to execute script generating the binary
             os.chdir(directory+dirs)
             subprocess.check_call('./make_bin.sh')
+            #Back to original cwd
             os.chdir(cwd)
         except FileNotFoundError as e:
             logger.error(e)

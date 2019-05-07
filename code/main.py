@@ -35,8 +35,8 @@ def main():
         print("Punto de entrada de la aplicacion: ", entry_file)
         #Change of workspace in orden to execute Doxygen
         os.chdir('modules/cfg')
-        cg = call_graph.main()
-        cg_source_code.generate_code_paths(cg)
+        cg, labels = call_graph.main()
+        cg_source_code.generate_code_paths(cg, labels)
         #Back to original workspace
         os.chdir('../../')
         
