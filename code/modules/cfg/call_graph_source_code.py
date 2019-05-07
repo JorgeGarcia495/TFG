@@ -20,7 +20,7 @@ def main():
     proceed = proceed.uppercase()
     if proceed == 'YES' or proceed == 'Y' or proceed == 'SI' or proceed == 'S':
         generate_code_paths(cg, labels)
-    else:
+    else: 
         print('Nothing to do...')
 
 #TODO: Parametrize main file name instead of 'bt'

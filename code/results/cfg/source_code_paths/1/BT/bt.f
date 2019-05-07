@@ -154,7 +154,7 @@ c        call timer_start(1)
 
        end do
 
-c        call timer_stop(1)
+       call timer_stop(1)
        tmax = timer_read(1)
        
 c        call verify(niter, class, verified)

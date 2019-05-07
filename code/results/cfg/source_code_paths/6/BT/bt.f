@@ -140,7 +140,7 @@ c        call initialize
        do i = 1, t_last
 c           call timer_clear(i)
        end do
-c        call timer_start(1)
+       call timer_start(1)
 
        do  step = 1, niter
 

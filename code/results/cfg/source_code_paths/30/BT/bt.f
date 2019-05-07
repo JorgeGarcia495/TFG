@@ -168,7 +168,7 @@ c        call verify(niter, class, verified)
        else
           mflops = 0.0
        endif
-c        call print_results('BT', class, grid_points(1), 
+       call print_results('BT', class, grid_points(1), 
      >  grid_points(2), grid_points(3), niter,
      >  tmax, mflops, '          floating point', 
      >  verified, npbversion,compiletime, cs1, cs2, cs3, cs4, cs5, 

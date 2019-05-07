@@ -124,7 +124,7 @@ c---------------------------------------------------------------------
 c        call set_constants
 
        do i = 1, t_last
-c           call timer_clear(i)
+          call timer_clear(i)
        end do
 
 c        call initialize
@@ -138,7 +138,7 @@ c        call adi
 c        call initialize
 
        do i = 1, t_last
-c           call timer_clear(i)
+          call timer_clear(i)
        end do
 c        call timer_start(1)
 

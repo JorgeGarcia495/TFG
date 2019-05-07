@@ -140,7 +140,7 @@ c        call initialize
        do i = 1, t_last
 c           call timer_clear(i)
        end do
-c        call timer_start(1)
+       call timer_start(1)
 
        do  step = 1, niter
 
@@ -157,7 +157,7 @@ c           call adi
 c        call timer_stop(1)
        tmax = timer_read(1)
        
-c        call verify(niter, class, verified)
+       call verify(niter, class, verified)
 
        n3 = 1.0d0*grid_points(1)*grid_points(2)*grid_points(3)
        navg = (grid_points(1)+grid_points(2)+grid_points(3))/3.0
