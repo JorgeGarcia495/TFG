@@ -16,7 +16,7 @@ def main():
     """Creates and executes a script to generate a binary for every path
     """
     #Directory to iterate
-    directory = '../../results/cfg/source_code_paths/'
+    directory = '../../results/cg/source_code_paths/'
     #Directory to store the binaries to generate
     bin_directory = './bin/'
     #Task to performed on the new script

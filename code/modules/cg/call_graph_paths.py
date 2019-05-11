@@ -14,7 +14,7 @@ def main():
     return result, labels
 
 def get_paths():
-    """ Analyze the cfg and returns the paths contained on it
+    """ Analyze the cg and returns the paths contained on it
     """
     paths = {}
     labels = {}
@@ -47,7 +47,7 @@ def get_labels(words):
     return None
 
 def rename_dict(paths, labels):
-    """ Modifies the values(numbers) of the paths(cfg) to its label
+    """ Modifies the values(numbers) of the paths(cg) to its label
     """
     result = []
     for path in paths:

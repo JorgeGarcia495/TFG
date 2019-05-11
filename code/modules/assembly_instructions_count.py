@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 
+import os
 import glob
 import subprocess
 
 def create_asm():
-
+    
+    directory = '../results/instructions_estimation/'
+    if not os.path.exists(directory):
+        os.mkdir('../results/instructions_estimation/')
+    
     #Binary disassembly:
     subprocess.check_call("./maqao.intel64 disass --uarch=HWL -dbg ../../nas_bt/bin/bt.B.x > ../results/instructions_estimation/app_asm", shell=True)
     #Loop list extraction:

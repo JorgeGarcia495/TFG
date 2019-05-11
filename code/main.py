@@ -9,18 +9,21 @@ import sys
 #To traverse directories
 import os
 #To execute parallel processes
-import subprocess
+#import subprocess
 #For logging purposes
 import logging
 #Library to execute the cfg module
-import modules.cfg.call_graph as call_graph
-import modules.cfg.call_graph_source_code as cg_source_code
-import modules.cfg.call_graph_binaries as cg_binaries
+from modules.cg import call_graph as call_graph
+from modules.cg import call_graph_source_code as cg_source_code
+from modules.cg import call_graph_binaries as cg_binaries
 #Library to estimate the instructions of an application
-import modules.estimate_instructions as estimate
+from modules import estimate_instructions as estimate
+#Import ocount
+from modules.profiling import main as profile
 
 logger = logging.getLogger(__name__)
 
+#TODO: Paralelize instruction estimation task as no dependencies are associated
 def main():
     """ Entrypoint of the program
     """
@@ -32,27 +35,30 @@ def main():
         directory = sys.argv[2]
         print("Directorio raiz de la aplicacion: ", directory)
         main = set_language(language)
-        entry_file = search_file(directory, main)
-        print("Punto de entrada de la aplicacion: ", entry_file)
+#        entry_file = search_file(directory, main)
+#        print("Punto de entrada de la aplicacion: ", entry_file)
         #Change of workspace in orden to execute Doxygen
-        os.chdir('modules/cfg')
+        os.chdir('modules/cg')
         cg, labels = call_graph.main()
         cg_source_code.generate_code_paths(cg, labels)
         cg_binaries.main()
         #Back to original workspace
-        os.chdir('../../')
+        os.chdir('../')
         
         if(cg == None or len(cg) == 0):
             raise Exception('Error executing CFG module')
         #Module instruction estimation
-        instr_estim = estimate.main()
+        estimate.main()
+        profile.run_binaries()
+        os.chdir('..')
+        
         
 def set_language(language):
     """ Locates and returns the initial function of the application to analyze
     """
     if(language == 'c++'):
         return 'main'
-    elif(language == 'fortrand'):
+    elif(language == 'fortran'):
         return 'open'
     else:
         raise Exception('The selected programming language is not supported by the application')

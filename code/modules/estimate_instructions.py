@@ -5,14 +5,15 @@
 """
 
 #Importing libraries
+import os
 import subprocess
 import shutil
-import assembly_instructions_count as aic
-import source_code_parser as parser
-import loop_count as lc
-import upperbound_functions as uf
-import instruction_expression as iexp
-import instruction_upperbounds as iupp
+from . import assembly_instructions_count as aic
+from . import source_code_parser as parser
+from . import loop_count as lc
+from . import upperbound_functions as uf
+from . import instruction_expression as iexp
+from . import instruction_upperbounds as iupp
 
 
 def main():
@@ -29,9 +30,11 @@ def main():
 def delete_files():
     """ Cleans the directory where the instructions are going to be calculated
     """
-    shutil.rmtree('../results/upper_bound/nas_bt_upper_bound')
+    directory = '../results/upper_bound/nas_bt_upper_bound'
+    if os.path.exists(directory):
+            shutil.rmtree(directory)
     #os.remove('upper_bound/upperbound_bt')
-    shutil.copytree('../../nas_bt', '../results/upper_bound/nas_bt_upper_bound')
+    shutil.copytree('../../nas_bt', directory)
     #subprocess.Popen(["make", "clean"], stdout=subprocess.PIPE, cwd="./upper_bound/nas_bt_upper_bound")
     
 def execute_mains():

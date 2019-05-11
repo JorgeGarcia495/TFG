@@ -29,7 +29,7 @@ def generate_code_paths(cg, labels):
     """
     functions = list(labels.values())
     try:
-        workspace = '../../results/cfg/source_code_paths/'
+        workspace = '../../results/cg/source_code_paths/'
         #Delete existing files
         if os.path.exists(workspace):
             shutil.rmtree(workspace)
