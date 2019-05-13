@@ -19,7 +19,7 @@ def multiprocess_func(binary):
 def run_binaries():
     starttime = time.time()
     processes = []
-    directory = '../../results/cfg/source_code_paths/'
+    directory = '../../results/cg/source_code_paths/'
     for paths in os.listdir(directory):
         path = directory+paths+'/bin/'
         cwd = os.getcwd()

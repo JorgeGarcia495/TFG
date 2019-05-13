@@ -49,6 +49,7 @@ def main():
             raise Exception('Error executing CFG module')
         #Module instruction estimation
         estimate.main()
+        os.chdir('profiling')
         profile.run_binaries()
         os.chdir('..')
         

@@ -33,6 +33,7 @@ def generate_code_paths(cg, labels):
         #Delete existing files
         if os.path.exists(workspace):
             shutil.rmtree(workspace)
+            os.mkdir(workspace)
         for index, path in enumerate(cg):
             directory = workspace+str(index)
             #Copy source code
