@@ -29,9 +29,9 @@ c---------------------------------------------------------------------
 c   compute the error norm and the residual norm, and exit if not printing
 c---------------------------------------------------------------------
         call error_norm(xce)
-        call compute_rhs
+c         call compute_rhs
 
-        call rhs_norm(xcr)
+c         call rhs_norm(xcr)
 
         do m = 1, 5
            xcr(m) = xcr(m) / dt

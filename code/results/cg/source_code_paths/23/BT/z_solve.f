@@ -131,7 +131,7 @@ c---------------------------------------------------------------------
 c---------------------------------------------------------------------
 c     now jacobians set, so form left hand side in z direction
 c---------------------------------------------------------------------
-            call lhsinit(lhs, ksize)
+c             call lhsinit(lhs, ksize)
             do k = 1, ksize-1
 
                tmp1 = dt * tz1
@@ -320,9 +320,9 @@ c---------------------------------------------------------------------
 c     multiply c(i,j,0) by b_inverse and copy back to c
 c     multiply rhs(0) by b_inverse(0) and copy to rhs
 c---------------------------------------------------------------------
-            call binvcrhs( lhs(1,1,bb,0),
-     >                        lhs(1,1,cc,0),
-     >                        rhs(1,i,j,0) )
+c             call binvcrhs( lhs(1,1,bb,0),
+c      >                        lhs(1,1,cc,0),
+c      >                        rhs(1,i,j,0) )
 
 
 c---------------------------------------------------------------------
@@ -336,8 +336,8 @@ c     subtract A*lhs_vector(k-1) from lhs_vector(k)
 c     
 c     rhs(k) = rhs(k) - A*rhs(k-1)
 c---------------------------------------------------------------------
-               call matvec_sub(lhs(1,1,aa,k),
-     >                         rhs(1,i,j,k-1),rhs(1,i,j,k))
+c                call matvec_sub(lhs(1,1,aa,k),
+c      >                         rhs(1,i,j,k-1),rhs(1,i,j,k))
 
 c---------------------------------------------------------------------
 c     B(k) = B(k) - C(k-1)*A(k)
@@ -351,9 +351,9 @@ c---------------------------------------------------------------------
 c     multiply c(i,j,k) by b_inverse and copy back to c
 c     multiply rhs(i,j,1) by b_inverse(i,j,1) and copy to rhs
 c---------------------------------------------------------------------
-               call binvcrhs( lhs(1,1,bb,k),
-     >                        lhs(1,1,cc,k),
-     >                        rhs(1,i,j,k) )
+c                call binvcrhs( lhs(1,1,bb,k),
+c      >                        lhs(1,1,cc,k),
+c      >                        rhs(1,i,j,k) )
 
             enddo
 
@@ -364,8 +364,8 @@ c---------------------------------------------------------------------
 c---------------------------------------------------------------------
 c     rhs(ksize) = rhs(ksize) - A*rhs(ksize-1)
 c---------------------------------------------------------------------
-            call matvec_sub(lhs(1,1,aa,ksize),
-     >                         rhs(1,i,j,ksize-1),rhs(1,i,j,ksize))
+c             call matvec_sub(lhs(1,1,aa,ksize),
+c      >                         rhs(1,i,j,ksize-1),rhs(1,i,j,ksize))
 
 c---------------------------------------------------------------------
 c     B(ksize) = B(ksize) - C(ksize-1)*A(ksize)
@@ -379,8 +379,8 @@ c---------------------------------------------------------------------
 c---------------------------------------------------------------------
 c     multiply rhs(ksize) by b_inverse(ksize) and copy to rhs
 c---------------------------------------------------------------------
-            call binvrhs( lhs(1,1,bb,ksize),
-     >                       rhs(1,i,j,ksize) )
+c             call binvrhs( lhs(1,1,bb,ksize),
+c      >                       rhs(1,i,j,ksize) )
 
 
 c---------------------------------------------------------------------

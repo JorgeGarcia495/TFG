@@ -11,10 +11,11 @@ import signal
 import multiprocessing
 
 def multiprocess_func(binary):
-    #Check command
-    proc = subprocess.Popen('ocount -e INST_RETIRED -i 1 -f temp_file '+'./'+binary)
-    time.sleep(40)
-    os.kill(proc.pid, signal.SIGHUP)
+    subprocess.Popen('ocount -e INST_RETIRED -i 1 -f temp_file ./'+binary, shell=True)
+    #print('Start of sleep process...')
+    #time.sleep(40)
+    #print('proceeding to kill process')
+    #proc.kill()
 
 def run_binaries():
     starttime = time.time()
@@ -31,6 +32,10 @@ def run_binaries():
     
     for process in processes:
         process.join()
+        print('Going to sleep')
+        time.sleep(40)
+        print('finishing')
+        process.terminate()
     
     print('All paths has been executed in {} seconds'.format(time.time() - starttime))
     

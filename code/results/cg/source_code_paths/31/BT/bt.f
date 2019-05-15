@@ -124,23 +124,23 @@ c---------------------------------------------------------------------
        call set_constants
 
        do i = 1, t_last
-c           call timer_clear(i)
+          call timer_clear(i)
        end do
 
-c        call initialize
+       call initialize
 
-c        call exact_rhs
+       call exact_rhs
 
 c---------------------------------------------------------------------
 c      do one time step to touch all code, and reinitialize
 c---------------------------------------------------------------------
-c        call adi
-c        call initialize
+       call adi
+       call initialize
 
        do i = 1, t_last
-c           call timer_clear(i)
+          call timer_clear(i)
        end do
-c        call timer_start(1)
+       call timer_start(1)
 
        do  step = 1, niter
 
@@ -150,14 +150,14 @@ c        call timer_start(1)
  200         format(' Time step ', i4)
           endif
 
-c           call adi
+          call adi
 
        end do
 
-c        call timer_stop(1)
+       call timer_stop(1)
        tmax = timer_read(1)
        
-c        call verify(niter, class, verified)
+       call verify(niter, class, verified)
 
        n3 = 1.0d0*grid_points(1)*grid_points(2)*grid_points(3)
        navg = (grid_points(1)+grid_points(2)+grid_points(3))/3.0
@@ -168,7 +168,7 @@ c        call verify(niter, class, verified)
        else
           mflops = 0.0
        endif
-c        call print_results('BT', class, grid_points(1), 
+       call print_results('BT', class, grid_points(1), 
      >  grid_points(2), grid_points(3), niter,
      >  tmax, mflops, '          floating point', 
      >  verified, npbversion,compiletime, cs1, cs2, cs3, cs4, cs5, 

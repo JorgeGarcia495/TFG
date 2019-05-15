@@ -131,7 +131,7 @@ c---------------------------------------------------------------------
 c---------------------------------------------------------------------
 c     now jacobians set, so form left hand side in z direction
 c---------------------------------------------------------------------
-            call lhsinit(lhs, ksize)
+c             call lhsinit(lhs, ksize)
             do k = 1, ksize-1
 
                tmp1 = dt * tz1
@@ -336,16 +336,16 @@ c     subtract A*lhs_vector(k-1) from lhs_vector(k)
 c     
 c     rhs(k) = rhs(k) - A*rhs(k-1)
 c---------------------------------------------------------------------
-               call matvec_sub(lhs(1,1,aa,k),
-     >                         rhs(1,i,j,k-1),rhs(1,i,j,k))
+c                call matvec_sub(lhs(1,1,aa,k),
+c      >                         rhs(1,i,j,k-1),rhs(1,i,j,k))
 
 c---------------------------------------------------------------------
 c     B(k) = B(k) - C(k-1)*A(k)
 c     call matmul_sub(aa,i,j,k,c,cc,i,j,k-1,c,bb,i,j,k)
 c---------------------------------------------------------------------
-               call matmul_sub(lhs(1,1,aa,k),
-     >                         lhs(1,1,cc,k-1),
-     >                         lhs(1,1,bb,k))
+c                call matmul_sub(lhs(1,1,aa,k),
+c      >                         lhs(1,1,cc,k-1),
+c      >                         lhs(1,1,bb,k))
 
 c---------------------------------------------------------------------
 c     multiply c(i,j,k) by b_inverse and copy back to c
@@ -364,23 +364,23 @@ c---------------------------------------------------------------------
 c---------------------------------------------------------------------
 c     rhs(ksize) = rhs(ksize) - A*rhs(ksize-1)
 c---------------------------------------------------------------------
-            call matvec_sub(lhs(1,1,aa,ksize),
-     >                         rhs(1,i,j,ksize-1),rhs(1,i,j,ksize))
+c             call matvec_sub(lhs(1,1,aa,ksize),
+c      >                         rhs(1,i,j,ksize-1),rhs(1,i,j,ksize))
 
 c---------------------------------------------------------------------
 c     B(ksize) = B(ksize) - C(ksize-1)*A(ksize)
 c     call matmul_sub(aa,i,j,ksize,c,
 c     $              cc,i,j,ksize-1,c,bb,i,j,ksize)
 c---------------------------------------------------------------------
-            call matmul_sub(lhs(1,1,aa,ksize),
-     >                         lhs(1,1,cc,ksize-1),
-     >                         lhs(1,1,bb,ksize))
+c             call matmul_sub(lhs(1,1,aa,ksize),
+c      >                         lhs(1,1,cc,ksize-1),
+c      >                         lhs(1,1,bb,ksize))
 
 c---------------------------------------------------------------------
 c     multiply rhs(ksize) by b_inverse(ksize) and copy to rhs
 c---------------------------------------------------------------------
-            call binvrhs( lhs(1,1,bb,ksize),
-     >                       rhs(1,i,j,ksize) )
+c             call binvrhs( lhs(1,1,bb,ksize),
+c      >                       rhs(1,i,j,ksize) )
 
 
 c---------------------------------------------------------------------

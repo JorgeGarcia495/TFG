@@ -130,7 +130,7 @@ c---------------------------------------------------------------------
 c---------------------------------------------------------------------
 c     now joacobians set, so form left hand side in y direction
 c---------------------------------------------------------------------
-            call lhsinit(lhs, jsize)
+c             call lhsinit(lhs, jsize)
             do j = 1, jsize-1
 
                tmp1 = dt * ty1
@@ -315,9 +315,9 @@ c---------------------------------------------------------------------
 c     multiply c(i,0,k) by b_inverse and copy back to c
 c     multiply rhs(0) by b_inverse(0) and copy to rhs
 c---------------------------------------------------------------------
-            call binvcrhs( lhs(1,1,bb,0),
-     >                        lhs(1,1,cc,0),
-     >                        rhs(1,i,0,k) )
+c             call binvcrhs( lhs(1,1,bb,0),
+c      >                        lhs(1,1,cc,0),
+c      >                        rhs(1,i,0,k) )
 
 c---------------------------------------------------------------------
 c     begin inner most do loop
@@ -330,23 +330,23 @@ c     subtract A*lhs_vector(j-1) from lhs_vector(j)
 c     
 c     rhs(j) = rhs(j) - A*rhs(j-1)
 c---------------------------------------------------------------------
-               call matvec_sub(lhs(1,1,aa,j),
-     >                         rhs(1,i,j-1,k),rhs(1,i,j,k))
+c                call matvec_sub(lhs(1,1,aa,j),
+c      >                         rhs(1,i,j-1,k),rhs(1,i,j,k))
 
 c---------------------------------------------------------------------
 c     B(j) = B(j) - C(j-1)*A(j)
 c---------------------------------------------------------------------
-               call matmul_sub(lhs(1,1,aa,j),
-     >                         lhs(1,1,cc,j-1),
-     >                         lhs(1,1,bb,j))
+c                call matmul_sub(lhs(1,1,aa,j),
+c      >                         lhs(1,1,cc,j-1),
+c      >                         lhs(1,1,bb,j))
 
 c---------------------------------------------------------------------
 c     multiply c(i,j,k) by b_inverse and copy back to c
 c     multiply rhs(i,1,k) by b_inverse(i,1,k) and copy to rhs
 c---------------------------------------------------------------------
-               call binvcrhs( lhs(1,1,bb,j),
-     >                        lhs(1,1,cc,j),
-     >                        rhs(1,i,j,k) )
+c                call binvcrhs( lhs(1,1,bb,j),
+c      >                        lhs(1,1,cc,j),
+c      >                        rhs(1,i,j,k) )
 
             enddo
 
@@ -354,17 +354,17 @@ c---------------------------------------------------------------------
 c---------------------------------------------------------------------
 c     rhs(jsize) = rhs(jsize) - A*rhs(jsize-1)
 c---------------------------------------------------------------------
-            call matvec_sub(lhs(1,1,aa,jsize),
-     >                         rhs(1,i,jsize-1,k),rhs(1,i,jsize,k))
+c             call matvec_sub(lhs(1,1,aa,jsize),
+c      >                         rhs(1,i,jsize-1,k),rhs(1,i,jsize,k))
 
 c---------------------------------------------------------------------
 c     B(jsize) = B(jsize) - C(jsize-1)*A(jsize)
 c     call matmul_sub(aa,i,jsize,k,c,
 c     $              cc,i,jsize-1,k,c,bb,i,jsize,k)
 c---------------------------------------------------------------------
-            call matmul_sub(lhs(1,1,aa,jsize),
-     >                         lhs(1,1,cc,jsize-1),
-     >                         lhs(1,1,bb,jsize))
+c             call matmul_sub(lhs(1,1,aa,jsize),
+c      >                         lhs(1,1,cc,jsize-1),
+c      >                         lhs(1,1,bb,jsize))
 
 c---------------------------------------------------------------------
 c     multiply rhs(jsize) by b_inverse(jsize) and copy to rhs

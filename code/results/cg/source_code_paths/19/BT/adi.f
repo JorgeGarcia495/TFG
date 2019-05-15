@@ -6,15 +6,15 @@ c---------------------------------------------------------------------
 c---------------------------------------------------------------------
 c---------------------------------------------------------------------
 
-      call compute_rhs
+c       call compute_rhs
 
-      call x_solve
+c       call x_solve
 
       call y_solve
 
-      call z_solve
+c       call z_solve
 
-      call add
+c       call add
 
       return
       end
