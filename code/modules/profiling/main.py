@@ -7,15 +7,12 @@
 import os
 import time
 import subprocess
-import signal
 import multiprocessing
 
 def multiprocess_func(binary):
-    #Check command
-    proc = subprocess.Popen('ocount -e INST_RETIRED -i 1 -f temp_file '+'./'+binary)
-    time.sleep(40)
-    os.kill(proc.pid, signal.SIGHUP)
+    subprocess.Popen('ocount -e INST_RETIRED -i 1 -f temp_file ./'+binary, shell=True)
 
+#TODO: Add documentation and improve algorithm
 def run_binaries():
     starttime = time.time()
     processes = []
@@ -31,6 +28,8 @@ def run_binaries():
     
     for process in processes:
         process.join()
+        time.sleep(40)
+        process.terminate()
     
     print('All paths has been executed in {} seconds'.format(time.time() - starttime))
     
