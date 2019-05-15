@@ -77,11 +77,12 @@ def delete_repeated_paths(paths):
 
 
 
-
+#TODO: Remove magic number '1000'
 def complete_paths(paths):
+    minimum_number = min(paths.keys())
     result = []
     for i in range(1000):
-        result.append(add_children(paths, '0', str(i+1)))
+        result.append(add_children(paths, minimum_number, str(i+1)))
     return [res for res in result if len(res) > 0]
     
 def add_children(graph, start, end, path=[]):
