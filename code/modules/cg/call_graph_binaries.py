@@ -22,9 +22,12 @@ def main():
     #Task to performed on the new script
     make_clean = 'make clean\n'
     for dirs in os.listdir(directory):
+        if os.path.exists(directory+dirs+'/bin/'+dirs):
+            os.remove(os.path.exists(directory+dirs+'/bin/'+dirs))
         #Creation of the script
         with open(directory+dirs+'/make_bin.sh', 'w') as bin_file:
             bin_file.write('#! /bin/bash\n')
+            bin_file.write(make_clean+'\n')
             #bin_file.write(make_clean+'\n')
             bin_file.write('make BT CLASS=B\n')
             bin_file.write('mv '+bin_directory+'bt.B.x '+bin_directory+dirs+'\n')
@@ -44,6 +47,7 @@ def main():
             logger.error(e)
             raise
 
+dirs = '0'
     
 if __name__ == '__main__':
     main()

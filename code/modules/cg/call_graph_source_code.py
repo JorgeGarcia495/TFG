@@ -34,14 +34,15 @@ def generate_code_paths(cg, labels):
         if os.path.exists(workspace):
             shutil.rmtree(workspace)
             os.mkdir(workspace)
+        required_files = ['Makefile', 'header.h']
         for index, path in enumerate(cg):
             directory = workspace+str(index)
             #Copy source code
             shutil.copytree('../../../nas_bt', directory)
             #Iterate source code files
             for file in os.listdir(workspace+str(index)+'/BT/'):
-                #Delete if not needed
-                if file.split('.')[0] not in path and file != 'bt.f' and file.endswith('.f'):
+                #Delete if not needed 
+                if not file.endswith('.f') and not file.endswith('.h') and file not in required_files:
                     os.remove(workspace+str(index)+'/BT/'+file)
                     #Comment not needed functions on main file
             remove_unneeded_functions(directory, functions, path)
@@ -51,15 +52,27 @@ def generate_code_paths(cg, labels):
         
 #TODO: Remove the static main by a dynamic one inserting it as a parameter
 def remove_unneeded_functions(directory, functions, path):
-    """Removes the functions not needen on each path from the main file of the application
+    """Removes the functions not needed on each path from the main file of the application
     """
     with open(directory+'/BT/bt.f', encoding="utf-8") as file:
         with open(directory+'/BT/tempfile.txt', 'w') as tmp:
+            open_parenthesis = 0
             for line in file:
+                #Remove blank spaces at beginning and end of the line
                 line_no_blank = line.strip()
+                #Comment functions occupying several lines
+                if open_parenthesis != 0:
+                    tmp.write('c ')
+                    open_parenthesis = open_parenthesis + line_no_blank.count('(') - line_no_blank.count(')')
+                #Check if there is a function
                 if line_no_blank.startswith('call') :
-                    function = line_no_blank.split(' ')[1]
+                    #Get name of the function to call
+                    index = line_no_blank.index(" ")
+                    function = line_no_blank[index+1:]
+                    #Remove parenthesis if they exists on the function name
                     if function.find('(') != -1:
+                        #Check if closing parenthesis of the functions is on the same line
+                        open_parenthesis = open_parenthesis + function.count('(') - function.count(')')
                         function = function.split('(')[0]
                     if function in functions and function not in path:
                         tmp.write('c ')
