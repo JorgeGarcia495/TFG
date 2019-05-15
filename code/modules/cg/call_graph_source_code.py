@@ -39,11 +39,12 @@ def generate_code_paths(cg, labels):
             directory = workspace+str(index)
             #Copy source code
             shutil.copytree('../../../nas_bt', directory)
+            directory = directory+'/BT/'
             #Iterate source code files
-            for file in os.listdir(workspace+str(index)+'/BT/'):
+            for file in os.listdir(directory):
                 #Delete if not needed 
                 if not file.endswith('.f') and not file.endswith('.h') and file not in required_files:
-                    os.remove(workspace+str(index)+'/BT/'+file)
+                    os.remove(directory+file)
                     #Comment not needed functions on main file
             remove_unneeded_functions(directory, functions, path)
     except FileNotFoundError as e:
@@ -54,31 +55,36 @@ def generate_code_paths(cg, labels):
 def remove_unneeded_functions(directory, functions, path):
     """Removes the functions not needed on each path from the main file of the application
     """
-    with open(directory+'/BT/bt.f', encoding="utf-8") as file:
-        with open(directory+'/BT/tempfile.txt', 'w') as tmp:
-            open_parenthesis = 0
-            for line in file:
-                #Remove blank spaces at beginning and end of the line
-                line_no_blank = line.strip()
-                #Comment functions occupying several lines
-                if open_parenthesis != 0:
-                    tmp.write('c ')
-                    open_parenthesis = open_parenthesis + line_no_blank.count('(') - line_no_blank.count(')')
-                #Check if there is a function
-                if line_no_blank.startswith('call') :
-                    #Get name of the function to call
-                    index = line_no_blank.index(" ")
-                    function = line_no_blank[index+1:]
-                    #Remove parenthesis if they exists on the function name
-                    if function.find('(') != -1:
-                        #Check if closing parenthesis of the functions is on the same line
-                        open_parenthesis = open_parenthesis + function.count('(') - function.count(')')
-                        function = function.split('(')[0]
-                    if function in functions and function not in path:
-                        tmp.write('c ')
-                tmp.write(line)
-    os.remove(directory+'/BT/bt.f')
-    os.rename(directory+'/BT/tempfile.txt', directory+'/BT/bt.f')
+    for files in os.listdir(directory):
+        if files.split('.')[0] in path:
+            with open(directory+files, encoding='utf-8') as file:
+                with open(directory+'tempfile.txt', 'w') as tmp:
+                    open_parenthesis = 0
+                    function = ''
+                    for line in file:
+                        #Remove blank spaces at beginning and end of the line
+                        line_no_blank = line.strip()
+                        #Comment functions occupying several lines
+                        if open_parenthesis != 0:
+                            open_parenthesis = open_parenthesis + line_no_blank.count('(') - line_no_blank.count(')')
+                            if function in functions and function not in path:
+                                tmp.write('c ')
+                            #Check if there is a function
+                        if line_no_blank.startswith('call') :
+                            #Get name of the function to call
+                            index = line_no_blank.index(" ")
+                            function = line_no_blank[index+1:]
+                            #Remove parenthesis if they exists on the function name
+                            if function.find('(') != -1:
+                                #Check if closing parenthesis of the functions is on the same line
+                                open_parenthesis = open_parenthesis + function.count('(') - function.count(')')
+                                function = function.split('(')[0]
+                            if function in functions and function not in path:
+                                tmp.write('c ')
+                        tmp.write(line)
+            os.remove(directory+files)
+            os.rename(directory+'tempfile.txt', directory+files)
+    
     
 if __name__ == '__main__':
     main()

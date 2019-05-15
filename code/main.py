@@ -19,7 +19,7 @@ from modules.cg import call_graph_binaries as cg_binaries
 #Library to estimate the instructions of an application
 from modules import estimate_instructions as estimate
 #Import ocount
-from modules.profiling import main as profile
+from modules.profiling import main as profiling
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +50,7 @@ def main():
         #Module instruction estimation
         estimate.main()
         os.chdir('profiling')
-        profile.run_binaries()
+        profiling.run_binaries()
         os.chdir('..')
         
         
