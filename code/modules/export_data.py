@@ -7,14 +7,13 @@
 import os
 import csv
 
-def export(data):
-    directory = '../results/paths.csv'
-    if os.path.exists(directory):
-        os.remove(directory)
-    with open(directory, 'w') as file:
+def export_list_csv(data, name):
+    directory = '../results/'
+    if os.path.exists(directory+name):
+        os.remove(directory+name)
+    with open(directory+name, 'w') as file:
         for index, path in enumerate(data):
-            data_writer = csv.writer(file, delimiter=',')
             path.insert(0, index)
-            data_writer.writerow(data)
+        data_writer = csv.writer(file, delimiter=',', dialect='excel')
+        data_writer.writerows(data)
         file.close()
-

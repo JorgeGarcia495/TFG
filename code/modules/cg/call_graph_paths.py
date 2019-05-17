@@ -18,7 +18,7 @@ def get_paths():
     """
     paths = {}
     labels = {}
-    with open('bt_cgraph.dot') as file:
+    with open('cgraph.dot') as file:
         for line in file:
             #Delete blank spaces
             line = line.strip()

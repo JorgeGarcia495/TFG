@@ -35,13 +35,15 @@ def save_main():
     """
     try:
         directory = '../../results/cg/'
-        if not os.path.exists('../../results/cg/'):
-            os.mkdir('../../results/cg/')
+        if not os.path.exists(directory):
+            os.mkdir(directory)
         found = False;
         for root, dirs, files in os.walk('html'):
             for file in files:
                 if file.startswith('bt') and file.endswith('.dot'):
-                    name = 'bt_cgraph.dot'
+                    name = 'cgraph.dot'
+                    if os.path.exists(directory+name):
+                        os.remove(directory+name)
                     os.rename('html/'+file, name)
                     shutil.copy(name, directory)
                     found = True
