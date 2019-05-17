@@ -7,35 +7,26 @@
 import os
 import time
 import subprocess
-import signal
 import multiprocessing
 
-def multiprocess_func(binary):
-    subprocess.Popen('ocount -e INST_RETIRED -i 1 -f temp_file ./'+binary, shell=True)
-    #print('Start of sleep process...')
-    #time.sleep(40)
-    #print('proceeding to kill process')
-    #proc.kill()
+def multiprocess_func(path, directory):
+    target = directory+path+"/"+path
+    subprocess.Popen('ocount -e INST_RETIRED -i 1 -f temp_file '+target, shell=True)
+    print('Profiling', path)
+    time.sleep(10)
 
+#TODO: Add documentation
 def run_binaries():
     starttime = time.time()
-    processes = []
+    processors = multiprocessing.cpu_count()
+    print('Number of processors:', processors)
     directory = '../../results/cg/source_code_paths/'
-    for paths in os.listdir(directory):
-        path = directory+paths+'/bin/'
-        cwd = os.getcwd()
-        os.chdir(path)
-        p = multiprocessing.Process(target=multiprocess_func, args=(paths,))
-        processes.append(p)
-        p.start()
-        os.chdir(cwd)
+    files_number = os.listdir(directory)
     
-    for process in processes:
-        process.join()
-        print('Going to sleep')
-        time.sleep(40)
-        print('finishing')
-        process.terminate()
+    with multiprocessing.Pool(processors) as pool:
+        processes = [pool.apply_async(multiprocess_func, (file,directory,)) for file in files_number]
+        for proc in processes:
+            print(proc.get())
     
     print('All paths has been executed in {} seconds'.format(time.time() - starttime))
     

@@ -18,7 +18,7 @@ def get_paths():
     """
     paths = {}
     labels = {}
-    with open('bt_cgraph.dot') as file:
+    with open('cgraph.dot') as file:
         for line in file:
             #Delete blank spaces
             line = line.strip()
@@ -30,7 +30,7 @@ def get_paths():
                 if label != None:
                     labels[first] = label
                 if words[2].find('Node') != -1:
-                    second = words[2].split('Node')[1]
+                    second = words[2].split('Node')[1].lower()
                     if paths.get(first) == None:
                         paths[first] = [second]
                     else:

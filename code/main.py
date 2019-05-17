@@ -20,6 +20,7 @@ from modules.cg import call_graph_binaries as cg_binaries
 from modules import estimate_instructions as estimate
 #Import ocount
 from modules.profiling import main as profiling
+from modules import export_data as export
 
 logger = logging.getLogger(__name__)
 
@@ -40,6 +41,8 @@ def main():
         #Change of workspace in orden to execute Doxygen
         os.chdir('modules/cg')
         cg, labels = call_graph.main()
+        os.chdir('..')
+        export.export_list_csv(cg, 'paths.csv')
         cg_source_code.generate_code_paths(cg, labels)
         cg_binaries.main()
         #Back to original workspace
