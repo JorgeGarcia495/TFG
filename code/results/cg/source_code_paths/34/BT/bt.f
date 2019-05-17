@@ -121,26 +121,26 @@ c---------------------------------------------------------------------
        endif
 
 
-       call set_constants
+c        call set_constants
 
        do i = 1, t_last
-          call timer_clear(i)
+c           call timer_clear(i)
        end do
 
-       call initialize
+c        call initialize
 
-       call exact_rhs
+c        call exact_rhs
 
 c---------------------------------------------------------------------
 c      do one time step to touch all code, and reinitialize
 c---------------------------------------------------------------------
-       call adi
-       call initialize
+c        call adi
+c        call initialize
 
        do i = 1, t_last
-          call timer_clear(i)
+c           call timer_clear(i)
        end do
-       call timer_start(1)
+c        call timer_start(1)
 
        do  step = 1, niter
 
@@ -150,11 +150,11 @@ c---------------------------------------------------------------------
  200         format(' Time step ', i4)
           endif
 
-          call adi
+c           call adi
 
        end do
 
-       call timer_stop(1)
+c        call timer_stop(1)
        tmax = timer_read(1)
        
        call verify(niter, class, verified)
@@ -168,11 +168,11 @@ c---------------------------------------------------------------------
        else
           mflops = 0.0
        endif
-       call print_results('BT', class, grid_points(1), 
-     >  grid_points(2), grid_points(3), niter,
-     >  tmax, mflops, '          floating point', 
-     >  verified, npbversion,compiletime, cs1, cs2, cs3, cs4, cs5, 
-     >  cs6, '(none)')
+c        call print_results('BT', class, grid_points(1), 
+c      >  grid_points(2), grid_points(3), niter,
+c      >  tmax, mflops, '          floating point', 
+c      >  verified, npbversion,compiletime, cs1, cs2, cs3, cs4, cs5, 
+c      >  cs6, '(none)')
 
 c---------------------------------------------------------------------
 c      More timers

@@ -6,8 +6,8 @@
 
 import os
 import time
-import signal
 import shlex
+import signal
 import subprocess
 import multiprocessing
 
@@ -20,19 +20,19 @@ def multiprocess_func(path, directory):
     target = temp_directory+path
     print('Profiling', path)
     #Metrics/counters to retrieves
-    args = 'ocount -e INST_RETIRED -i 1 -f '+temp_directory+'temp_file'+target
+    args = 'ocount -e INST_RETIRED -i 1 -f '+temp_directory+'temp_file '+target
     #Start of the profiling
-    proc = subprocess.Popen(shlex.split(args), shell=False)
+    proc = subprocess.Popen(shlex.split(args), stdout=subprocess.PIPE, shell=False)
     time.sleep(40)
     #Kill subprocess
     proc.kill()
     try:
         #Kill childs of the subprocess(Binary execution)
         pid = int(subprocess.check_output(['pidof', '-s', path]))
-        os.kill(pid, signal.SIGKILL)
+        os.system('kill -9 '+str(pid))
     except subprocess.CalledProcessError:
-        print('Nothing to do')
-
+        print(path, "was finished before the limit time")
+        
 def run_binaries():
     """ Executes the existing binary to carry out a dynamic profiling
     """
@@ -46,11 +46,12 @@ def run_binaries():
     
     #Start of the tasks with parallelism
     with multiprocessing.Pool(processors) as pool:
-        processes = [pool.apply_async(multiprocess_func, (file,directory,)) for file in files_number]
+        processes = [pool.apply_async(multiprocess_func, (name,directory,)) for name in files_number]
         for proc in processes:
             print(proc.get())
-    
-    print('All paths has been executed in {} seconds'.format(time.time() - starttime))
+
+        print('All paths has been executed in {} seconds'.format(time.time() - starttime))
+        
     
 if __name__ == '__main__':
     run_binaries()

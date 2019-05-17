@@ -121,26 +121,26 @@ c---------------------------------------------------------------------
        endif
 
 
-       call set_constants
+c        call set_constants
 
        do i = 1, t_last
-          call timer_clear(i)
+c           call timer_clear(i)
        end do
 
-       call initialize
+c        call initialize
 
-       call exact_rhs
+c        call exact_rhs
 
 c---------------------------------------------------------------------
 c      do one time step to touch all code, and reinitialize
 c---------------------------------------------------------------------
-       call adi
-       call initialize
+c        call adi
+c        call initialize
 
        do i = 1, t_last
-          call timer_clear(i)
+c           call timer_clear(i)
        end do
-       call timer_start(1)
+c        call timer_start(1)
 
        do  step = 1, niter
 
@@ -150,14 +150,14 @@ c---------------------------------------------------------------------
  200         format(' Time step ', i4)
           endif
 
-          call adi
+c           call adi
 
        end do
 
-       call timer_stop(1)
+c        call timer_stop(1)
        tmax = timer_read(1)
        
-       call verify(niter, class, verified)
+c        call verify(niter, class, verified)
 
        n3 = 1.0d0*grid_points(1)*grid_points(2)*grid_points(3)
        navg = (grid_points(1)+grid_points(2)+grid_points(3))/3.0
