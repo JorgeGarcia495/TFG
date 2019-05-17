@@ -10,10 +10,11 @@ import subprocess
 import multiprocessing
 
 def multiprocess_func(path, directory):
-    target = directory+path+"/"+path
-    subprocess.Popen('ocount -e INST_RETIRED -i 1 -f temp_file '+target, shell=True)
+    target = directory+path+"/bin/"+path
+    proc = subprocess.Popen('ocount -e INST_RETIRED -i 1 -f temp_file '+target, shell=True)
     print('Profiling', path)
     time.sleep(10)
+    proc.kill()
 
 #TODO: Add documentation
 def run_binaries():

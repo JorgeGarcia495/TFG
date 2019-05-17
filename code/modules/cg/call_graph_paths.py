@@ -28,7 +28,7 @@ def get_paths():
                 label = get_labels(words)
                 first = words[0].split('Node')[1]
                 if label != None:
-                    labels[first] = label
+                    labels[first] = label.lower()
                 if words[2].find('Node') != -1:
                     second = words[2].split('Node')[1].lower()
                     if paths.get(first) == None:

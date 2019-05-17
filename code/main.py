@@ -43,6 +43,7 @@ def main():
         cg, labels = call_graph.main()
         os.chdir('..')
         export.export_list_csv(cg, 'paths.csv')
+        os.chdir('cg')
         cg_source_code.generate_code_paths(cg, labels)
         cg_binaries.main()
         #Back to original workspace
