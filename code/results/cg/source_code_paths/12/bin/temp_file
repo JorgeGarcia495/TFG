@@ -1,494 +1,494 @@
 
-Current time (seconds since epoch): 1558109221.7
+Current time (seconds since epoch): 1558133692.7
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         138,899,164              100.00
+	INST_RETIRED         147,147,790              100.00
 
-Current time (seconds since epoch): 1558109221.8
+Current time (seconds since epoch): 1558133692.8
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         277,710,146              100.00
+	INST_RETIRED         152,807,415              100.00
 
-Current time (seconds since epoch): 1558109221.9
+Current time (seconds since epoch): 1558133692.9
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         277,416,644              100.00
+	INST_RETIRED         153,804,130              100.00
 
-Current time (seconds since epoch): 1558109222.0
+Current time (seconds since epoch): 1558133693.0
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         277,312,978              100.00
+	INST_RETIRED         153,026,851              100.00
 
-Current time (seconds since epoch): 1558109222.1
+Current time (seconds since epoch): 1558133693.1
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         276,354,731              100.00
+	INST_RETIRED         152,464,013              100.00
 
-Current time (seconds since epoch): 1558109222.2
+Current time (seconds since epoch): 1558133693.2
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         277,512,538              100.00
+	INST_RETIRED         152,443,845              100.00
 
-Current time (seconds since epoch): 1558109222.3
+Current time (seconds since epoch): 1558133693.3
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         277,241,470              100.00
+	INST_RETIRED         153,379,177              100.00
 
-Current time (seconds since epoch): 1558109222.4
+Current time (seconds since epoch): 1558133693.4
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         278,537,038              100.00
+	INST_RETIRED         152,738,213              100.00
 
-Current time (seconds since epoch): 1558109222.5
+Current time (seconds since epoch): 1558133693.5
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,673,863              100.00
+	INST_RETIRED         152,528,420              100.00
 
-Current time (seconds since epoch): 1558109222.6
+Current time (seconds since epoch): 1558133693.6
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,552,700              100.00
+	INST_RETIRED         152,634,537              100.00
 
-Current time (seconds since epoch): 1558109222.7
+Current time (seconds since epoch): 1558133693.7
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,370,071              100.00
+	INST_RETIRED         153,707,506              100.00
 
-Current time (seconds since epoch): 1558109222.8
+Current time (seconds since epoch): 1558133693.8
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,607,557              100.00
+	INST_RETIRED         153,345,417              100.00
 
-Current time (seconds since epoch): 1558109222.9
+Current time (seconds since epoch): 1558133693.9
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         280,931,571              100.00
+	INST_RETIRED         152,701,345              100.00
 
-Current time (seconds since epoch): 1558109223.0
+Current time (seconds since epoch): 1558133694.0
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         279,712,394              100.00
+	INST_RETIRED         154,169,521              100.00
 
-Current time (seconds since epoch): 1558109223.1
+Current time (seconds since epoch): 1558133694.1
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         280,609,710              100.00
+	INST_RETIRED         154,471,501              100.00
 
-Current time (seconds since epoch): 1558109223.2
+Current time (seconds since epoch): 1558133694.2
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,296,780              100.00
+	INST_RETIRED         154,327,768              100.00
 
-Current time (seconds since epoch): 1558109223.3
+Current time (seconds since epoch): 1558133694.3
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,880,642              100.00
+	INST_RETIRED         154,217,279              100.00
 
-Current time (seconds since epoch): 1558109223.4
+Current time (seconds since epoch): 1558133694.4
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,481,058              100.00
+	INST_RETIRED         154,435,714              100.00
 
-Current time (seconds since epoch): 1558109223.5
+Current time (seconds since epoch): 1558133694.5
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         279,809,424              100.00
+	INST_RETIRED         154,436,619              100.00
 
-Current time (seconds since epoch): 1558109223.6
+Current time (seconds since epoch): 1558133694.6
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         280,686,632              100.00
+	INST_RETIRED         154,177,033              100.00
 
-Current time (seconds since epoch): 1558109223.7
+Current time (seconds since epoch): 1558133694.7
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         279,544,724              100.00
+	INST_RETIRED         156,158,441              100.00
 
-Current time (seconds since epoch): 1558109223.8
+Current time (seconds since epoch): 1558133694.8
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         282,499,879              100.00
+	INST_RETIRED         154,996,728              100.00
 
-Current time (seconds since epoch): 1558109223.9
+Current time (seconds since epoch): 1558133694.9
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,774,814              100.00
+	INST_RETIRED         154,514,938              100.00
 
-Current time (seconds since epoch): 1558109224.0
+Current time (seconds since epoch): 1558133695.0
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,194,083              100.00
+	INST_RETIRED         154,907,425              100.00
 
-Current time (seconds since epoch): 1558109224.1
+Current time (seconds since epoch): 1558133695.1
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,489,800              100.00
+	INST_RETIRED         154,859,776              100.00
 
-Current time (seconds since epoch): 1558109224.2
+Current time (seconds since epoch): 1558133695.2
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,670,957              100.00
+	INST_RETIRED         154,624,310              100.00
 
-Current time (seconds since epoch): 1558109224.3
+Current time (seconds since epoch): 1558133695.3
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         280,236,745              100.00
+	INST_RETIRED         153,891,727              100.00
 
-Current time (seconds since epoch): 1558109224.4
+Current time (seconds since epoch): 1558133695.4
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         280,642,687              100.00
+	INST_RETIRED         154,569,988              100.00
 
-Current time (seconds since epoch): 1558109224.5
+Current time (seconds since epoch): 1558133695.5
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         167,020,468              100.00
+	INST_RETIRED         154,809,574              100.00
 
-Current time (seconds since epoch): 1558109224.6
+Current time (seconds since epoch): 1558133695.6
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         156,985,032              100.00
+	INST_RETIRED         154,625,545              100.00
 
-Current time (seconds since epoch): 1558109224.7
+Current time (seconds since epoch): 1558133695.7
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         156,996,202              100.00
+	INST_RETIRED         178,298,250              100.00
 
-Current time (seconds since epoch): 1558109224.8
+Current time (seconds since epoch): 1558133695.8
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         156,679,357              100.00
+	INST_RETIRED         283,998,439              100.00
 
-Current time (seconds since epoch): 1558109224.9
+Current time (seconds since epoch): 1558133695.9
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         156,583,980              100.00
+	INST_RETIRED         284,254,878              100.00
 
-Current time (seconds since epoch): 1558109225.0
+Current time (seconds since epoch): 1558133696.0
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         186,206,569              100.00
+	INST_RETIRED         283,710,656              100.00
 
-Current time (seconds since epoch): 1558109225.1
+Current time (seconds since epoch): 1558133696.1
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         219,335,486              100.00
+	INST_RETIRED         169,763,557              100.00
 
-Current time (seconds since epoch): 1558109225.2
+Current time (seconds since epoch): 1558133696.2
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,357,653              100.00
+	INST_RETIRED         158,323,832              100.00
 
-Current time (seconds since epoch): 1558109225.3
+Current time (seconds since epoch): 1558133696.3
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,305,539              100.00
+	INST_RETIRED         158,450,009              100.00
 
-Current time (seconds since epoch): 1558109225.4
+Current time (seconds since epoch): 1558133696.4
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         156,623,973              100.00
+	INST_RETIRED         157,776,224              100.00
 
-Current time (seconds since epoch): 1558109225.5
+Current time (seconds since epoch): 1558133696.5
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         149,569,562              100.00
+	INST_RETIRED         158,258,140              100.00
 
-Current time (seconds since epoch): 1558109225.6
+Current time (seconds since epoch): 1558133696.6
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         149,634,823              100.00
+	INST_RETIRED         158,038,601              100.00
 
-Current time (seconds since epoch): 1558109225.7
+Current time (seconds since epoch): 1558133696.7
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         154,253,264              100.00
+	INST_RETIRED         158,423,775              100.00
 
-Current time (seconds since epoch): 1558109225.8
+Current time (seconds since epoch): 1558133696.8
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         156,457,583              100.00
+	INST_RETIRED         158,370,885              100.00
 
-Current time (seconds since epoch): 1558109225.9
+Current time (seconds since epoch): 1558133696.9
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         156,331,090              100.00
+	INST_RETIRED         157,920,370              100.00
 
-Current time (seconds since epoch): 1558109226.0
+Current time (seconds since epoch): 1558133697.0
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         156,142,939              100.00
+	INST_RETIRED         158,277,492              100.00
 
-Current time (seconds since epoch): 1558109226.1
+Current time (seconds since epoch): 1558133697.1
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,092,575              100.00
+	INST_RETIRED         158,171,024              100.00
 
-Current time (seconds since epoch): 1558109226.2
+Current time (seconds since epoch): 1558133697.2
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         277,477,547              100.00
+	INST_RETIRED         158,163,527              100.00
 
-Current time (seconds since epoch): 1558109226.3
+Current time (seconds since epoch): 1558133697.3
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,753,321              100.00
+	INST_RETIRED         157,817,385              100.00
 
-Current time (seconds since epoch): 1558109226.4
+Current time (seconds since epoch): 1558133697.4
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,752,238              100.00
+	INST_RETIRED         158,157,461              100.00
 
-Current time (seconds since epoch): 1558109226.5
+Current time (seconds since epoch): 1558133697.5
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,667,937              100.00
+	INST_RETIRED         158,533,126              100.00
 
-Current time (seconds since epoch): 1558109226.6
+Current time (seconds since epoch): 1558133697.6
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,438,153              100.00
+	INST_RETIRED         158,508,249              100.00
 
-Current time (seconds since epoch): 1558109226.7
+Current time (seconds since epoch): 1558133697.7
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,150,028              100.00
+	INST_RETIRED         156,469,200              100.00
 
-Current time (seconds since epoch): 1558109226.8
+Current time (seconds since epoch): 1558133697.8
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,186,029              100.00
+	INST_RETIRED         154,822,303              100.00
 
-Current time (seconds since epoch): 1558109226.9
+Current time (seconds since epoch): 1558133697.9
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,795,158              100.00
+	INST_RETIRED         155,216,395              100.00
 
-Current time (seconds since epoch): 1558109227.0
+Current time (seconds since epoch): 1558133698.0
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,619,429              100.00
+	INST_RETIRED         154,321,681              100.00
 
-Current time (seconds since epoch): 1558109227.1
+Current time (seconds since epoch): 1558133698.1
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,679,824              100.00
+	INST_RETIRED         154,522,615              100.00
 
-Current time (seconds since epoch): 1558109227.2
+Current time (seconds since epoch): 1558133698.2
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,582,009              100.00
+	INST_RETIRED         148,784,141              100.00
 
-Current time (seconds since epoch): 1558109227.3
+Current time (seconds since epoch): 1558133698.3
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,389,299              100.00
+	INST_RETIRED         150,051,875              100.00
 
-Current time (seconds since epoch): 1558109227.4
+Current time (seconds since epoch): 1558133698.4
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         257,771,604              100.00
+	INST_RETIRED         152,663,119              100.00
 
-Current time (seconds since epoch): 1558109227.5
+Current time (seconds since epoch): 1558133698.5
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         280,549,983              100.00
+	INST_RETIRED         155,002,449              100.00
 
-Current time (seconds since epoch): 1558109227.6
+Current time (seconds since epoch): 1558133698.6
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,385,783              100.00
+	INST_RETIRED         155,059,185              100.00
 
-Current time (seconds since epoch): 1558109227.7
+Current time (seconds since epoch): 1558133698.7
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         261,193,603              100.00
+	INST_RETIRED         154,092,641              100.00
 
-Current time (seconds since epoch): 1558109227.8
+Current time (seconds since epoch): 1558133698.8
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,593,519              100.00
+	INST_RETIRED         153,092,463              100.00
 
-Current time (seconds since epoch): 1558109227.9
+Current time (seconds since epoch): 1558133698.9
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         156,906,110              100.00
+	INST_RETIRED         147,588,355              100.00
 
-Current time (seconds since epoch): 1558109228.0
+Current time (seconds since epoch): 1558133699.0
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         179,633,560              100.00
+	INST_RETIRED         152,412,776              100.00
 
-Current time (seconds since epoch): 1558109228.1
+Current time (seconds since epoch): 1558133699.1
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         156,656,341              100.00
+	INST_RETIRED         152,970,144              100.00
 
-Current time (seconds since epoch): 1558109228.2
+Current time (seconds since epoch): 1558133699.2
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         158,602,218              100.00
+	INST_RETIRED         154,504,323              100.00
 
-Current time (seconds since epoch): 1558109228.3
+Current time (seconds since epoch): 1558133699.3
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         282,544,403              100.00
+	INST_RETIRED         263,420,102              100.00
 
-Current time (seconds since epoch): 1558109228.4
+Current time (seconds since epoch): 1558133699.4
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,658,094              100.00
+	INST_RETIRED         283,473,565              100.00
 
-Current time (seconds since epoch): 1558109228.5
+Current time (seconds since epoch): 1558133699.5
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         280,897,905              100.00
+	INST_RETIRED         283,171,769              100.00
 
-Current time (seconds since epoch): 1558109228.6
+Current time (seconds since epoch): 1558133699.6
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,479,486              100.00
+	INST_RETIRED         262,369,307              100.00
 
-Current time (seconds since epoch): 1558109228.7
+Current time (seconds since epoch): 1558133699.7
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         280,993,246              100.00
+	INST_RETIRED         158,296,429              100.00
 
-Current time (seconds since epoch): 1558109228.8
+Current time (seconds since epoch): 1558133699.8
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,345,400              100.00
+	INST_RETIRED         158,616,366              100.00
 
-Current time (seconds since epoch): 1558109228.9
+Current time (seconds since epoch): 1558133699.9
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,441,618              100.00
+	INST_RETIRED         157,924,091              100.00
 
-Current time (seconds since epoch): 1558109229.0
+Current time (seconds since epoch): 1558133700.0
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         282,089,043              100.00
+	INST_RETIRED         158,506,783              100.00
 
-Current time (seconds since epoch): 1558109229.1
+Current time (seconds since epoch): 1558133700.1
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         282,159,577              100.00
+	INST_RETIRED         158,504,138              100.00
 
-Current time (seconds since epoch): 1558109229.2
+Current time (seconds since epoch): 1558133700.2
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         280,705,659              100.00
+	INST_RETIRED         158,268,358              100.00
 
-Current time (seconds since epoch): 1558109229.3
+Current time (seconds since epoch): 1558133700.3
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,757,977              100.00
+	INST_RETIRED         158,359,604              100.00
 
-Current time (seconds since epoch): 1558109229.4
+Current time (seconds since epoch): 1558133700.4
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         280,824,850              100.00
+	INST_RETIRED         158,011,624              100.00
 
-Current time (seconds since epoch): 1558109229.5
+Current time (seconds since epoch): 1558133700.5
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         280,814,377              100.00
+	INST_RETIRED         158,631,099              100.00
 
-Current time (seconds since epoch): 1558109229.6
+Current time (seconds since epoch): 1558133700.6
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,060,261              100.00
+	INST_RETIRED         158,623,541              100.00
 
-Current time (seconds since epoch): 1558109229.7
+Current time (seconds since epoch): 1558133700.7
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         282,159,292              100.00
+	INST_RETIRED         158,838,370              100.00
 
-Current time (seconds since epoch): 1558109229.8
+Current time (seconds since epoch): 1558133700.8
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,660,325              100.00
+	INST_RETIRED         158,568,980              100.00
 
-Current time (seconds since epoch): 1558109229.9
+Current time (seconds since epoch): 1558133700.9
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         280,302,840              100.00
+	INST_RETIRED         158,465,117              100.00
 
-Current time (seconds since epoch): 1558109230.0
+Current time (seconds since epoch): 1558133701.0
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,748,730              100.00
+	INST_RETIRED         157,610,552              100.00
 
-Current time (seconds since epoch): 1558109230.1
+Current time (seconds since epoch): 1558133701.1
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         281,278,661              100.00
+	INST_RETIRED         158,653,634              100.00
 
-Current time (seconds since epoch): 1558109230.2
+Current time (seconds since epoch): 1558133701.2
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         282,697,010              100.00
+	INST_RETIRED         158,787,572              100.00
 
-Current time (seconds since epoch): 1558109230.3
+Current time (seconds since epoch): 1558133701.3
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         162,318,965              100.00
+	INST_RETIRED         158,754,840              100.00
 
-Current time (seconds since epoch): 1558109230.4
+Current time (seconds since epoch): 1558133701.4
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,149,695              100.00
+	INST_RETIRED         158,566,656              100.00
 
-Current time (seconds since epoch): 1558109230.5
+Current time (seconds since epoch): 1558133701.5
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,343,310              100.00
+	INST_RETIRED         158,344,168              100.00
 
-Current time (seconds since epoch): 1558109230.6
+Current time (seconds since epoch): 1558133701.6
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         157,830,957              100.00
+	INST_RETIRED         158,393,040              100.00
 
-Current time (seconds since epoch): 1558109230.7
+Current time (seconds since epoch): 1558133701.7
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         282,529,811              100.00
+	INST_RETIRED         157,657,470              100.00
 
-Current time (seconds since epoch): 1558109230.8
+Current time (seconds since epoch): 1558133701.8
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         282,915,363              100.00
+	INST_RETIRED         158,895,170              100.00
 
-Current time (seconds since epoch): 1558109230.9
+Current time (seconds since epoch): 1558133701.9
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         282,783,842              100.00
+	INST_RETIRED         158,852,970              100.00
 
-Current time (seconds since epoch): 1558109231.0
+Current time (seconds since epoch): 1558133702.0
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         219,059,733              100.00
+	INST_RETIRED         158,873,414              100.00
 
-Current time (seconds since epoch): 1558109231.1
+Current time (seconds since epoch): 1558133702.1
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         151,765,805              100.00
+	INST_RETIRED         158,662,340              100.00
 
-Current time (seconds since epoch): 1558109231.2
+Current time (seconds since epoch): 1558133702.2
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         151,748,574              100.00
+	INST_RETIRED         158,366,901              100.00
 
-Current time (seconds since epoch): 1558109231.3
+Current time (seconds since epoch): 1558133702.3
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         235,191,376              100.00
+	INST_RETIRED         158,030,166              100.00
 
-Current time (seconds since epoch): 1558109231.4
+Current time (seconds since epoch): 1558133702.4
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted
-	INST_RETIRED         280,084,650              100.00
+	INST_RETIRED         158,406,884              100.00
 
-Current time (seconds since epoch): 1558109231.5
+Current time (seconds since epoch): 1558133702.5
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/12/bin/12:
 	Event                Count                    % time counted

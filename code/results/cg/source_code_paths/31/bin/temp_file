@@ -1,5 +1,5 @@
 
-Current time (seconds since epoch): 1558109211.6
+Current time (seconds since epoch): 1558133682.6
 Event counts (actual) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/31/bin/31:
 	Event                Count                    % time counted
-	INST_RETIRED         1,133,103                100.00
+	INST_RETIRED         1,059,911                100.00
