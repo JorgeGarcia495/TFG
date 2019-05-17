@@ -56,7 +56,7 @@ def remove_unneeded_functions(directory, functions, path):
     """Removes the functions not needed on each path from the main file of the application
     """
     for files in os.listdir(directory):
-        if files.split('.')[0] in path:
+        if files.split('.')[0].lower() in path:
             with open(directory+files, encoding='utf-8') as file:
                 with open(directory+'tempfile.txt', 'w') as tmp:
                     open_parenthesis = 0

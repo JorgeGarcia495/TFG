@@ -30,7 +30,7 @@ def get_paths():
                 if label != None:
                     labels[first] = label
                 if words[2].find('Node') != -1:
-                    second = words[2].split('Node')[1]
+                    second = words[2].split('Node')[1].lower()
                     if paths.get(first) == None:
                         paths[first] = [second]
                     else:
