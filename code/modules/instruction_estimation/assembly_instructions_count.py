@@ -3,20 +3,28 @@
 import os
 import glob
 import subprocess
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def create_asm():
-    
-    directory = '../results/instructions_estimation/'
+    bin_location = '../../../nas_bt/bin/bt.B.x '
+    directory = '../../results/instructions_estimation/'
     if not os.path.exists(directory):
-        os.mkdir('../results/instructions_estimation/')
+        os.mkdir(directory)
     
-    #Binary disassembly:
-    subprocess.check_call("./maqao.intel64 disass --uarch=HWL -dbg ../../nas_bt/bin/bt.B.x > ../results/instructions_estimation/app_asm", shell=True)
-    #Loop list extraction:
-    subprocess.check_call("./maqao.intel64 analyze --uarch=HWL -ll ../../nas_bt/bin/bt.B.x > ../results/instructions_estimation/loops_1", shell=True)
+    try:
+        #Binary disassembly:
+        subprocess.check_call("./maqao.intel64 disass --uarch=HWL -dbg " + bin_location + " > " + directory + "app_asm", shell=True)
+        #Loop list extraction:
+        subprocess.check_call("./maqao.intel64 analyze --uarch=HWL -ll " + bin_location + " > " + directory + "loops_1", shell=True)
+    except subprocess.CalledProcessError as e:
+        logger.error(e)
+        raise
 
     #Loop list:
-    for file in glob.glob('../results/instructions_estimation/loops_1'):
+    for file in glob.glob(directory+'loops_1'):
         with open(file,encoding="utf-8") as f:
             loops_1 = f.readlines()
     x1=[x.partition("| ")[2].partition(" ")[0] for x in loops_1]
@@ -25,8 +33,8 @@ def create_asm():
     loop_list=",".join(x2)
 
     #Loops information (loop location in source code):
-    subprocess.check_call("./maqao.intel64 cqa --uarch=HWL -dbg -ani ../../nas_bt/bin/bt.B.x loop="+loop_list+"> ../results/instructions_estimation/loops_2", shell=True)
-    for file in glob.glob('../results/instructions_estimation/loops_2'):
+    subprocess.check_call("./maqao.intel64 cqa --uarch=HWL -dbg -ani " + bin_location + " loop="+loop_list+"> " + directory + "loops_2", shell=True)
+    for file in glob.glob(directory+'loops_2'):
         with open(file,encoding="utf-8") as f:
             loops_2 = f.readlines()
     x1=[x.strip('\n') for x in loops_2]
@@ -46,7 +54,7 @@ def create_asm():
         
     #Total assembly instructions per each function:
     new_content = []
-    for file in glob.glob('../results/instructions_estimation/app_asm'):
+    for file in glob.glob(directory+'app_asm'):
         with open(file,encoding="utf-8") as f:
             content=f.readlines()
     content = [x.strip('\n') for x in content]
@@ -79,7 +87,7 @@ def create_asm():
 
        
 
-    thefile = open('../results/instructions_estimation/asm_instructions', 'w')
+    thefile = open(directory+'asm_instructions', 'w')
     for item in new_content:
         thefile.write("%s\n" % item)
 

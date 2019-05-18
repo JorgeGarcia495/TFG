@@ -17,7 +17,7 @@ from modules.cg import call_graph as call_graph
 from modules.cg import call_graph_source_code as cg_source_code
 from modules.cg import call_graph_binaries as cg_binaries
 #Library to estimate the instructions of an application
-from modules import estimate_instructions as estimate
+from modules.instruction_estimation import estimate_instructions as estimate
 #Import ocount
 from modules.profiling import main as profiling
 from modules import export_data as export
@@ -40,20 +40,25 @@ def main():
 #        print("Punto de entrada de la aplicacion: ", entry_file)
         #Change of workspace in orden to execute Doxygen
         os.chdir('modules/cg')
+        #Get Paths
         cg, labels = call_graph.main()
         os.chdir('..')
+        #Export results to csv
         export.export_list_csv(cg, 'paths.csv')
         os.chdir('cg')
+        #Generate source code of the paths
         cg_source_code.generate_code_paths(cg, labels)
+        #Compile paths to create binary file
         cg_binaries.main()
         #Back to original workspace
-        os.chdir('../')
+        os.chdir('../instruction_estimation')
         
         if(cg == None or len(cg) == 0):
             raise Exception('Error executing CFG module')
-        #Module instruction estimation
+        #Instruction estimation module
         estimate.main()
         os.chdir('profiling')
+        #Dynamic Profiling of the module
         profiling.run_binaries()
         os.chdir('..')
         
