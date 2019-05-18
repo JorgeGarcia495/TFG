@@ -18,12 +18,13 @@ def multiprocess_func(path, directory):
     temp_directory = directory+path+"/bin/"
     #Binary to execute
     target = temp_directory+path
+    counters = 'CPU_CLK_UNHALTED,INST_RETIRED,LLC_MISSES:0x41,LLC_REFS:0x4f,BR_INST_RETIRED,BR_MISS_PRED_RETIRED,misalign_mem_ref:0x01,misalign_mem_ref:0x02,arith:fpu_div_active,resource_stalls:any,uops_dispatched:core,mem_trans_retired:0x02,mem_uops_retired:all_stores,l1d:0x01,l2_rqsts:0x01,l2_rqsts:0x03,l2_rqsts:0x08,l2_rqsts:0x20'
     print('Profiling', path)
     #Metrics/counters to retrieves
-    args = 'ocount -e INST_RETIRED -i 1 -f '+temp_directory+'temp_file '+target
+    args = 'ocount -e ' + counters + ' -i 1 -f '+temp_directory+'temp_file '+target
     #Start of the profiling
     proc = subprocess.Popen(shlex.split(args), stdout=subprocess.PIPE, shell=False)
-    time.sleep(40)
+    time.sleep(10)
     #Kill subprocess
     proc.kill()
     try:
