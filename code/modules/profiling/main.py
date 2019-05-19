@@ -7,7 +7,6 @@
 import os
 import time
 import shlex
-import signal
 import subprocess
 import multiprocessing
 
@@ -23,7 +22,7 @@ def multiprocess_func(path, directory):
     #Metrics/counters to retrieves
     args = 'ocount -e ' + counters + ' -i 1 -f '+temp_directory+'temp_file '+target
     #Start of the profiling
-    proc = subprocess.Popen(shlex.split(args), stdout=subprocess.PIPE, shell=False)
+    proc = subprocess.Popen(shlex.split(args), shell=False)
     time.sleep(10)
     #Kill subprocess
     proc.kill()
