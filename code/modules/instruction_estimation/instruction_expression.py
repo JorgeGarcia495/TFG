@@ -3,11 +3,11 @@
 import glob
 import subprocess
 
-def total_instructions():
+def total_instructions(bin_location, directory):
     result = {}
-    subprocess.check_call("./maqao.intel64 analyze --uarch=HWL -lf ../../nas_bt/bin/bt.B.x > ../results/instructions_estimation/functions_list", shell=True)
+    subprocess.check_call("./maqao.intel64 analyze --uarch=HWL -lf " + bin_location + '> ' + directory + "functions_list", shell=True)
 
-    for file in glob.glob('../results/instructions_estimation/functions_list'):
+    for file in glob.glob(directory+'functions_list'):
         with open(file,encoding="utf-8") as f:
             functions_list = f.readlines()
         y=[x.partition("| ")[2].partition(" ")[0].strip('\n') for x in functions_list]
@@ -16,7 +16,7 @@ def total_instructions():
         functions.insert(0,"MAIN_")
 
     new_content = []
-    for file in glob.glob('../results/instructions_estimation/instructions_upperbounds'):
+    for file in glob.glob(directory+'instructions_upperbounds'):
         with open(file) as f:
             content = f.readlines()
         #print((file.partition("/")[2]).partition("/")[2])
@@ -75,7 +75,7 @@ def total_instructions():
         result[new_content[len(new_content)-4]] = [new_content[len(new_content)-3], new_content[len(new_content)-2]]
 
 
-    thefile = open('../results/instructions_estimation/total_instructions_per_function', 'w')
+    thefile = open(directory+'total_instructions_per_function', 'w')
     for item in new_content:
         thefile.write("%s\n" % item)
     new_content=[]

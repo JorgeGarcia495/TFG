@@ -56,8 +56,8 @@ def main():
         if(cg == None or len(cg) == 0):
             raise Exception('Error executing CFG module')
         #Instruction estimation module
-        estimate.main()
-        os.chdir('profiling')
+        instruction_estimation = estimate.main()
+        os.chdir('../profiling')
         #Dynamic Profiling of the module
         profiling.run_binaries()
         os.chdir('..')

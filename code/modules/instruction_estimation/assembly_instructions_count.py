@@ -8,9 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def create_asm():
-    bin_location = '../../../nas_bt/bin/bt.B.x '
-    directory = '../../results/instructions_estimation/'
+def create_asm(bin_location, directory):
     if not os.path.exists(directory):
         os.mkdir(directory)
     

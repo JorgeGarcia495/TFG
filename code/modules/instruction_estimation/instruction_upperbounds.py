@@ -3,11 +3,11 @@
 import glob
 import subprocess
 
-def upperbounds():
+def upperbounds(bin_location, directory):
 
-    subprocess.check_call("./maqao.intel64 analyze --uarch=HWL -lf ../../nas_bt/bin/bt.B.x > ../results/instructions_estimation/functions_list", shell=True)
+    subprocess.check_call("./maqao.intel64 analyze --uarch=HWL -lf " + bin_location + '> ' + directory + "functions_list", shell=True)
 
-    for file in glob.glob('../results/instructions_estimation/functions_list'):
+    for file in glob.glob(directory+'functions_list'):
         with open(file,encoding="utf-8") as f:
             functions_list = f.readlines()
         y=[x.partition("| ")[2].partition(" ")[0].strip('\n') for x in functions_list]
@@ -15,13 +15,13 @@ def upperbounds():
         del functions[0]
         functions.insert(0,"MAIN_")
     
-    for file in glob.glob('../results/instructions_estimation/asm_instructions_loop_sync'):
+    for file in glob.glob(directory+'asm_instructions_loop_sync'):
         with open(file) as f:
             content = f.readlines()
         content = [x.strip('\n') for x in content]
 
 
-    for file in glob.glob('../results/upper_bound/upperbounds_functions'):
+    for file in glob.glob('../../results/upper_bound/upperbounds_functions'):
         with open(file) as f:
             content2 = f.readlines()
         content2 = [x.strip('\n') for x in content2]
@@ -88,7 +88,7 @@ def upperbounds():
                 new_content.append(i)            
                 
         
-    thefile = open('../results/instructions_estimation/instructions_upperbounds', 'w')
+    thefile = open(directory+'instructions_upperbounds', 'w')
     for item in new_content:
         thefile.write("%s\n" % item)
     new_content=[]

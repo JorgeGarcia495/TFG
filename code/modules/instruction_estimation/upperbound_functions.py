@@ -3,11 +3,11 @@
 import glob
 import subprocess
 
-def functions():
+def functions(bin_location, directory):
 
-    subprocess.check_call("./maqao.intel64 analyze --uarch=HWL -lf ../../nas_bt/bin/bt.B.x > ../results/instructions_estimation/functions_list", shell=True)
+    subprocess.check_call("./maqao.intel64 analyze --uarch=HWL -lf " + bin_location + "> " + directory + "/functions_list", shell=True)
 
-    for file in glob.glob('../results/instructions_estimation/functions_list'):
+    for file in glob.glob(directory+'/functions_list'):
         with open(file,encoding="utf-8") as f:
             functions_list = f.readlines()
         y=[x.partition("| ")[2].partition(" ")[0].strip('\n') for x in functions_list]
@@ -16,7 +16,8 @@ def functions():
         functions.insert(0,"MAIN_")
         
     new_content = []
-    for file in glob.glob('../results/upper_bound/upperbound_sc'):
+    upperbound_dir = '../../results/upper_bound/'
+    for file in glob.glob(upperbound_dir+'upperbound_sc'):
         with open(file,encoding="utf-8") as f:
             content = f.readlines()
         content.insert(0,"Begin - MAIN_  0\n")
@@ -47,7 +48,7 @@ def functions():
             
        
 
-        thefile = open('../results/upper_bound/upperbounds_functions', 'w')
+        thefile = open(upperbound_dir+'upperbounds_functions', 'w')
         for item in new_content:
             thefile.write("%s\n" % item)
         new_content=[]

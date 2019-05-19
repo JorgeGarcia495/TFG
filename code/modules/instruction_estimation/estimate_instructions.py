@@ -19,31 +19,33 @@ from . import instruction_upperbounds as iupp
 def main():
     """Entrypoint of the module
     """
-    aic.create_asm()
+    bin_location = '../../../nas_bt/bin/bt.B.x '
+    directory = '../../results/instructions_estimation/'
+    aic.create_asm(bin_location, directory)
     delete_files()
     parser.parse()
     #This file should be deleted togetger with 'upperbound.sh'
     subprocess.check_call('./upperbound2.sh')
-    return execute_mains()
+    return execute_mains(bin_location, directory)
     
 #TODO: Include tasks performed on ".sh" at this point
 def delete_files():
     """ Cleans the directory where the instructions are going to be calculated
     """
-    directory = '../results/upper_bound/nas_bt_upper_bound'
+    directory = '../../results/upper_bound/nas_bt_upper_bound'
     if os.path.exists(directory):
             shutil.rmtree(directory)
     #os.remove('upper_bound/upperbound_bt')
-    shutil.copytree('../../nas_bt', directory)
+    shutil.copytree('../../../nas_bt', directory)
     #subprocess.Popen(["make", "clean"], stdout=subprocess.PIPE, cwd="./upper_bound/nas_bt_upper_bound")
     
-def execute_mains():
+def execute_mains(bin_location, directory):
     """ Executes the differents steps to estimate the instructions of a program
     """
     lc.count()
-    uf.functions()
-    iupp.upperbounds()
-    result = iexp.total_instructions()
+    uf.functions(bin_location, directory)
+    iupp.upperbounds(bin_location, directory)
+    result = iexp.total_instructions(bin_location, directory)
     return result
 
 if __name__ == '__main__':
