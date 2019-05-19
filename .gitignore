@@ -1,0 +1,10 @@
+
+code/modules/__pycache__/
+
+code/modules/cg/__pycache__/
+
+code/modules/instruction_estimation/__pycache__/
+
+code/modules/profiling/__pycache__/
+
+code/modules/signals_reconstruction/__pycache__/
