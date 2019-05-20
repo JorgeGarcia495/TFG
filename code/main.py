@@ -41,7 +41,7 @@ def main():
         execute_instruction_estimation_module()
         execute_dynamic_profiling()
         ipc, instructions_per_path = execute_signals_reconstruction(cg, main_name)
-        export.export_list_csv(list(instructions_per_path.values()), 'results/instructions_per_path.csv')
+        export.export_list_csv(instructions_per_path.values(), 'results/instructions_per_path.csv')
         export.export_dict_csv(ipc, 'results/counters_metrics.csv')
         
         
@@ -112,7 +112,7 @@ def execute_signals_reconstruction(cg, main_name):
     """ Runs the signals reconstruction module
     """
     os.chdir('modules/signals_reconstruction')
-    ipc, instrucions_per_path = signal_rec.main(cg, main_name.split('.f')[1])
+    ipc, instrucions_per_path = signal_rec.main(cg, main_name.split('.f')[0])
     os.chdir('../..')
     return ipc, instrucions_per_path
     
