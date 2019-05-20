@@ -5,9 +5,10 @@
 """
 
 #Importing libraries
-import shutil
 import os
+import shutil
 import logging
+import subprocess
 from . import call_graph_paths as cg_paths
 
 logger = logging.getLogger(__name__)
@@ -24,8 +25,9 @@ def execute_call_graph():
     """ Calls the system to execute the Doxygen
     """
     try:
-        os.system("doxygen Doxyfile")
-    except ChildProcessError as e:
+        call = ['doxygen', 'Doxyfile']
+        subprocess.check_call(call)
+    except subprocess.CalledProcessError as e:
         logger.error(e)
         raise
         

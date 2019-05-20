@@ -45,6 +45,3 @@ def export_dict_csv(data, name):
              for key, value in values.items():
                  aux.append(value)
              data_writer.writerow(aux)
-             
-             data = list(instructions_per_path.values())
-             name = '../results/instructions_per_path.csv'

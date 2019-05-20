@@ -91,11 +91,6 @@ def parse():
         for item in new_content:
             thefile.write("%s\n" % item)
         new_content=[]
-
-    #subprocess.check_call("make -C ./nas_bt_upper_bound/ clean",shell=False)
-    #subprocess.check_call("make -C ./nas_bt_upper_bound/ BT CLASS=B",shell=False)
-    #subprocess.check_call("make -C ./nas_bt_upper_bound/ clean",shell=True)
-    #subprocess.check_call("./nas_bt_upper_bound/bin/bt.B.x > upperbound_bt",shell=True)
         
 if __name__ == '__main__':
     parse()

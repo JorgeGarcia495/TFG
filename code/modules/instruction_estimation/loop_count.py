@@ -2,10 +2,10 @@
 
 import glob
 
-def count():
+def count(directory):
 
     new_content = []
-    for file in glob.glob('../results/instructions_estimation/asm_instructions'):
+    for file in glob.glob(directory+'asm_instructions'):
         with open(file,encoding="utf-8") as f:
             content = f.readlines()
         content = [x.strip('\n') for x in content]
@@ -37,7 +37,7 @@ def count():
             lines += 1
        
 
-        thefile = open('../results/instructions_estimation/asm_instructions_loop_sync', 'w')
+        thefile = open(directory+'asm_instructions_loop_sync', 'w')
         for item in new_content:
             thefile.write("%s\n" % item)
         new_content=[]
