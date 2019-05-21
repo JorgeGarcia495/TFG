@@ -7,6 +7,7 @@
 import os
 import time
 import shlex
+import psutil
 import subprocess
 import multiprocessing
 
@@ -37,8 +38,8 @@ def run_binaries():
     """ Executes the existing binary to carry out a dynamic profiling
     """
     starttime = time.time()
-    #Number of available processors
-    processors = multiprocessing.cpu_count()
+    #Number of available physical processors
+    processors = psutil.cpu_count(logical=False)
     print('Number of processors:', processors)
     #Location of binaries
     directory = '../../results/cg/source_code_paths/'
