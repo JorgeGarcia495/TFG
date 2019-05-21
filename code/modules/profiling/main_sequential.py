@@ -36,16 +36,20 @@ def multiprocess_func(path, directory):
     args = 'ocount -e %s -i 1 -f %stemp_file %s' % \
         (counters, temp_directory, target)
     try:
+        exec_time = time.time()
         proc = subprocess.Popen(shlex.split(args), shell=False)
-        print('Sleeping')
-        time.sleep(10)
+        pid = int(subprocess.check_output(['pidof', '-s', path]))
+        binary_time = float('{}'.format(time.time() - exec_time))
+        while pid and binary_time < 40:
+            time.sleep(1)
+            binary_time = float('{}'.format(time.time() - exec_time))
+            pid = int(subprocess.check_output(['pidof', '-s', path]))
         #Kill execution of binary
         proc.kill()
-        pid = int(subprocess.check_output(['pidof', '-s', path]))
         os.system('kill -9 '+str(pid))
     except subprocess.CalledProcessError:
         print(path, "was finished before the limit time")
-    return 'Folder %s was created ' % path
+    return 'Executed path %s ' % path
     
 def main():
     """  Controller of the script
