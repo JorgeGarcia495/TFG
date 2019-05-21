@@ -37,18 +37,24 @@ def multiprocess_func(path, directory):
         (counters, temp_directory, target)
     try:
         exec_time = time.time()
-        proc = subprocess.Popen(shlex.split(args), shell=False)
+        print('Executing path: %s' % path)
+        proc = subprocess.Popen(shlex.split(args), stdout=subprocess.PIPE, shell=False)
         pid = int(subprocess.check_output(['pidof', '-s', path]))
         binary_time = float('{}'.format(time.time() - exec_time))
+
         while pid and binary_time < 40:
-            time.sleep(1)
+            time.sleep(5)
             binary_time = float('{}'.format(time.time() - exec_time))
+            print('Time for path %s: %d seconds' % (path, binary_time))
             pid = int(subprocess.check_output(['pidof', '-s', path]))
+
         #Kill execution of binary
         proc.kill()
+        print('Time limit reached for path: %s' % path)
         os.system('kill -9 '+str(pid))
     except subprocess.CalledProcessError:
-        print(path, "was finished before the limit time")
+        print("%s was finished before the time limit" % path)
+    time.sleep(1)
     return 'Executed path %s ' % path
     
 def main():
