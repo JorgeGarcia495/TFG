@@ -29,7 +29,7 @@ def get_instructions_per_path(instructions_per_function, cg, main_name):
         total = 0
         for path in paths:
             if path == main_name:
-                path.lower() = 'main_'
+                path = 'main_'
             total = total + 0 if (path not in instructions_per_function) else total + int(instructions_per_function[path])
         result[index] = total
     return result

@@ -6,6 +6,7 @@
 #Importing libraries
 import os
 import sys
+import click
 import logging
 
 from modules import export_data as export
@@ -19,35 +20,30 @@ from modules.signals_reconstruction import main as signal_rec
 logger = logging.getLogger(__name__)
 
 #TODO: Paralelize instruction estimation task as no dependencies are associated
-def main():
-    """ Entrypoint of the program
-    """
-    if(len(sys.argv) != 3):
-        raise Exception("The programming language and location of the program is expected to be passed as an argument")
-    else:
-        language = sys.argv[1]
-        print("Idioma seleccionado: ", language)
-        directory = sys.argv[2]
-        print("Directorio raiz de la aplicacion: ", directory)
-        entrypoint = set_language(language)
-        main_name = search_file(directory, entrypoint)
-        print("Punto de entrada de la aplicacion: ", entrypoint)
-        
-        #Execute Call Graph Set Module
-        cg = execute_call_graph_module()
-        #Export results to csv
-        export.export_multiple_lists_csv(cg, 'results/paths.csv')
-        #Move to instruction estimation module
-        execute_instruction_estimation_module()
-        execute_dynamic_profiling()
-        ipc, instructions_per_path = execute_signals_reconstruction(cg, main_name)
-        export.export_list_csv(instructions_per_path.values(), 'results/instructions_per_path.csv')
-        export.export_dict_csv(ipc, 'results/counters_metrics.csv')
-        
-        
+@click.command()
+@click.option('-L', '--language', help='High level language of the application', required=True)
+@click.option('-l', '--location', help='Directory containing the source code of the application', required=True)
+@click.option('-s', '--sequential', help='Executes the dynamic profile in sequential order', is_flag=True)
+def main(language, location, sequential):
+    """ Framework intended to analyze an application in order to estimate its energy consumtpion """
+    entrypoint = set_language(language)
+    main_name = search_file(location, entrypoint)
+    #Execute Call Graph Set Module
+    cg = execute_call_graph_module()
+    #Export results to csv
+    export.export_multiple_lists_csv(cg, 'results/paths.csv')
+    #Move to instruction estimation module
+    execute_instruction_estimation_module()
+    execute_dynamic_profiling()
+    ipc, instructions_per_path = execute_signals_reconstruction(cg, main_name)
+    export.export_list_csv(instructions_per_path.values(), 'results/instructions_per_path.csv')
+    export.export_dict_csv(ipc, 'results/counters_metrics.csv')
+
+
 def set_language(language):
     """ Locates and returns the initial function of the application to analyze
     """
+    language = language.lower()
     if(language == 'c++'):
         return 'main'
     elif(language == 'fortran'):
@@ -58,7 +54,7 @@ def set_language(language):
 def search_file(directory, word):
     """ Locates the main file of the application to analyze
     """
-    directory = '../nas_bt/BT/'
+    directory = '../nas_bt/%s/' % directory
     word = 'open'
     result = ''
     try:
