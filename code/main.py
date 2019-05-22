@@ -15,6 +15,7 @@ from modules.cg import call_graph_source_code as cg_source_code
 from modules.cg import call_graph_binaries as cg_binaries
 from modules.instruction_estimation import estimate_instructions as estimate
 from modules.profiling import main as profiling
+from modules.profiling import main_sequential as sequential_profiling
 from modules.signals_reconstruction import main as signal_rec
 
 logger = logging.getLogger(__name__)
@@ -28,14 +29,12 @@ def main(language, location, sequential):
     """ Framework intended to analyze an application in order to estimate its energy consumtpion """
     entrypoint = set_language(language)
     main_name = search_file(location, entrypoint)
-    #Execute Call Graph Set Module
-    cg = execute_call_graph_module()
-    #Export results to csv
-    export.export_multiple_lists_csv(cg, 'results/paths.csv')
-    #Move to instruction estimation module
-    execute_instruction_estimation_module()
-    execute_dynamic_profiling()
-    ipc, instructions_per_path = execute_signals_reconstruction(cg, main_name)
+    cg = execute_call_graph_module() #Execute Call Graph Set Module
+    export.export_multiple_lists_csv(cg, 'results/paths.csv') #Export results to csv
+    execute_instruction_estimation_module() #Run instruction estimation module
+    execute_dynamic_profiling(sequential) #Execute dynamic profiling
+    ipc, instructions_per_path = execute_signals_reconstruction(cg, main_name) #Retrieves the metrics from the profiling
+    #Exporting resulst...
     export.export_list_csv(instructions_per_path.values(), 'results/instructions_per_path.csv')
     export.export_dict_csv(ipc, 'results/counters_metrics.csv')
 
@@ -73,35 +72,31 @@ def search_file(directory, word):
 def execute_call_graph_module():
     """ Runs the call graph module
     """
-    #Change of workspace in orden to execute Doxygen
-    os.chdir('modules/cg')
-    #Get Paths
-    cg, labels = call_graph.main()
+    os.chdir('modules/cg') #Change of workspace in orden to execute Doxygen
+    cg, labels = call_graph.main() #Get Paths
     if(cg == None or len(cg) == 0):
         raise Exception('Error executing CFG module')
-    #Generate source code of the paths
-    cg_source_code.generate_code_paths(cg, labels)
-    #Compile paths to create binary file
-    cg_binaries.main()
-    #Back to original workspace
-    os.chdir('../..')
+    cg_source_code.generate_code_paths(cg, labels) #Generate source code of the paths
+    cg_binaries.main() #Compile paths to create binary file
+    os.chdir('../..') #Back to original workspace
     return cg
 
 def execute_instruction_estimation_module():
     """ Runs the instruction estimation module
     """
     os.chdir('modules/instruction_estimation')
-    #Instruction estimation module
-    result = estimate.main()
+    result = estimate.main()#Instruction estimation module
     os.chdir('../..')
     return result
 
-def execute_dynamic_profiling():
+def execute_dynamic_profiling(sequential):
     """ Runs the profiling module
     """
     os.chdir('modules/profiling')
-    #Dynamic Profiling of the module
-    profiling.run_binaries()
+    if(sequential):
+        sequential_profiling.main()
+    else:
+        profiling.run_binaries() #Dynamic Profiling of the module
     os.chdir('../..')
     
 def execute_signals_reconstruction(cg, main_name):
