@@ -23,16 +23,25 @@ def multiprocess_func(path, directory):
     #Metrics/counters to retrieves
     args = 'ocount -e ' + counters + ' -i 1 -f '+temp_directory+'temp_file '+target
     #Start of the profiling
-    proc = subprocess.Popen(shlex.split(args), shell=False)
-    time.sleep(10)
-    #Kill subprocess
-    proc.kill()
     try:
-        #Kill childs of the subprocess(Binary execution)
+        exec_time = time.time()
+        proc = subprocess.Popen(shlex.split(args), shell=False)
         pid = int(subprocess.check_output(['pidof', '-s', path]))
+        binary_time = float('{}'.format(time.time() - exec_time))
+        
+        while pid and binary_time < 11:
+            time.sleep(5)
+            binary_time = float('{}'.format(time.time() - exec_time))
+            print('Time for path %s: %d seconds' % (path, binary_time))
+            pid = int(subprocess.check_output(['pidof', '-s', path]))
+
+        #Kill subprocess
+        proc.kill()
+        #Kill childs of the subprocess(Binary execution)
         os.system('kill -9 '+str(pid))
     except subprocess.CalledProcessError:
         print(path, "was finished before the limit time")
+        proc.kill()
         
 def run_binaries():
     """ Executes the existing binary to carry out a dynamic profiling
