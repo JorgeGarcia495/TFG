@@ -14,7 +14,8 @@ def main(cg, main_name):
     """Executes the steps required to perform the signals reconstructions
     """
     counters_metrics = get_counters_metrics()        
-    ipc = calculate_mean_counter_metrics(counters_metrics)
+    means = calculate_mean_counter_metrics(counters_metrics)
+    ipc = calculate_ipc(counters_metrics)
     instructions_per_function = path_instr.get_total_instructions()
     instructions_per_path = path_instr.get_instructions_per_path(instructions_per_function, cg, main_name)
     return ipc, instructions_per_path
@@ -50,23 +51,19 @@ def get_counters_metrics():
 def iterate_counters_metrics(location, event):
     """ Reads the file where the counter metrics are stores and returns it values
     """
-    counter = 0
+    iteration = 0
     number = 0
     percentage = 0
     try:
-        #Open file containing the dynamic profiling(Counters metrics)
-        with open(location, encoding='utf-8') as file:
-            #Iterate each line
-            for line in file:
+        with open(location, encoding='utf-8') as file: #Open file containing the dynamic profiling(Counters metrics)
+            for line in file:#Iterate each line
                 blank_line = line.strip()
                 if event in blank_line:
-                    #Retrieve the values
-                    counter = counter + 1
+                    iteration = iteration + 1
                     number = number + int(blank_line.split()[1].replace(',', '').strip())
                     percentage = float(blank_line.split()[2].strip())
-                    #Close file
-            file.close()
-            return number, counter, percentage
+            file.close() #Close file
+            return number, iteration, percentage
     except FileNotFoundError as e:
         logger.error(e)
         raise
@@ -81,10 +78,22 @@ def calculate_mean_counter_metrics(counters_metrics):
         result[key] = {}
         #Get mean values
         for event, metrics in values.items():
-            mean = metrics[0] / metrics[1]
+            value = metrics[0]
+            iterations = metrics[1]
+            mean = value / iterations
             result.get(key)[event] = mean
     return result
 
+def calculate_ipc(counters_metrics):
+    """ Calculates the instructions per cycle for each path
+    """
+    result = {}
+    for key, values in counters_metrics.items():
+        inst_retired = values['INST_RETIRED'][0]
+        clock_cycles = values['CPU_CLK_UNHALTED'][0]
+        result[key] = inst_retired / clock_cycles
+    return result
+        
 if __name__ == '__main__':
     main()
     
