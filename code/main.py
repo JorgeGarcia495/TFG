@@ -5,8 +5,8 @@
 
 #Importing libraries
 import os
-import sys
 import click
+import pandas as pd
 import logging
 
 from modules import export_data as export
@@ -34,7 +34,7 @@ def main(language, location, sequential):
     execute_instruction_estimation_module() #Run instruction estimation module
     execute_dynamic_profiling(sequential) #Execute dynamic profiling
     ipc, instructions_per_path = execute_signals_reconstruction(cg, main_name) #Retrieves the metrics from the profiling
-    #Exporting resulst...
+    #Exporting results...
     export.export_list_csv(instructions_per_path.values(), 'results/instructions_per_path.csv')
     export.export_dict_csv(ipc, 'results/counters_metrics.csv')
 

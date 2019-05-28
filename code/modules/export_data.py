@@ -6,6 +6,7 @@
 
 import os
 import csv
+import pandas as pd
 
 def export_multiple_lists_csv(data, name):
     if os.path.exists(name):
@@ -45,3 +46,11 @@ def export_dict_csv(data, name):
              for key, value in values.items():
                  aux.append(value)
              data_writer.writerow(aux)
+             
+def export_multi_index_dataframe_to_excel(name, data, cols):
+    aux = pd.DataFrame(data)
+    multi_index = [aux.iloc[:, 0], aux.iloc[:,1]]
+    data = pd.DataFrame(aux.iloc[:, 2:])
+    data.columns = cols
+    data.index = multi_index
+    data.to_excel(name, header = True, index = True)
