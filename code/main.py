@@ -29,11 +29,10 @@ def main(language, location, sequential):
     entrypoint = set_language(language)
     main_name = search_file(location, entrypoint)
     cg = execute_call_graph_module() #Execute Call Graph Set Module
-    export.export_multiple_lists_csv(cg, 'results/paths.csv') #Export results to csv
     execute_instruction_estimation_module() #Run instruction estimation module
     execute_dynamic_profiling(sequential) #Execute dynamic profiling
     ipc, counter_means, counters_metrics, instructions_per_path = execute_signals_reconstruction(cg, main_name) #Retrieves the metrics from the profiling
-    export_results(ipc, counter_means, instructions_per_path)
+    export_results(cg, ipc, counter_means, counters_metrics, instructions_per_path)
 
 def set_language(language):
     """ Locates and returns the initial function of the application to analyze
@@ -99,14 +98,15 @@ def execute_signals_reconstruction(cg, main_name):
     """ Runs the signals reconstruction module
     """
     os.chdir('modules/signals_reconstruction')
-    ipc, instrucions_per_path = signal_rec.main(cg, main_name.split('.f')[0])
+    ipc, counters_means, counters_metrics, instrucions_per_path = signal_rec.main(cg, main_name.split('.f')[0])
     os.chdir('../..')
-    return ipc, instrucions_per_path
+    return ipc, counters_means, counters_metrics, instrucions_per_path
 
-def export_results(ipc, counters_means, counters_metrics, instructions_per_path):
+def export_results(cg, ipc, counters_means, counters_metrics, instructions_per_path):
     signal = 'results/signal_reconstruction/'
     if not os.path.exists(signal):
         os.mkdir(signal)
+    export.export_multiple_lists_csv(cg, 'results/paths.csv') #Export results to csv
     export.export_dataframe(instructions_per_path, signal+'instructions_per_path')
     export.export_dataframe(ipc, signal+'ipc')
     export.export_dataframe(counters_metrics, signal+'counters_metrics')

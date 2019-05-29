@@ -18,7 +18,6 @@ def main(cg, main_name):
     means = calculate_mean_counter_metrics(counters_metrics)
     ipc = calculate_ipc(counters_metrics)
     instructions_per_function = path_instr.get_total_instructions()
-    main_name = 'bt'
     instructions_per_path = path_instr.get_instructions_per_path(instructions_per_function, cg, main_name)
     return ipc, means, counters_metrics, instructions_per_path
 
