@@ -6,7 +6,7 @@
 
 import os
 import csv
-import pandas as pd
+import matplotlib.pyplot as plt
 
 def export_multiple_lists_csv(data, name):
     if os.path.exists(name):
@@ -47,10 +47,6 @@ def export_dict_csv(data, name):
                  aux.append(value)
              data_writer.writerow(aux)
              
-def export_multi_index_dataframe_to_excel(name, data, cols):
-    aux = pd.DataFrame(data)
-    multi_index = [aux.iloc[:, 0], aux.iloc[:,1]]
-    data = pd.DataFrame(aux.iloc[:, 2:])
-    data.columns = cols
-    data.index = multi_index
-    data.to_excel(name, header = True, index = True)
+def export_dataframe(data, name):
+    data.to_excel(name+'.xlsx', header = True, index = True)
+    data.to_csv(name+'.csv', header = True, index = True)

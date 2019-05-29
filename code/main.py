@@ -6,7 +6,6 @@
 #Importing libraries
 import os
 import click
-import pandas as pd
 import logging
 
 from modules import export_data as export
@@ -33,11 +32,8 @@ def main(language, location, sequential):
     export.export_multiple_lists_csv(cg, 'results/paths.csv') #Export results to csv
     execute_instruction_estimation_module() #Run instruction estimation module
     execute_dynamic_profiling(sequential) #Execute dynamic profiling
-    ipc, instructions_per_path = execute_signals_reconstruction(cg, main_name) #Retrieves the metrics from the profiling
-    #Exporting results...
-    export.export_list_csv(instructions_per_path.values(), 'results/instructions_per_path.csv')
-    export.export_dict_csv(ipc, 'results/counters_metrics.csv')
-
+    ipc, counter_means, counters_metrics, instructions_per_path = execute_signals_reconstruction(cg, main_name) #Retrieves the metrics from the profiling
+    export_results(ipc, counter_means, instructions_per_path)
 
 def set_language(language):
     """ Locates and returns the initial function of the application to analyze
@@ -106,6 +102,15 @@ def execute_signals_reconstruction(cg, main_name):
     ipc, instrucions_per_path = signal_rec.main(cg, main_name.split('.f')[0])
     os.chdir('../..')
     return ipc, instrucions_per_path
+
+def export_results(ipc, counters_means, counters_metrics, instructions_per_path):
+    signal = 'results/signal_reconstruction/'
+    if not os.path.exists(signal):
+        os.mkdir(signal)
+    export.export_dataframe(instructions_per_path, signal+'instructions_per_path')
+    export.export_dataframe(ipc, signal+'ipc')
+    export.export_dataframe(counters_metrics, signal+'counters_metrics')
+    export.export_dataframe(counters_means, signal+'counters_means')
     
 if __name__ == '__main__':
     main()

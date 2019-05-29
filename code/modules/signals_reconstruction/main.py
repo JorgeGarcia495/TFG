@@ -7,7 +7,6 @@
 import os
 import logging
 import pandas as pd
-import numpy as np
 from . import path_instructions as path_instr
 
 logger = logging.getLogger(__name__)
@@ -19,8 +18,9 @@ def main(cg, main_name):
     means = calculate_mean_counter_metrics(counters_metrics)
     ipc = calculate_ipc(counters_metrics)
     instructions_per_function = path_instr.get_total_instructions()
+    main_name = 'bt'
     instructions_per_path = path_instr.get_instructions_per_path(instructions_per_function, cg, main_name)
-    return ipc, instructions_per_path
+    return ipc, means, counters_metrics, instructions_per_path
 
 def get_counters_metrics():
     paths_directory = '../../results/cg/source_code_paths/'
@@ -43,9 +43,10 @@ def get_counters_metrics():
             counters_metrics.extend(path_metrics[:])
     aux = pd.DataFrame(counters_metrics)
     result = aux.iloc[:, 2:]
-    multi_index = [aux.iloc[:, 0], aux.iloc[:,1]]
+    multi_index = [aux.iloc[:, 0].astype(int), aux.iloc[:,1]]
     result.index = multi_index
     result.columns = events
+    result.index.name = ['Path', 'Cycles(ms)']
     return result
 
 def iterate_counters_metrics(path, location, events):
