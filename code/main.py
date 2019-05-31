@@ -31,8 +31,9 @@ def main(language, location, sequential):
     cg = execute_call_graph_module() #Execute Call Graph Set Module
     execute_instruction_estimation_module() #Run instruction estimation module
     execute_dynamic_profiling(sequential) #Execute dynamic profiling
-    ipc, counter_means, counters_metrics, instructions_per_path = execute_signals_reconstruction(cg, main_name) #Retrieves the metrics from the profiling
+    ipc, counter_means, counters_metrics, instructions_per_path, index = execute_signals_reconstruction(cg, main_name) #Retrieves the metrics from the profiling
     export_results(cg, ipc, counter_means, counters_metrics, instructions_per_path)
+    
 
 def set_language(language):
     """ Locates and returns the initial function of the application to analyze

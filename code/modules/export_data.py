@@ -6,7 +6,6 @@
 
 import os
 import csv
-import matplotlib.pyplot as plt
 
 def export_multiple_lists_csv(data, name):
     if os.path.exists(name):
