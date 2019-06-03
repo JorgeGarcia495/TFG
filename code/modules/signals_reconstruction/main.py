@@ -8,6 +8,7 @@ import os
 import logging
 import numpy as np
 import pandas as pd
+import time
 import matplotlib.pyplot as plt
 from . import path_instructions as path_instr
 
@@ -21,6 +22,7 @@ def main(cg, main_name):
     ipc = calculate_ipc(counters_metrics)
     instructions_per_function = path_instr.get_total_instructions()
     instructions_per_path = path_instr.get_instructions_per_path(instructions_per_function, cg, main_name)
+    reconstruction(counters_metrics, multi_index, means)
     return ipc, means, counters_metrics, instructions_per_path, multi_index
 
 def get_counters_metrics():
@@ -92,9 +94,13 @@ def calculate_ipc(counters_metrics):
 def reconstruction(counters_metrics, multi_index, means):
     rec_counters_metrics = reconstruct_index(counters_metrics, multi_index)
     rec_counters_means = reconstruct_index_means(rec_counters_metrics, means)
+    path = '../../results/signal_reconstruction/plot/'
+    if os.path.exists(path):
+        os.remove(path)
+    os.mkdir(path)
     for counter in list(rec_counters_means.columns):
-        data = rec_counters_means.loc[:, [counter]]
-        generate_plot(data, counter)
+        data = rec_counters_means[counter]
+        generate_plot(data, counter, path)
 
 def reconstruct_index(counters_metrics, multi_index):
     result = counters_metrics[:]
@@ -114,14 +120,18 @@ def reconstruct_index_means(rec_counters_metrics, means):
         data.extend([list(means.loc[path])]*number_iteration)
     return pd.DataFrame(data, index=new_index, columns=rec_counters_metrics.columns)
     
-def generate_plot(data, counter):
-    plt.plot(data.index.levels[1], data)
+def generate_plot(data, counter, path):
+    x_axis = data.index.levels[1].values
+    plt.figure(figsize=(9,4))
+    plt.plot(x_axis, data, label=counter)
     plt.title('BT - CLASS B (Hardware counter signal reconstruction)')
-    plt.xlabel('Time(ms)')
+    plt.xlabel('Time(s)')
     plt.legend()
     plt.ylabel(counter)
-    plt.xlim(xmin=0)
-    plt.savefig(counter+'.png')
+    plt.xlim(xmin=0, xmax=x_axis.max())
+    save_path = path+counter+'.png'
+    plt.savefig(save_path.replace(':', '_'))
+    plt.cla()
     
 if __name__ == '__main__':
     main()
