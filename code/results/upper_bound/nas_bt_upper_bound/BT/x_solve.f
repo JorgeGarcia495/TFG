@@ -41,11 +41,8 @@ c---------------------------------------------------------------------
 c---------------------------------------------------------------------
 c     determine a (labeled f) and n jacobians
 c---------------------------------------------------------------------
-          PRINT *,"Loop entry",1,44,":", 1, grid_points(3)-2
       do k = 1, grid_points(3)-2
-             PRINT *,"Loop entry",2,45,":", 1, grid_points(2)-2
          do j = 1, grid_points(2)-2
-                PRINT *,"Loop entry",3,46,":", 0, isize
             do i = 0, isize
 
                tmp1 = rho_i(i,j,k)
@@ -130,16 +127,11 @@ c---------------------------------------------------------------------
                njac(5,4,i) = ( c3c4 - c1345 ) * tmp2 * u(4,i,j,k)
                njac(5,5,i) = ( c1345 ) * tmp1
 
-              EXIT
             enddo
-            PRINT *,"Loop exit",3,130
 c---------------------------------------------------------------------
 c     now jacobians set, so form left hand side in x direction
 c---------------------------------------------------------------------
-              PRINT *,"Begin - lhsinit",134
             call lhsinit(lhs, isize)
-              PRINT *,"End - lhsinit",134
-                PRINT *,"Loop entry",3,135,":", 1, isize-1
             do i = 1, isize-1
 
                tmp1 = dt * tx1
@@ -305,9 +297,7 @@ c---------------------------------------------------------------------
      >              - tmp1 * njac(5,5,i+1)
      >              - tmp1 * dx5
 
-              EXIT
             enddo
-            PRINT *,"Loop exit",3,300
 
 c---------------------------------------------------------------------
 c---------------------------------------------------------------------
@@ -330,75 +320,58 @@ c---------------------------------------------------------------------
 c     multiply c(0,j,k) by b_inverse and copy back to c
 c     multiply rhs(0) by b_inverse(0) and copy to rhs
 c---------------------------------------------------------------------
-              PRINT *,"Begin - binvcrhs",323
             call binvcrhs( lhs(1,1,bb,0),
      >                        lhs(1,1,cc,0),
      >                        rhs(1,0,j,k) )
-                              PRINT *,"End - binvcrhs",325
 
 c---------------------------------------------------------------------
 c     begin inner most do loop
 c     do all the elements of the cell unless last 
 c---------------------------------------------------------------------
-             PRINT *,"Loop entry",3,331,":",1,isize-1
             do i=1,isize-1
 
 c---------------------------------------------------------------------
 c     rhs(i) = rhs(i) - A*rhs(i-1)
 c---------------------------------------------------------------------
-                PRINT *,"Begin - matvec_sub",336
                call matvec_sub(lhs(1,1,aa,i),
      >                         rhs(1,i-1,j,k),rhs(1,i,j,k))
-                              PRINT *,"End - matvec_sub",337
 
 c---------------------------------------------------------------------
 c     B(i) = B(i) - C(i-1)*A(i)
 c---------------------------------------------------------------------
-                PRINT *,"Begin - matmul_sub",342
                call matmul_sub(lhs(1,1,aa,i),
      >                         lhs(1,1,cc,i-1),
      >                         lhs(1,1,bb,i))
-                              PRINT *,"End - matmul_sub",344
 
 
 c---------------------------------------------------------------------
 c     multiply c(i,j,k) by b_inverse and copy back to c
 c     multiply rhs(1,j,k) by b_inverse(1,j,k) and copy to rhs
 c---------------------------------------------------------------------
-                 PRINT *,"Begin - binvcrhs",351
                call binvcrhs( lhs(1,1,bb,i),
      >                        lhs(1,1,cc,i),
      >                        rhs(1,i,j,k) )
-                              PRINT *,"End - binvcrhs",353
 
-              EXIT
             enddo
-            PRINT *,"Loop exit",3,355
 
 c---------------------------------------------------------------------
 c     rhs(isize) = rhs(isize) - A*rhs(isize-1)
 c---------------------------------------------------------------------
-             PRINT *,"Begin - matvec_sub",360
             call matvec_sub(lhs(1,1,aa,isize),
      >                         rhs(1,isize-1,j,k),rhs(1,isize,j,k))
-                              PRINT *,"End - matvec_sub",361
 
 c---------------------------------------------------------------------
 c     B(isize) = B(isize) - C(isize-1)*A(isize)
 c---------------------------------------------------------------------
-             PRINT *,"Begin - matmul_sub",366
             call matmul_sub(lhs(1,1,aa,isize),
      >                         lhs(1,1,cc,isize-1),
      >                         lhs(1,1,bb,isize))
-                              PRINT *,"End - matmul_sub",368
 
 c---------------------------------------------------------------------
 c     multiply rhs() by b_inverse() and copy to rhs
 c---------------------------------------------------------------------
-              PRINT *,"Begin - binvrhs",373
             call binvrhs( lhs(1,1,bb,isize),
      >                       rhs(1,isize,j,k) )
-                             PRINT *,"End - binvrhs",374
 
 
 c---------------------------------------------------------------------
@@ -408,30 +381,17 @@ c     so just use it
 c     after call u(istart) will be sent to next cell
 c---------------------------------------------------------------------
 
-             PRINT *,"Loop entry",3,384,":",isize-1,0,-1
             do i=isize-1,0,-1
-                PRINT *,"Loop entry",4,385,":",1,BLOCK_SIZE
                do m=1,BLOCK_SIZE
-                   PRINT *,"Loop entry",5,386,":",1,BLOCK_SIZE
                   do n=1,BLOCK_SIZE
                      rhs(m,i,j,k) = rhs(m,i,j,k) 
      >                    - lhs(m,n,cc,i)*rhs(n,i+1,j,k)
-                    EXIT
                   enddo
-                  PRINT *,"Loop exit",5,389
-                 EXIT
                enddo
-               PRINT *,"Loop exit",4,390
-              EXIT
             enddo
-            PRINT *,"Loop exit",3,391
 
-           EXIT
          enddo
-         PRINT *,"Loop exit",2,393
-        EXIT
       enddo
-      PRINT *,"Loop exit",1,394
       if (timeron) call timer_stop(t_xsolve)
 
       return

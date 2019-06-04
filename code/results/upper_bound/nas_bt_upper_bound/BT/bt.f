@@ -121,50 +121,27 @@ c---------------------------------------------------------------------
        endif
 
 
-        PRINT *,"Begin - set_constants",124
        call set_constants
-        PRINT *,"End - set_constants",124
 
-           PRINT *,"Loop entry",1,126,":", 1, t_last
        do i = 1, t_last
-           PRINT *,"Begin - timer_clear",127
           call timer_clear(i)
-           PRINT *,"End - timer_clear",127
-          EXIT
        end do
-        PRINT *,"Loop exit",1,128
 
-        PRINT *,"Begin - initialize",130
        call initialize
-        PRINT *,"End - initialize",130
 
-        PRINT *,"Begin - exact_rhs",132
        call exact_rhs
-        PRINT *,"End - exact_rhs",132
 
 c---------------------------------------------------------------------
 c      do one time step to touch all code, and reinitialize
 c---------------------------------------------------------------------
-        PRINT *,"Begin - adi",137
        call adi
-        PRINT *,"End - adi",137
-        PRINT *,"Begin - initialize",138
        call initialize
-        PRINT *,"End - initialize",138
 
-           PRINT *,"Loop entry",1,140,":", 1, t_last
        do i = 1, t_last
-           PRINT *,"Begin - timer_clear",141
           call timer_clear(i)
-           PRINT *,"End - timer_clear",141
-          EXIT
        end do
-        PRINT *,"Loop exit",1,142
-        PRINT *,"Begin - timer_start",143
        call timer_start(1)
-        PRINT *,"End - timer_start",143
 
-            PRINT *,"Loop entry",1,145,":", 1, niter
        do  step = 1, niter
 
           if (mod(step, 20) .eq. 0 .or. 
@@ -173,22 +150,14 @@ c---------------------------------------------------------------------
  200         format(' Time step ', i4)
           endif
 
-           PRINT *,"Begin - adi",153
           call adi
-           PRINT *,"End - adi",153
 
-          EXIT
        end do
-        PRINT *,"Loop exit",1,155
 
-        PRINT *,"Begin - timer_stop",157
        call timer_stop(1)
-        PRINT *,"End - timer_stop",157
        tmax = timer_read(1)
        
-          PRINT *,"Begin - verify",160
        call verify(niter, class, verified)
-          PRINT *,"End - verify",160
 
        n3 = 1.0d0*grid_points(1)*grid_points(2)*grid_points(3)
        navg = (grid_points(1)+grid_points(2)+grid_points(3))/3.0
@@ -199,30 +168,24 @@ c---------------------------------------------------------------------
        else
           mflops = 0.0
        endif
-           PRINT *,"Begin - print_results",171
        call print_results('BT', class, grid_points(1), 
      >  grid_points(2), grid_points(3), niter,
      >  tmax, mflops, '          floating point', 
      >  verified, npbversion,compiletime, cs1, cs2, cs3, cs4, cs5, 
      >  cs6, '(none)')
-        PRINT *,"End - print_results",175
 
 c---------------------------------------------------------------------
 c      More timers
 c---------------------------------------------------------------------
        if (.not.timeron) goto 999
 
-         PRINT *,"Loop entry",1,182,":",1, t_last
        do i=1, t_last
           trecs(i) = timer_read(i)
-          EXIT
        end do
-        PRINT *,"Loop exit",1,184
 
        if (tmax .eq. 0.0) tmax = 1.0
        write(*,800)
  800   format('  SECTION   Time (secs)')
-         PRINT *,"Loop entry",1,189,":",1, t_last
        do i=1, t_last
           write(*,810) t_names(i), trecs(i), trecs(i)*100./tmax
           if (i.eq.t_rhs) then
@@ -239,9 +202,7 @@ c---------------------------------------------------------------------
           endif
  810      format(2x,a8,':',f9.3,'  (',f6.2,'%)')
  820      format('    --> ',a8,':',f9.3,'  (',f6.2,'%)')
-          EXIT
        end do
-        PRINT *,"Loop exit",1,205
 
  999   continue
 

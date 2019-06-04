@@ -28,35 +28,23 @@ c---------------------------------------------------------------------
 c---------------------------------------------------------------------
 c   compute the error norm and the residual norm, and exit if not printing
 c---------------------------------------------------------------------
-         PRINT *,"Begin - error_norm",31
         call error_norm(xce)
-         PRINT *,"End - error_norm",31
-         PRINT *,"Begin - compute_rhs",32
         call compute_rhs
-         PRINT *,"End - compute_rhs",32
 
-         PRINT *,"Begin - rhs_norm",34
         call rhs_norm(xcr)
-         PRINT *,"End - rhs_norm",34
 
-            PRINT *,"Loop entry",1,36,":", 1, 5
         do m = 1, 5
            xcr(m) = xcr(m) / dt
-          EXIT
         enddo
-        PRINT *,"Loop exit",1,38
 
 
         class = 'U'
         verified = .true.
 
-           PRINT *,"Loop entry",1,44,":", 1,5
         do m = 1,5
            xcrref(m) = 1.0
            xceref(m) = 1.0
-           EXIT
         end do
-         PRINT *,"Loop exit",1,47
 
 c---------------------------------------------------------------------
 c    reference data for 12X12X12 grids after 60 time steps, with DT = 1.0d-02
@@ -280,15 +268,12 @@ c---------------------------------------------------------------------
 c---------------------------------------------------------------------
 c    Compute the difference of solution values and the known reference values.
 c---------------------------------------------------------------------
-            PRINT *,"Loop entry",1,271,":", 1, 5
         do m = 1, 5
            
            xcrdif(m) = dabs((xcr(m)-xcrref(m))/xcrref(m)) 
            xcedif(m) = dabs((xce(m)-xceref(m))/xceref(m))
            
-          EXIT
         enddo
-        PRINT *,"Loop exit",1,276
 
 c---------------------------------------------------------------------
 c    Output the comparison of computed results to known cases.
@@ -320,7 +305,6 @@ c---------------------------------------------------------------------
 
  2001   format(' Comparison of RMS-norms of residual')
  2005   format(' RMS-norms of residual')
-            PRINT *,"Loop entry",1,308,":", 1, 5
         do m = 1, 5
            if (class .eq. 'U') then
               write(*, 2015) m, xcr(m)
@@ -330,9 +314,7 @@ c---------------------------------------------------------------------
               verified = .false.
               write (*,2010) m,xcr(m),xcrref(m),xcrdif(m)
            endif
-          EXIT
         enddo
-        PRINT *,"Loop exit",1,317
 
         if (class .ne. 'U') then
            write (*,2002)
@@ -342,7 +324,6 @@ c---------------------------------------------------------------------
  2002   format(' Comparison of RMS-norms of solution error')
  2006   format(' RMS-norms of solution error')
         
-            PRINT *,"Loop entry",1,327,":", 1, 5
         do m = 1, 5
            if (class .eq. 'U') then
               write(*, 2015) m, xce(m)
@@ -352,9 +333,7 @@ c---------------------------------------------------------------------
               verified = .false.
               write (*,2010) m,xce(m),xceref(m),xcedif(m)
            endif
-          EXIT
         enddo
-        PRINT *,"Loop exit",1,336
         
  2010   format(' FAILURE: ', i2, E20.13, E20.13, E20.13)
  2011   format('          ', i2, E20.13, E20.13, E20.13)
