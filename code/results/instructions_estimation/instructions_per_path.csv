@@ -1,0 +1,20 @@
+﻿Execution paths,Estimated instructions
+bt,adi,add,timer_start,3711073400
+bt,adi,add,timer_stop,3711073400
+bt,adi,compute_rhs,timer_start,91004741900
+bt,adi,compute_rhs,timer_stop,91004741900
+bt,adi,x_solve,binvcrhs,2.05E+11
+bt,adi,x_solve,binvrhs,38384061400
+bt,adi,x_solve,matvec_sub,55372061400
+bt,adi,x_solve,matmul_sub,1.36E+11
+bt,adi,x_solve,lhsinit,38410061400
+bt,adi,y_solve,binvcrhs,2.06E+11
+bt,adi,y_solve,binvrhs,39194461400
+bt,adi,y_solve,matvec_sub,56182461400
+bt,adi,y_solve,matmul_sub,1.37E+11
+bt,adi,y_solve,lhsinit,39220461400
+bt,adi,z_solve,binvcrhs,2.06E+11
+bt,adi,z_solve,binvrhs,38993669400
+bt,adi,z_solve,matvec_sub,55981669400
+bt,adi,z_solve,matmul_sub,1.33E+11
+bt,adi,z_solve,lhsinit,39019669400

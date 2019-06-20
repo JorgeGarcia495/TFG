@@ -31,8 +31,8 @@ def main(language, location, sequential):
     cg = execute_call_graph_module() #Execute Call Graph Set Module
     execute_instruction_estimation_module() #Run instruction estimation module
     execute_dynamic_profiling(sequential) #Execute dynamic profiling
-    ipc, counter_means, counters_metrics, instructions_per_path, index = execute_signals_reconstruction(cg, main_name) #Retrieves the metrics from the profiling
-    export_results(cg, ipc, counter_means, counters_metrics, instructions_per_path)
+    ipc, counter_means, counters_metrics, execution_times = execute_signals_reconstruction(cg) #Retrieves the metrics from the profiling
+    export_results(cg, ipc, counter_means, counters_metrics, execution_times)
     
 
 def set_language(language):
@@ -99,16 +99,16 @@ def execute_signals_reconstruction(cg, main_name):
     """ Runs the signals reconstruction module
     """
     os.chdir('modules/signals_reconstruction')
-    ipc, counters_means, counters_metrics, instrucions_per_path = signal_rec.main(cg, main_name.split('.f')[0])
+    ipc, counters_means, counters_metrics, execution_times = signal_rec.main(cg, main_name.split('.f')[0])
     os.chdir('../..')
-    return ipc, counters_means, counters_metrics, instrucions_per_path
+    return ipc, counters_means, counters_metrics, execution_times
 
-def export_results(cg, ipc, counters_means, counters_metrics, instructions_per_path):
+def export_results(cg, ipc, counters_means, counters_metrics, execution_times):
     signal = 'results/signal_reconstruction/'
     if not os.path.exists(signal):
         os.mkdir(signal)
     export.export_multiple_lists_csv(cg, 'results/paths.csv') #Export results to csv
-    export.export_dataframe(instructions_per_path, signal+'instructions_per_path')
+    export.export_dataframe(execution_times, signal+'execution_times')
     export.export_dataframe(ipc, signal+'ipc')
     export.export_dataframe(counters_metrics, signal+'counters_metrics')
     export.export_dataframe(counters_means, signal+'counters_means')
