@@ -5,20 +5,28 @@
 """
 
 import os
+import sys
 import logging
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+from . import reconstruction as rec
 
 logger = logging.getLogger(__name__)
 
-def main(cg):
+def main():
+    """ Entrypoint of the module
+    """
+    sys.path.append("./reconstruction")
+    path = "../../results/paths.csv"
+    cg = pd.read_csv(path, header = None, index_col=0, delimiter=",", )
+    reconstruct(cg)
+    
+def reconstruct(cg):
     """Executes the steps required to perform the signals reconstructions
     """
     counters_metrics = get_counters_metrics()
     means = calculate_mean_counter_metrics(counters_metrics)
     ipc = calculate_ipc(counters_metrics)
-    execution_times = reconstruction(cg, ipc, means)
+    execution_times = rec.main(cg, ipc, means)
     return ipc, means, counters_metrics, execution_times
 
 def get_counters_metrics():
@@ -86,80 +94,4 @@ def calculate_ipc(counters_metrics):
     result = pd.DataFrame(sums.INST_RETIRED.divide(sums.CPU_CLK_UNHALTED))
     result.columns =['IPC']
     return result
-
-def reconstruction(cg, ipc, means):
-    """ Generates several files in order to organize the data obtained from the profiling
-    """
-    path = '../../results/signal_reconstruction/plot/'
-#    check_path(path)
-    instructions_per_path = get_instructions_per_path(cg)
-#    df = pd.DataFrame(instructions_per_path["Instructions"], 
-#                      index=instructions_per_path["Path"], columns=["Instructions"])
-    df = pd.DataFrame(instructions_per_path, 
-                      columns=["Path", "Instructions"])
-    path_exec_time = calculate_execution_time(df, ipc, means)
-    means = means.drop(np.setdiff1d(means.index.to_series(), path_exec_time.index.to_series()))
-    for counter in means.columns:
-        times = time_preparation(path_exec_time)
-        values = data_preparation(means[counter])
-        generate_plot(times, values, counter, path)
-    return path_exec_time
-    
-def check_path(path):
-    """ Checks if the path passed as an argument is created
-    """
-    if os.path.exists(path):
-        os.remove(path)
-    os.mkdir(path)
-    
-#TODO: Check again once the instruction estimation module is completed
-def get_instructions_per_path(cg):
-    directory = '../../results/instructions_estimation/instructions_per_path.csv'
-    indexes = []
-    instructions = []
-    instructions_per_path = pd.read_csv(directory, delimiter=',', skiprows=1, decimal='.', 
-                       names=["Function_1","Function_2","Function_3", "Function_4","Instructions",])
-    for index, path in enumerate(cg):
-        path_functions = np.array(path)
-        for index_df, row in instructions_per_path.iterrows():
-            if np.all(np.in1d(row[:-1], path_functions)):
-                indexes.append(index)
-                instructions.append(row[-1])
-    return {"Path" : indexes, "Instructions" : instructions}
-
-def calculate_execution_time(df, ipc, means):
-#    df["Time"] = df.Instructions / df.Paths]
-    result = pd.DataFrame.copy(df)
-    result["Cycles"] = df.Path.map(lambda x: means.loc[x].CPU_CLK_UNHALTED)
-    result["IPC"] = df.Path.map(lambda x: ipc.loc[x].item())
-    result["Time"] = df.Instructions / df.Path.map(lambda x: ipc.loc[x].item() * means.loc[x].CPU_CLK_UNHALTED * 10)
-    result["Total_Time"] = np.cumsum(result.Time)
-    result.set_index("Path", inplace=True)
-    return result
-
-def time_preparation(data):
-    result = data.Total_Time[:]
-    result = result.append(data.Total_Time[1:]-0.001)
-    return result.sort_values()
-    
-def data_preparation(values):
-    result = values[:]
-    result = result.append(values[:-1])
-    return result.sort_index()
-    
-def generate_plot(x_axis, values, counter, path):
-    plt.figure(figsize=(9,4))
-    plt.plot(x_axis, values, label=counter)
-    plt.title('BT - CLASS B (Hardware counter signal reconstruction)')
-    plt.xlabel('Time(s)')
-    plt.legend()
-    plt.ylabel(counter)
-    plt.xlim(xmin=0, xmax=x_axis.max()+5)
-    save_path = path+counter+'.png'
-    plt.savefig(save_path.replace(':', '_'))
-    plt.cla()
-    
-if __name__ == '__main__':
-    main()
-    
     

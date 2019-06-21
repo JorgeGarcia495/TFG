@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 @author: Jorge García Villanueva <jorgeg09@ucm.es>
@@ -28,12 +29,11 @@ def main(language, location, sequential):
     """ Framework intended to analyze an application in order to estimate its energy consumtpion """
     entrypoint = set_language(language)
     main_name = search_file(location, entrypoint)
-    cg = execute_call_graph_module() #Execute Call Graph Set Module
+    cg = execute_call_graph_module(main_name) #Execute Call Graph Set Module
     execute_instruction_estimation_module() #Run instruction estimation module
     execute_dynamic_profiling(sequential) #Execute dynamic profiling
     ipc, counter_means, counters_metrics, execution_times = execute_signals_reconstruction(cg) #Retrieves the metrics from the profiling
     export_results(cg, ipc, counter_means, counters_metrics, execution_times)
-    
 
 def set_language(language):
     """ Locates and returns the initial function of the application to analyze
@@ -65,11 +65,11 @@ def search_file(directory, word):
         logger.error(e)
         raise
 
-def execute_call_graph_module():
+def execute_call_graph_module(main_name):
     """ Runs the call graph module
     """
     os.chdir('modules/cg') #Change of workspace in orden to execute Doxygen
-    cg, labels = call_graph.main() #Get Paths
+    cg, labels = call_graph.main(main_name) #Get Paths
     if(cg == None or len(cg) == 0):
         raise Exception('Error executing CFG module')
     cg_source_code.generate_code_paths(cg, labels) #Generate source code of the paths
@@ -90,16 +90,16 @@ def execute_dynamic_profiling(sequential):
     """
     os.chdir('modules/profiling')
     if(sequential):
-        sequential_profiling.main()
+        sequential_profiling.main() #Sequential profiling
     else:
         profiling.run_binaries() #Dynamic Profiling of the module
     os.chdir('../..')
     
-def execute_signals_reconstruction(cg, main_name):
+def execute_signals_reconstruction(cg):
     """ Runs the signals reconstruction module
     """
     os.chdir('modules/signals_reconstruction')
-    ipc, counters_means, counters_metrics, execution_times = signal_rec.main(cg, main_name.split('.f')[0])
+    ipc, counters_means, counters_metrics, execution_times = signal_rec.reconstruct(cg)
     os.chdir('../..')
     return ipc, counters_means, counters_metrics, execution_times
 
@@ -107,7 +107,7 @@ def export_results(cg, ipc, counters_means, counters_metrics, execution_times):
     signal = 'results/signal_reconstruction/'
     if not os.path.exists(signal):
         os.mkdir(signal)
-    export.export_multiple_lists_csv(cg, 'results/paths.csv') #Export results to csv
+    export.export_dataframe(cg, 'results/paths')
     export.export_dataframe(execution_times, signal+'execution_times')
     export.export_dataframe(ipc, signal+'ipc')
     export.export_dataframe(counters_metrics, signal+'counters_metrics')

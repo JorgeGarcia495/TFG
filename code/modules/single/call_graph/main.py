@@ -6,20 +6,23 @@
 
 #Importing libraries
 import os
+import click
 import shutil
 import logging
 import subprocess
-from . import call_graph_paths as cg_paths
+import call_graph_paths as cg_paths
 
 logger = logging.getLogger(__name__)
 
+@click.command()
+@click.option("-f", "--file", help="Name of the main file", required=True)
 def main(file):
     """Entrypoint of the module
     """
     execute_doxygen()
     save_main(file)
     delete_generated_files()
-    return cg_paths.main()
+    cg, labels = cg_paths.main()
 
 def execute_doxygen():
     """ Calls the system to execute the Doxygen
@@ -35,7 +38,7 @@ def save_main(main_name):
     """ Saves the source code based on the paths retrieved from the cg
     """
     try:
-        directory = '../../results/cg/'
+        directory = '../../../results/single/'
         if not os.path.exists(directory):
             os.mkdir(directory)
         found = False;
@@ -64,3 +67,7 @@ def delete_generated_files():
     except FileNotFoundError as e:
         logger.error(e)
         raise
+    
+if __name__ == '__main__':
+    main()
+    

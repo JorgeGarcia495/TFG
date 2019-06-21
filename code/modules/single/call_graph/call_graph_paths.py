@@ -3,7 +3,7 @@
 """
 @author: Jorge García Villanueva <jorgeg09@ucm.es>
 """
-
+import os
 import pandas as pd
 
 def main():
@@ -13,7 +13,7 @@ def main():
     paths = complete_paths(paths)
     paths = delete_repeated_paths(paths)
     result = rename_dict(paths, labels)
-    return result, labels
+    export_paths(result)
 
 def get_paths():
     """ Analyze the cg and returns the paths contained on it
@@ -38,6 +38,7 @@ def get_paths():
                     else:
                         paths[first].append(second)
     return paths, labels
+
 
 def get_labels(words):
     """ Based on the array passed as an argument, determines the label of each element
@@ -66,7 +67,6 @@ def delete_repeated_paths(paths):
     return result
 
 
-
 #TODO: Remove magic number '1000'
 def complete_paths(paths):
     minimum_number = min(paths.keys())
@@ -81,17 +81,22 @@ def add_children(graph, start, end, path=[]):
         return [path]
     if start not in graph.keys():
         return []
-    paths = []
+    result = []
     for node in graph[start]:
         if node not in path:
             newpaths = add_children(graph, node, end, path)
-            for newpath in newpaths:
-                paths.append(newpath)
-    return paths
-
+            result = result + newpaths
+    return result
 
 def rename_dict(paths, labels):
     """ Modifies the values(numbers) of the paths(cg) to its label
     """
     df = pd.DataFrame(paths)
     return df.applymap(lambda x: labels.get(x))
+
+def export_paths(paths):
+    directory = '../../../results/single/call_graph/'
+    if not os.path.exists(directory):
+        os.mkdir(directory)
+    paths.to_csv(directory+'paths.csv')
+    paths.to_excel(directory+'paths.xlsx', header = False, index = True)
