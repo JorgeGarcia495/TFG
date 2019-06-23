@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-@author: Jorge García Villanueva
+@author: Jorge García Villanueva <jorgeg09@ucm.es>
 """
 
 import os
@@ -10,9 +10,8 @@ import subprocess
 
 logger = logging.getLogger(__name__)
 
-#TODO: Delete 'bt.B.x' by a parameter name
 #TODO: Check privileges on creating '.sh' file
-def main():
+def main(binary_name):
     """Creates and executes a script to generate a binary for every path
     """
     #Directory to iterate
@@ -30,7 +29,7 @@ def main():
             bin_file.write(make_clean+'\n')
             #bin_file.write(make_clean+'\n')
             bin_file.write('make BT CLASS=B\n')
-            bin_file.write('mv '+bin_directory+'bt.B.x '+bin_directory+dirs+'\n')
+            bin_file.write('mv '+bin_directory+binary_name+' '+bin_directory+dirs+'\n')
             bin_file.write(make_clean)
         bin_file.close()
         try:
@@ -47,7 +46,5 @@ def main():
             logger.error(e)
             raise
 
-dirs = '0'
-    
 if __name__ == '__main__':
     main()

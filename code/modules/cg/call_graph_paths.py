@@ -47,35 +47,21 @@ def get_labels(words):
         return labels[1]
     return None
 
-def delete_repeated_paths(paths):
-    """ If there is a path contained on a bigger one, it is deleted
+def complete_paths(paths):
+    """ Gets the complete paths of the application to profile
     """
     result = []
-    removal_list = []
-    for path in paths:
-        for values in path:
-                result.append(values)        
-
-    for path in result:
-        for path2 in result:
-            if path != path2 and all(x in path for x in path2):
-                if path2 not in removal_list:
-                    removal_list.append(path2)
-    for rem in removal_list:
-        result.remove(rem)
-    return result
-
-
-
-#TODO: Remove magic number '1000'
-def complete_paths(paths):
+    elements = 0
     minimum_number = min(paths.keys())
-    result = []
-    for i in range(1000):
+    for key, values in paths.items():
+        elements += len(values)
+    for i in range(elements):
         result.append(add_children(paths, minimum_number, i+1))
     return [res for res in result if len(res) > 0]
-    
+
 def add_children(graph, start, end, path=[]):
+    """ Algorithm to retrieve the children of a node
+    """
     path = path + [start]
     if start == end:
         return [path]
@@ -89,6 +75,19 @@ def add_children(graph, start, end, path=[]):
                 paths.append(newpath)
     return paths
 
+def delete_repeated_paths(paths):
+    """ If there is a path contained on a bigger one, it is deleted
+    """
+    removal_list = []
+    result = [item for lista in paths for item in lista]
+
+    for path in result:
+        for path2 in result:
+            if path != path2 and all(x in path for x in path2):
+                if path2 not in removal_list:
+                    removal_list.append(path2)
+    
+    return [x for x in result if x not in removal_list]
 
 def rename_dict(paths, labels):
     """ Modifies the values(numbers) of the paths(cg) to its label

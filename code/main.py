@@ -40,12 +40,18 @@ def set_language(language):
     """
     language = language.lower()
     if(language == 'c++'):
-        return 'main'
+        main_name = 'main'
+        function_sintax = ""
+        comment_sintax = ""
     elif(language == 'fortran'):
-        return 'open'
+        function_sintax = "call"
+        comment_sintax = "c "
+        main_name = 'open'
     else:
         raise Exception('The selected programming language is not supported by the application')
+    return main_name, function_sintax, comment_sintax
         
+#TODO: Change word value
 def search_file(directory, word):
     """ Locates the main file of the application to analyze
     """
@@ -65,17 +71,31 @@ def search_file(directory, word):
         logger.error(e)
         raise
 
-def execute_call_graph_module(main_name):
+def execute_call_graph_module(main_name, function_sintax, comment_sintax):
     """ Runs the call graph module
     """
+    binary_name = get_binary_name()
     os.chdir('modules/cg') #Change of workspace in orden to execute Doxygen
     cg, labels = call_graph.main(main_name) #Get Paths
     if(cg == None or len(cg) == 0):
         raise Exception('Error executing CFG module')
-    cg_source_code.generate_code_paths(cg, labels) #Generate source code of the paths
-    cg_binaries.main() #Compile paths to create binary file
+    cg_source_code.main(cg, labels, function_sintax, comment_sintax) #Generate source code of the paths
+    cg_binaries.main(binary_name) #Compile paths to create binary file
     os.chdir('../..') #Back to original workspace
     return cg
+
+def get_binary_name():
+    directory = '../nas_bt/bin/'
+    files = []
+    try:
+        files = os.listdir(directory)
+    except FileNotFoundError as e:
+        logger.error(e)
+        raise
+    if len(files) > 1 or len(files) == 0:
+        logger.error("Multiple/None binary files found")
+        raise Exception("Multiple/None binary files found, please leave only one")
+    return files[0]
 
 def execute_instruction_estimation_module():
     """ Runs the instruction estimation module
