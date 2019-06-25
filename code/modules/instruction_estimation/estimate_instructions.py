@@ -25,16 +25,16 @@ def main():
     """
     bin_location = '../../../nas_bt/bin/bt.B.x '
     directory = '../../results/instructions_estimation/'
+    upperbound_directory = '../../results/upper_bound/nas_bt_upper_bound/'
     aic.create_asm(bin_location, directory)
-    delete_files()
-    parser.parse()
-    execute_commands()
+    delete_files(upperbound_directory)
+    parser.parse(upperbound_directory)
+    execute_commands(upperbound_directory)
     return execute_mains(bin_location, directory)
     
-def delete_files():
+def delete_files(directory):
     """ Cleans the directory where the instructions are going to be calculated
     """
-    directory = '../../results/upper_bound/nas_bt_upper_bound'
     if os.path.exists(directory):
             shutil.rmtree(directory)
     #os.remove('upper_bound/upperbound_bt')
@@ -50,12 +50,12 @@ def execute_mains(bin_location, directory):
     result = iexp.total_instructions(bin_location, directory)
     return result
 
-def execute_commands():
+def execute_commands(directory):
     command_list = []
-    command_list.append('make -C ../../results/upper_bound/nas_bt_upper_bound/ clean')
-    command_list.append('make -C ../../results/upper_bound/nas_bt_upper_bound/ BT CLASS=B')
-    command_list.append('make -C ../../results/upper_bound/nas_bt_upper_bound/ clean')
-    command_list.append('../../results/upper_bound/nas_bt_upper_bound/bin/bt.B.x > ../../results/upper_bound/upperbound_sc')
+    command_list.append('make -C '+directory+' clean')
+    command_list.append('make -C '+directory+' BT CLASS=B')
+    command_list.append('make -C '+directory+' clean')
+    command_list.append(directory+'bin/bt.B.x > ../../results/upper_bound/upperbound_sc')
     for command in command_list:
         try:
             subprocess.check_call(shlex.split(command))

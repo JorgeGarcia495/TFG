@@ -2,10 +2,10 @@
 
 import glob
 
-def parse():
+def parse(directory):
 
     new_content = []
-    for file in glob.glob('../results/upper_bound/nas_bt_upper_bound/BT/*.f'):
+    for file in glob.glob(directory+'BT/*.f'):
         with open(file) as f:
             content = f.readlines()
         content = [x.strip('\n') for x in content]	
