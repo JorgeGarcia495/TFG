@@ -19,11 +19,10 @@ from . import instruction_upperbounds as iupp
 
 logger = logging.getLogger(__name__)
 
-#TODO: Create parameter for bin file
-def main():
+def main(binary_name):
     """Entrypoint of the module
     """
-    bin_location = '../../../nas_bt/bin/bt.B.x '
+    bin_location = '../../../nas_bt/bin/'+binary_name
     directory = '../../results/instructions_estimation/'
     upperbound_directory = '../../results/upper_bound/nas_bt_upper_bound/'
     aic.create_asm(bin_location, directory)
@@ -50,12 +49,12 @@ def execute_mains(bin_location, directory):
     result = iexp.total_instructions(bin_location, directory)
     return result
 
-def execute_commands(directory):
+def execute_commands(directory, binary_name):
     command_list = []
     command_list.append('make -C '+directory+' clean')
     command_list.append('make -C '+directory+' BT CLASS=B')
     command_list.append('make -C '+directory+' clean')
-    command_list.append(directory+'bin/bt.B.x > ../../results/upper_bound/upperbound_sc')
+    command_list.append(directory+'bin/'+binary_name+' > ../../results/upper_bound/upperbound_sc')
     for command in command_list:
         try:
             subprocess.check_call(shlex.split(command))

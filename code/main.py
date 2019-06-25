@@ -27,10 +27,11 @@ logger = logging.getLogger(__name__)
 @click.option('-s', '--sequential', help='Executes the dynamic profile in sequential order', is_flag=True)
 def main(language, location, sequential):
     """ Framework intended to analyze an application in order to estimate its energy consumtpion """
-    entrypoint = set_language(language)
-    main_name = search_file(location, entrypoint)
-    cg = execute_call_graph_module(main_name) #Execute Call Graph Set Module
-    execute_instruction_estimation_module() #Run instruction estimation module
+    main_name, function_sintax, comment_sintax = set_language(language)
+    main_name = search_file(location, function_sintax)
+    binary_name = get_binary_name() #File name of the application binary
+    cg = execute_call_graph_module(main_name, function_sintax, comment_sintax, binary_name) #Execute Call Graph Set Module
+    execute_instruction_estimation_module(binary_name) #Run instruction estimation module
     execute_dynamic_profiling(sequential) #Execute dynamic profiling
     ipc, counter_means, counters_metrics, execution_times = execute_signals_reconstruction(cg) #Retrieves the metrics from the profiling
     export_results(cg, ipc, counter_means, counters_metrics, execution_times)
@@ -71,10 +72,9 @@ def search_file(directory, word):
         logger.error(e)
         raise
 
-def execute_call_graph_module(main_name, function_sintax, comment_sintax):
+def execute_call_graph_module(main_name, function_sintax, comment_sintax, binary_name):
     """ Runs the call graph module
     """
-    binary_name = get_binary_name()
     os.chdir('modules/cg') #Change of workspace in orden to execute Doxygen
     cg, labels = call_graph.main(main_name) #Get Paths
     if(cg == None or len(cg) == 0):
