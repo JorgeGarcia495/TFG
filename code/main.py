@@ -27,9 +27,12 @@ logger = logging.getLogger(__name__)
 @click.option('-s', '--sequential', help='Executes the dynamic profile in sequential order', is_flag=True)
 def main(language, location, sequential):
     """ Framework intended to analyze an application in order to estimate its energy consumtpion """
+    #Get variables required by multiple modules
     main_name, function_sintax, comment_sintax = set_language(language)
     main_name = search_file(location, function_sintax)
     binary_name = get_binary_name() #File name of the application binary
+    
+    #Execution of modules
     cg = execute_call_graph_module(main_name, function_sintax, comment_sintax, binary_name) #Execute Call Graph Set Module
     execute_instruction_estimation_module(binary_name) #Run instruction estimation module
     execute_dynamic_profiling(sequential) #Execute dynamic profiling
@@ -97,11 +100,11 @@ def get_binary_name():
         raise Exception("Multiple/None binary files found, please leave only one")
     return files[0]
 
-def execute_instruction_estimation_module():
+def execute_instruction_estimation_module(binary_name):
     """ Runs the instruction estimation module
     """
     os.chdir('modules/instruction_estimation')
-    result = estimate.main()#Instruction estimation module
+    result = estimate.main(binary_name)#Instruction estimation module
     os.chdir('../..')
     return result
 

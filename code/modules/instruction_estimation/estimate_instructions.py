@@ -28,7 +28,7 @@ def main(binary_name):
     aic.create_asm(bin_location, directory)
     delete_files(upperbound_directory)
     parser.parse(upperbound_directory)
-    execute_commands(upperbound_directory)
+    execute_commands(upperbound_directory, binary_name)
     return execute_mains(bin_location, directory)
     
 def delete_files(directory):
