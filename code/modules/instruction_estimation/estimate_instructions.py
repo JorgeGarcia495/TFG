@@ -24,7 +24,7 @@ def main(binary_name):
     """
     bin_location = '../../../nas_bt/bin/'+binary_name
     directory = '../../results/instructions_estimation/'
-    upperbound_directory = '../../results/upper_bound/nas_bt_upper_bound/'
+    upperbound_directory = '../../results/upper_bound/upperbound_source_code/'
     aic.create_asm(bin_location, directory)
     delete_files(upperbound_directory)
     parser.parse(upperbound_directory)
