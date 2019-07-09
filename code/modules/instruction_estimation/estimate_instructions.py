@@ -19,10 +19,10 @@ from . import instruction_upperbounds as iupp
 
 logger = logging.getLogger(__name__)
 
-def main(binary_name):
+def main(binary_name, code_directory):
     """Entrypoint of the module
     """
-    bin_location = '../../../nas_bt/bin/'+binary_name
+    bin_location = '../../../source_code/bin/'+binary_name
     directory = '../../results/instructions_estimation/'
     upperbound_directory = '../../results/upper_bound/upperbound_source_code/'
     aic.create_asm(bin_location, directory)
@@ -37,7 +37,7 @@ def delete_files(directory):
     if os.path.exists(directory):
             shutil.rmtree(directory)
     #os.remove('upper_bound/upperbound_bt')
-    shutil.copytree('../../../nas_bt', directory)
+    shutil.copytree('../../../source_code', directory)
     #subprocess.Popen(["make", "clean"], stdout=subprocess.PIPE, cwd="./upper_bound/nas_bt_upper_bound")
     
 def execute_mains(bin_location, directory):

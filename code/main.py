@@ -26,18 +26,19 @@ logger = logging.getLogger(__name__)
 @click.option('-l', '--location', help='Directory containing the source code of the application', required=True)
 @click.option('-s', '--sequential', help='Executes the dynamic profile in sequential order', is_flag=True)
 def main(language, location, sequential):
-    """ Framework intended to analyze an application in order to estimate its energy consumtpion """
+    """ Framework intended to analyze an application in order to estimate its energy consumption """
     #Get variables required by multiple modules
-    main_name, function_sintax, comment_sintax = set_language(language)
-    main_name = search_file(location, function_sintax)
+    main_function, function_sintax, comment_sintax = set_language(language)
+    code_directory = get_code_directory(location)
     binary_name = get_binary_name() #File name of the application binary
-    
+    main_file_name = search_file(location, main_function)
+        
     #Execution of modules
-    cg = execute_call_graph_module(main_name, function_sintax, comment_sintax, binary_name) #Execute Call Graph Set Module
-    execute_instruction_estimation_module(binary_name) #Run instruction estimation module
+    cg = execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name) #Execute Call Graph Set Module
+    execute_instruction_estimation_module(binary_name, code_directory) #Run instruction estimation module
     execute_dynamic_profiling(sequential) #Execute dynamic profiling
-    ipc, counter_means, counters_metrics, execution_times = execute_signals_reconstruction(cg) #Retrieves the metrics from the profiling
-    export_results(cg, ipc, counter_means, counters_metrics, execution_times)
+    #ipc, counter_means, counters_metrics, execution_times = execute_signals_reconstruction(cg) #Retrieves the metrics from the profiling
+    #export_results(cg, ipc, counter_means, counters_metrics, execution_times)
 
 def set_language(language):
     """ Locates and returns the initial function of the application to analyze
@@ -55,12 +56,10 @@ def set_language(language):
         raise Exception('The selected programming language is not supported by the application')
     return main_name, function_sintax, comment_sintax
         
-#TODO: Change word value
+
 def search_file(directory, word):
     """ Locates the main file of the application to analyze
     """
-    directory = '../nas_bt/%s/' % directory
-    word = 'open'
     result = ''
     try:
         for files in os.listdir(directory):
@@ -75,20 +74,29 @@ def search_file(directory, word):
         logger.error(e)
         raise
 
-def execute_call_graph_module(main_name, function_sintax, comment_sintax, binary_name):
+def get_code_directory(location):
+    """ Fetchs and returns the directory containing the source code of the application
+    """
+    if not location.endswith('/'):
+        location += '/'
+    return location.split('/')[-2]
+
+def execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name):
     """ Runs the call graph module
     """
     os.chdir('modules/cg') #Change of workspace in orden to execute Doxygen
-    cg, labels = call_graph.main(main_name) #Get Paths
-    if(cg == None or len(cg) == 0):
+    cg, labels = call_graph.main(main_file_name) #Get Paths
+    if cg.empty:
         raise Exception('Error executing CFG module')
-    cg_source_code.main(cg, labels, function_sintax, comment_sintax) #Generate source code of the paths
-    cg_binaries.main(binary_name) #Compile paths to create binary file
+    cg_source_code.main(cg, labels, function_sintax, comment_sintax, code_directory) #Generate source code of the paths
+    cg_binaries.main(binary_name, code_directory) #Compile paths to create binary file
     os.chdir('../..') #Back to original workspace
     return cg
 
 def get_binary_name():
-    directory = '../nas_bt/bin/'
+    """ Fetchs amd returns the file name of the binary associated to the application
+    """
+    directory = '../source_code/bin/'
     files = []
     try:
         files = os.listdir(directory)
@@ -100,11 +108,11 @@ def get_binary_name():
         raise Exception("Multiple/None binary files found, please leave only one")
     return files[0]
 
-def execute_instruction_estimation_module(binary_name):
+def execute_instruction_estimation_module(binary_name, code_directory):
     """ Runs the instruction estimation module
     """
     os.chdir('modules/instruction_estimation')
-    result = estimate.main(binary_name)#Instruction estimation module
+    result = estimate.main(binary_name, code_directory)#Instruction estimation module
     os.chdir('../..')
     return result
 

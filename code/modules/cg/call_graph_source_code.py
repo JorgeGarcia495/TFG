@@ -11,7 +11,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def main(cg, labels, function_sintax, comment_sintax):
+def main(cg, labels, function_sintax, comment_sintax, code_directory):
     """Locates the main file of the application to analyze
     """
     functions = list(labels.values())
@@ -25,8 +25,8 @@ def main(cg, labels, function_sintax, comment_sintax):
         for index, row in cg.iterrows():
             directory = workspace+str(index)
             #Copy source code
-            shutil.copytree('../../../nas_bt', directory)
-            directory = directory+'/source_code/'
+            shutil.copytree('../../../source_code', directory)
+            directory = directory+'/'+code_directory+'/'
             #Iterate source code files
             for file in os.listdir(directory):
                 #Delete if not needed 
@@ -42,7 +42,7 @@ def remove_unneeded_functions(directory, functions, path, function_sintax, comme
     """Removes the functions not needed on each path from the main file of the application
     """
     for files in os.listdir(directory):
-        if files.split('.')[0].lower() in path:
+        if files.split('.')[0].lower() in path.values:
             with open(directory+files, encoding='utf-8') as file:
                 with open(directory+'tempfile.txt', 'w') as tmp:
                     open_parenthesis = 0
@@ -53,8 +53,8 @@ def remove_unneeded_functions(directory, functions, path, function_sintax, comme
                         #Comment functions occupying several lines
                         if open_parenthesis != 0:
                             open_parenthesis = open_parenthesis + line_no_blank.count('(') - line_no_blank.count(')')
-                            if function in functions and function not in path:
-                                tmp.write('c ')
+                            if function in functions and function not in path.values:
+                                tmp.write('comment_sintax')
                             #Check if there is a function
                         if line_no_blank.startswith(function_sintax) :
                             #Get name of the function to call
@@ -65,7 +65,7 @@ def remove_unneeded_functions(directory, functions, path, function_sintax, comme
                                 #Check if closing parenthesis of the functions is on the same line
                                 open_parenthesis = open_parenthesis + function.count('(') - function.count(')')
                                 function = function.split('(')[0]
-                            if function in functions and function not in path:
+                            if function in functions and function not in path.values:
                                 tmp.write(comment_sintax)
                         tmp.write(line)
             os.remove(directory+files)
