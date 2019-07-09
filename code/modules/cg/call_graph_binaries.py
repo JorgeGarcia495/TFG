@@ -28,7 +28,7 @@ def main(binary_name, code_directory):
             bin_file.write('#! /bin/bash\n')
             bin_file.write(make_clean+'\n')
             bin_file.write('make '+code_directory+' CLASS=B\n')
-            bin_file.write('mv '+bin_directory+binary_name+' '+bin_directory+dirs+'\n')
+            bin_file.write('mv '+bin_directory+binary_name+' '+bin_directory+binary_name+'_'+dirs+'\n')
             bin_file.write(make_clean)
         bin_file.close()
         try:

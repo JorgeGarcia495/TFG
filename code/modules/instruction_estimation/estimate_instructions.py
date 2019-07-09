@@ -28,7 +28,7 @@ def main(binary_name, code_directory):
     aic.create_asm(bin_location, directory)
     delete_files(upperbound_directory)
     parser.parse(upperbound_directory)
-    execute_commands(upperbound_directory, binary_name)
+    execute_commands(upperbound_directory, binary_name, code_directory)
     return execute_mains(bin_location, directory)
     
 def delete_files(directory):
@@ -49,10 +49,10 @@ def execute_mains(bin_location, directory):
     result = iexp.total_instructions(bin_location, directory)
     return result
 
-def execute_commands(directory, binary_name):
+def execute_commands(directory, binary_name, code_directory):
     command_list = []
     command_list.append('make -C '+directory+' clean')
-    command_list.append('make -C '+directory+' BT CLASS=B')
+    command_list.append('make -C '+directory+' ' +code_directory+' CLASS=B')
     command_list.append('make -C '+directory+' clean')
     command_list.append(directory+'bin/'+binary_name+' > ../../results/upper_bound/upperbound_sc')
     for command in command_list:

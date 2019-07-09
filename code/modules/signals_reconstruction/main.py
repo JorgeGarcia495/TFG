@@ -5,7 +5,6 @@
 """
 
 import os
-import sys
 import logging
 import pandas as pd
 from . import reconstruction as rec
@@ -15,7 +14,6 @@ logger = logging.getLogger(__name__)
 def main():
     """ Entrypoint of the module
     """
-    sys.path.append("./reconstruction")
     path = "../../results/paths.csv"
     cg = pd.read_csv(path, header = None, index_col=0, delimiter=",", )
     reconstruct(cg)
