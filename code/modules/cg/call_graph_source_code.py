@@ -54,7 +54,7 @@ def remove_unneeded_functions(directory, functions, path, function_sintax, comme
                         if open_parenthesis != 0:
                             open_parenthesis = open_parenthesis + line_no_blank.count('(') - line_no_blank.count(')')
                             if function in functions and function not in path.values:
-                                tmp.write('comment_sintax')
+                                tmp.write(comment_sintax)
                             #Check if there is a function
                         if line_no_blank.startswith(function_sintax) :
                             #Get name of the function to call
