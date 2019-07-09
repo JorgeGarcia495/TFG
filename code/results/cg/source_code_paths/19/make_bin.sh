@@ -2,5 +2,5 @@
 make clean
 
 make BT CLASS=B
-mv ./bin/bt.B.x ./bin/19
+mv ./bin/bt.B.x ./bin/bt.B.x_19
 make clean

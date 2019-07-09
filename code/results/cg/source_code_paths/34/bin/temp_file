@@ -1,22 +1,22 @@
 
-Current time (seconds since epoch): 1561019621.6
-Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/34/bin/34:
+Current time (seconds since epoch): 1562680763.4
+Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/34/bin/bt.B.x_34:
 	Event                              Count                    % time counted
-	BR_INST_RETIRED                    5,247,211                14.66
-	BR_MISS_PRED_RETIRED               83,110                   14.64
-	CPU_CLK_UNHALTED                   18,670,360               18.43
-	INST_RETIRED                       10,280,770               100.00
-	LLC_MISSES:0x41                    3,864                    100.00
-	LLC_REFS:0x4f                      33,411                   84.13
-	arith:fpu_div_active               187                      72.07
-	l1d:0x1                            344,063                  63.01
-	l2_rqsts:0x1                       348,567                  44.77
-	l2_rqsts:0x3                       416,240                  40.23
-	l2_rqsts:0x8                       1,274                    36.57
-	l2_rqsts:0x20                      6,266                    33.50
-	mem_trans_retired:0x2              4,366,634                30.91
-	mem_uops_retired:all_stores        4,715,764                14.35
-	misalign_mem_ref:0x1               0                        13.39
-	misalign_mem_ref:0x2               0                        12.55
-	resource_stalls:any                971,105                  15.01
-	uops_dispatched:core               55,415,752               15.01
+	BR_INST_RETIRED                    5,782,630                14.39
+	BR_MISS_PRED_RETIRED               83,812                   14.36
+	CPU_CLK_UNHALTED                   18,269,118               16.91
+	INST_RETIRED                       9,172,158                100.00
+	LLC_MISSES:0x41                    4,346                    100.00
+	LLC_REFS:0x4f                      33,085                   88.42
+	arith:fpu_div_active               179                      75.17
+	l1d:0x1                            333,418                  65.40
+	l2_rqsts:0x1                       345,463                  46.27
+	l2_rqsts:0x3                       405,191                  41.48
+	l2_rqsts:0x8                       1,162                    37.58
+	l2_rqsts:0x20                      3,906                    34.33
+	mem_trans_retired:0x2              4,275,848                31.63
+	mem_uops_retired:all_stores        4,629,072                14.66
+	misalign_mem_ref:0x1               0                        13.65
+	misalign_mem_ref:0x2               0                        12.78
+	resource_stalls:any                940,520                  16.50
+	uops_dispatched:core               55,743,548               16.50
