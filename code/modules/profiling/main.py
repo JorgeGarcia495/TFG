@@ -19,18 +19,21 @@ def multiprocess_func(path, directory, binary_name):
     binary_name = binary_name+'_'+path
     #Binary to execute
     target = temp_directory+binary_name
-    counters = 'CPU_CLK_UNHALTED,INST_RETIRED,LLC_MISSES:0x41,LLC_REFS:0x4f,BR_INST_RETIRED,BR_MISS_PRED_RETIRED,misalign_mem_ref:0x01,misalign_mem_ref:0x02,arith:fpu_div_active,resource_stalls:any,uops_dispatched:core,mem_trans_retired:0x02,mem_uops_retired:all_stores,l1d:0x01,l2_rqsts:0x01,l2_rqsts:0x03,l2_rqsts:0x08,l2_rqsts:0x20'
-    print('Profiling', path)
     #Metrics/counters to retrieves
-    args = 'ocount -e ' + counters + ' -i 1 -f '+temp_directory+'temp_file '+target
+    counters = 'CPU_CLK_UNHALTED,INST_RETIRED,LLC_MISSES:0x41,LLC_REFS:0x4f,BR_INST_RETIRED,BR_MISS_PRED_RETIRED,misalign_mem_ref:0x01,misalign_mem_ref:0x02,arith:fpu_div_active,resource_stalls:any,uops_dispatched:core,mem_trans_retired:0x02,mem_uops_retired:all_stores,l1d:0x01,l2_rqsts:0x01,l2_rqsts:0x03,l2_rqsts:0x08,l2_rqsts:0x20'
+    args = 'ocount -e %s -i 1 -f %stemp_file %s' % \
+        (counters, temp_directory, target)
+    print('Profiling', path)
     #Start of the profiling
     try:
         exec_time = time.time()
-        proc = subprocess.Popen(shlex.split(args), shell=False)
+        proc = subprocess.Popen(shlex.split(args), stdout=subprocess.PIPE, shell=False)
+        time.sleep(0.3)
         pid = int(subprocess.check_output(['pidof', '-s', binary_name]))
         binary_time = float('{}'.format(time.time() - exec_time))
+        print('Executing path: %s' % path)
         
-        while pid and binary_time < 11:
+        while pid and binary_time < 40:
             time.sleep(5)
             binary_time = float('{}'.format(time.time() - exec_time))
             print('Time for path %s: %d seconds' % (path, binary_time))
@@ -44,6 +47,7 @@ def multiprocess_func(path, directory, binary_name):
     except subprocess.CalledProcessError:
         print(path, "was finished before the limit time")
         proc.kill()
+    return 'Executed path %s ' % path
         
 def run_binaries(binary_name):
     """ Executes the existing binary to carry out a dynamic profiling

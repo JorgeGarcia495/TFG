@@ -34,11 +34,11 @@ def main(language, location, sequential):
     main_file_name = search_file(location, main_function)
         
     #Execution of modules
-    #cg = execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name) #Execute Call Graph Set Module
-    #execute_instruction_estimation_module(binary_name, code_directory) #Run instruction estimation module
+    cg = execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name) #Execute Call Graph Set Module
+    execute_instruction_estimation_module(binary_name, code_directory) #Run instruction estimation module
     execute_dynamic_profiling(sequential, binary_name) #Execute dynamic profiling
-    #ipc, counter_means, counters_metrics, execution_times = execute_signals_reconstruction(cg) #Retrieves the metrics from the profiling
-    #export_results(cg, ipc, counter_means, counters_metrics, execution_times)
+    ipc, counter_means, counters_metrics, execution_times = execute_signals_reconstruction(cg) #Retrieves the metrics from the profiling
+    export_results(cg, ipc, counter_means, counters_metrics, execution_times)
 
 def set_language(language):
     """ Locates and returns the initial function of the application to analyze
