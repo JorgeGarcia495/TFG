@@ -8,6 +8,7 @@ import os
 import logging
 import numpy as np
 import pandas as pd
+import shutil
 import matplotlib.pyplot as plt
 
 logger = logging.getLogger(__name__)
@@ -32,7 +33,7 @@ def check_path(path):
     """ Checks if the path passed as an argument is created
     """
     if os.path.exists(path):
-        os.remove(path)
+        shutil.rmtree(path)
     os.mkdir(path)
     
 #TODO: Check again once the instruction estimation module is completed
