@@ -18,10 +18,8 @@ def main(cg, ipc, means):
     """
     path = '../../results/signal_reconstruction/plot/'
     check_path(path)
-    instructions_per_path = get_instructions_per_path(cg)
-    df = pd.DataFrame(instructions_per_path, 
-                      columns=["Path", "Instructions"])
-    path_exec_time = calculate_execution_time(df, ipc, means)
+    instructions_per_path_df = get_instructions_per_path(cg)
+    path_exec_time = calculate_execution_time(instructions_per_path_df, ipc, means)
     means = means.drop(np.setdiff1d(means.index.to_series(), path_exec_time.index.to_series()))
     for counter in means.columns:
         times = time_preparation(path_exec_time)
@@ -46,13 +44,13 @@ def get_instructions_per_path(cg):
     instructions = []
     instructions_per_path = pd.read_csv(directory, delimiter=',', skiprows=1, decimal='.', 
                        names=["Function_1","Function_2","Function_3", "Function_4","Instructions",])
-    for index, path in enumerate(cg):
-        path_functions = np.array(path)
+    for index, path in cg.iterrows():
         for index_df, row in instructions_per_path.iterrows():
-            if np.all(np.in1d(row[:-1], path_functions)):
+            if np.all(np.in1d(row[:-1], path)):
                 indexes.append(index)
                 instructions.append(row[-1])
-    return {"Path" : indexes, "Instructions" : instructions}
+    return pd.DataFrame({"Path" : indexes, "Instructions" : instructions}, 
+                      columns=["Path", "Instructions"])
 
 def calculate_execution_time(df, ipc, means):
     """ Creates and returns a dataframe with the execution time for each path
