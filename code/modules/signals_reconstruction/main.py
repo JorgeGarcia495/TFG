@@ -11,13 +11,6 @@ from . import reconstruction as rec
 
 logger = logging.getLogger(__name__)
 
-def main():
-    """ Entrypoint of the module
-    """
-    path = "../../results/paths.csv"
-    cg = pd.read_csv(path, header = None, index_col=0, delimiter=",", )
-    reconstruct(cg)
-    
 def reconstruct(cg):
     """Executes the steps required to perform the signals reconstructions
     """
