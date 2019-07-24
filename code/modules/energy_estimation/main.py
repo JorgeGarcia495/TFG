@@ -1,48 +1,66 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Jul 22 11:45:30 2019
-
-@author: jga6170
+@author: Jorge García Villanueva <jorgeg09@ucm.es>
 """
 
+import numpy as np
 import pandas as pd
 
-def main():
-    df_decimate = diezmado(counters_metrics)
+from . import plots
+from . import power_profiles as pow_profiles
+
+def main(means, execution_times):
+    """ Entrypoint of the script
+    """
     
-def power_model(df_decimate, counters_metrics):
-    CPU_COUNTERS = ['INST_RETIRED', 'l2_rqsts:0x1', 'l2_rqsts:0x3', 'l2_rqsts:0x8', 'l2_rqsts:0x20', \
-    'uops_dispatched:core', 'LLC_MISSES:0x41', 'LLC_REFS:0x4f', 'l1d:0x1', 'resource_stalls:any']
-    df_cpu_decimate = df_decimate.loc[:, CPU_COUNTERS]
-    for index, row in df_cpu_decimate.iterrows():
-        print(index, row)
+    df_decimate = diezmado(means, execution_times)
+    power_profile = pow_profiles.get_power_profile(df_decimate)
+    plots.check_path('../../results/energy_estimation/')
+    plots.get_power_plots(power_profile)
+    energy = estimate_energy(power_profile)
+    return df_decimate, power_profile, energy
     
-def diezmado(counters_metrics):
-    df = counters_metrics.reset_index()
-    result = pd.DataFrame(columns=df.columns)
-    cycle = 0
+def diezmado(means, execution_times):
+    """ Prepares the data with samples for every 10s
+    """
+    values = pd.DataFrame.copy(means)
+    values = values.drop(np.setdiff1d(values.index.to_series(), execution_times.index.to_series()))
     
-    for path in range(df.Path.max() + 1):
-        start = 0
-        end = 100
-        df_path = pd.DataFrame(df[df.Path == path])
-        df_size = len(df_path)
-        for i in range(int(df_size/ 100)+1):
-            data = df_path.iloc[start:end, 2:]
-            if len(data) != 100:
-                end = (end - 100 + len(data))
-                cycle += (len(data) / 10)
-            else:
-                cycle += 10
-            data = data.sum()
-            data["Path"] = path
-            data["Cycles(s)"] = cycle
-            result = result.append(data, ignore_index=True)
-            start += 100 
-            end += 100
+    return split_data(values, execution_times)
+
+def split_data(values, execution_times):
+    """ Splits the data contained on the counters metrics on samples for every 10s
+    """
+    result = pd.DataFrame(columns=values.columns)
+    df = pd.DataFrame(columns=values.columns)
+    
+    for path in values.index:
+        time_ms = int(execution_times.Time[path] * 10)
+        df = df.append([values.loc[path]]*time_ms, ignore_index=True)
+    df["Time"] = 100
+    df["Time"] = df["Time"].cumsum()
+    
+    start = 0
+    end = 100
+    
+    for i in range(100,len(df)+100, 100):
+        end = i
+        data = df.iloc[start:end, :-1]
+        if len(data) == 100:
+            result = result.append(data.sum(), ignore_index=True)
+        start = end
+    result["Time"] = 10
+    result["Time"] = result["Time"].cumsum()
     return result
+
+def estimate_energy(power_profile):
+    """ Estimates the energy consumption of the application being analyzed
+    """
+    result = {}
+    result["Memory"] = [power_profile.POWER_MEM.sum() * 10]
+    result["CPU"] = [power_profile.POWER_CPU.sum() * 10]
+    return pd.DataFrame(result)
     
-def power_formula(data):
-    result = (data['l1d:0x1'].item() + 1 / data['l2_rqsts:0x20'].item() +1) + \
-             ((data['resource_stalls:any'].item()+1 * data['LLC_REFS:0x4f'].item()+1 * \
-             (data['INST_RETIRED'].item()+1)**2) \ data['uops_dispatched:core'].item()+1)
+    
+    
+    

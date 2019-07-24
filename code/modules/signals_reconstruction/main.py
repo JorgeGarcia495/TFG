@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-@author: Jorge García Villanueva
+@author: Jorge García Villanueva <jorgeg09@ucm.es>
 """
 
 import os
@@ -21,6 +21,8 @@ def reconstruct(cg):
     return ipc, means, counters_metrics, execution_times
 
 def get_counters_metrics():
+    """ Gets the counters metrics generated during the dynamic profiling
+    """
     paths_directory = '../../results/cg/source_code_paths/'
     counters = 'temp_file'
     bin_folder = '/bin/'

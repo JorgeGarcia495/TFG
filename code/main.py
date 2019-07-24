@@ -17,6 +17,7 @@ from modules.instruction_estimation import estimate_instructions as estimate
 from modules.profiling import main as profiling
 from modules.profiling import main_sequential as sequential_profiling
 from modules.signals_reconstruction import main as signal_rec
+from modules.energy_estimation import main as energy_estim
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +27,8 @@ logger = logging.getLogger(__name__)
 @click.option('-l', '--location', help='Directory containing the source code of the application', required=True)
 @click.option('-s', '--sequential', help='Executes the dynamic profile in sequential order', is_flag=True)
 def main(language, location, sequential):
-    """ Framework intended to analyze an application in order to estimate its energy consumption """
+    """ Framework aimed to analyze an application in order to estimate its energy consumption 
+    """
     #Get variables required by multiple modules
     main_function, function_sintax, comment_sintax = set_language(language)
     code_directory = get_code_directory(location)
@@ -38,7 +40,9 @@ def main(language, location, sequential):
     execute_instruction_estimation_module(binary_name, code_directory) #Run instruction estimation module
     execute_dynamic_profiling(sequential, binary_name) #Execute dynamic profiling
     ipc, counter_means, counters_metrics, execution_times = execute_signals_reconstruction(cg) #Retrieves the metrics from the profiling
+    df_decimate, power_profile, energy = execute_energy_estimation(counter_means, execution_times)
     export_results(cg, ipc, counter_means, counters_metrics, execution_times)
+    return energy
 
 def set_language(language):
     """ Locates and returns the initial function of the application to analyze
@@ -90,7 +94,7 @@ def execute_call_graph_module(main_file_name, function_sintax, comment_sintax, c
         raise Exception('Error executing CFG module')
     cg_source_code.main(cg, labels, function_sintax, comment_sintax, code_directory) #Generate source code of the paths
     cg_binaries.main(binary_name, code_directory) #Compile paths to create binary file
-    os.chdir('../..') #Back to original workspace
+    os.chdir('../..')
     return cg
 
 def get_binary_name():
@@ -133,6 +137,12 @@ def execute_signals_reconstruction(cg):
     ipc, counters_means, counters_metrics, execution_times = signal_rec.reconstruct(cg)
     os.chdir('../..')
     return ipc, counters_means, counters_metrics, execution_times
+
+def execute_energy_estimation(means, execution_times):
+    os.chdir('modules/energy_estimation')
+    df_decimate, power_profile, energy = energy_estim.main(means, execution_times)
+    os.chdir('../..')
+    return df_decimate, power_profile, energy
 
 def export_results(cg, ipc, counters_means, counters_metrics, execution_times):
     signal = 'results/signal_reconstruction/'
