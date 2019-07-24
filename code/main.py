@@ -41,7 +41,11 @@ def main(language, location, sequential):
     execute_dynamic_profiling(sequential, binary_name) #Execute dynamic profiling
     ipc, counter_means, counters_metrics, execution_times = execute_signals_reconstruction(cg) #Retrieves the metrics from the profiling
     df_decimate, power_profile, energy = execute_energy_estimation(counter_means, execution_times)
-    export_results(cg, ipc, counter_means, counters_metrics, execution_times)
+    export_results(cg, ipc, counter_means, counters_metrics, execution_times, df_decimate, power_profile, energy)
+    print("\n\n########################################################")
+    print("Energy estimation for CPU: %sJ \n" % energy.iloc[0, 0])
+    print("Energy estimation for Memory: %sJ \n" % energy.iloc[0, 1])
+    print("########################################################")
     return energy
 
 def set_language(language):
@@ -144,8 +148,9 @@ def execute_energy_estimation(means, execution_times):
     os.chdir('../..')
     return df_decimate, power_profile, energy
 
-def export_results(cg, ipc, counters_means, counters_metrics, execution_times):
+def export_results(cg, ipc, counters_means, counters_metrics, execution_times, df_decimate, power_profile, energy):
     signal = 'results/signal_reconstruction/'
+    energy_estimation_path = 'results/energy_estimation/'
     if not os.path.exists(signal):
         os.mkdir(signal)
     export.export_dataframe(cg, 'results/paths')
@@ -153,6 +158,9 @@ def export_results(cg, ipc, counters_means, counters_metrics, execution_times):
     export.export_dataframe(ipc, signal+'ipc')
     export.export_dataframe(counters_metrics, signal+'counters_metrics')
     export.export_dataframe(counters_means, signal+'counters_means')
+    export.export_dataframe(df_decimate, energy_estimation_path+'decimate')
+    export.export_dataframe(power_profile, energy_estimation_path+'power_profile')
+    export.export_dataframe(energy, energy_estimation_path+'energy')
     
 if __name__ == '__main__':
     main()

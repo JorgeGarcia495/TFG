@@ -5,7 +5,7 @@
 
 import pandas as pd
 
-import coefficient_constants as constants
+from . import coefficient_constants as constants
 
 def get_power_profile(df_decimate):
     """ Calculates and returns the power profile associated to the counters metrics
