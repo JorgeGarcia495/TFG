@@ -23,7 +23,7 @@ def run(main_file_name, function_sintax, comment_sintax, code_directory, binary_
     """
     modules_time = pd.DataFrame({}, columns=['Module', 'Time'])
     cg, modules_time = execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, modules_time, verbose)
-    inst_est, modules_time =  execute_instruction_estimation_module(binary_name, code_directory, modules_time)
+    inst_est, modules_time =  execute_instruction_estimation_module(binary_name, code_directory, modules_time, verbose)
     modules_time = execute_dynamic_profiling(sequential, binary_name, modules_time, verbose)
     ipc, counter_means, counters_metrics, execution_times, modules_time = execute_signals_reconstruction(cg, modules_time)
     df_decimate, power_profile, energy, modules_time = execute_energy_estimation(counter_means, execution_times, modules_time)
@@ -48,13 +48,13 @@ def execute_call_graph_module(main_file_name, function_sintax, comment_sintax, c
     print('Call Graph module executed in {} seconds'.format(exec_time))
     return cg, modules_time
 
-def execute_instruction_estimation_module(binary_name, code_directory, modules_time):
+def execute_instruction_estimation_module(binary_name, code_directory, modules_time, verbose):
     """ Runs the instruction estimation module
     """
     print('Started execution of Instruction Estimation Module')
     starttime = time.time()
     os.chdir('modules/instruction_estimation')
-    result = estimate.main(binary_name, code_directory)#Instruction estimation module
+    result = estimate.main(binary_name, code_directory, verbose)
     os.chdir('../..')
     exec_time = time.time() - starttime
     modules_time =  modules_time.append({'Time' : round(exec_time, 2), 'Module' : 'Instruction_estimation'}, ignore_index=True)
@@ -68,9 +68,9 @@ def execute_dynamic_profiling(sequential, binary_name, modules_time, verbose):
     starttime = time.time()
     os.chdir('modules/profiling')
     if(sequential):
-        sequential_profiling.main(binary_name, verbose) #Sequential profiling
+        sequential_profiling.main(binary_name, verbose)
     else:
-        profiling.run_binaries(binary_name, verbose) #Dynamic Profiling of the module
+        profiling.run_binaries(binary_name, verbose)
     os.chdir('../..')
     exec_time = time.time() - starttime
     modules_time = modules_time.append({'Time' : round(exec_time, 2), 'Module' : 'Profiling'}, ignore_index=True)
@@ -91,6 +91,8 @@ def execute_signals_reconstruction(cg, modules_time):
     return ipc, counters_means, counters_metrics, execution_times, modules_time
 
 def execute_energy_estimation(means, execution_times, modules_time):
+    """ Runs the energy consumption estimation module
+    """
     print('Started execution of Energy Estimation Module')
     starttime = time.time()
     os.chdir('modules/energy_estimation')
@@ -102,6 +104,8 @@ def execute_energy_estimation(means, execution_times, modules_time):
     return df_decimate, power_profile, energy, modules_time
 
 def export_results(cg, ipc, counters_means, counters_metrics, execution_times, df_decimate, power_profile, energy, modules_time):
+    """ Exports the results obtained by the framework
+    """
     print('Start of results exportation')
     starttime = time.time()
     signal = 'results/signal_reconstruction/'

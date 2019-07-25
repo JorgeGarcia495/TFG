@@ -22,6 +22,7 @@ def main(binary_name, code_directory, verbose):
     #Task to performed on the new script
     make_clean = 'make clean\n'
     for dirs in os.listdir(directory):
+        print('Generating binary for path', dirs)
         if os.path.exists(directory+dirs+'/bin/'+dirs):
             os.remove(directory+dirs+'/bin/'+dirs)
         #Creation of the script
