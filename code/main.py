@@ -41,7 +41,7 @@ def main(language, location, sequential):
     execute_dynamic_profiling(sequential, binary_name) #Execute dynamic profiling
     ipc, counter_means, counters_metrics, execution_times = execute_signals_reconstruction(cg) #Retrieves the metrics from the profiling
     df_decimate, power_profile, energy = execute_energy_estimation(counter_means, execution_times)
-    export_results(cg, ipc, counter_means, counters_metrics, execution_times, df_decimate, power_profile, energy)
+    #export_results(cg, ipc, counter_means, counters_metrics, execution_times, df_decimate, power_profile, energy)
     print("\n\n########################################################")
     print("Energy estimation for CPU: %sJ \n" % energy.iloc[0, 0])
     print("Energy estimation for Memory: %sJ \n" % energy.iloc[0, 1])
