@@ -85,7 +85,7 @@ def generate_plot(x_axis, values, counter, path):
     plt.title('BT - CLASS B (Hardware counter signal reconstruction)')
     plt.xlabel('Time(s)')
     plt.legend()
-    plt.ylabel(counter)
+    plt.ylabel('Power(w)')
     plt.xlim(xmin=0, xmax=x_axis.max()+5)
     save_path = path+counter+'.png'
     plt.savefig(save_path.replace(':', '_'))
