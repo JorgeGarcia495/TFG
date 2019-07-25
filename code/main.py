@@ -28,7 +28,7 @@ def main(language, location, sequential, verbose):
     main_file_name = search_file(location, main_function)
     display_values(language, sequential, code_directory, binary_name, main_file_name)
     
-    energy = controller.run(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, sequential)
+    energy = controller.run(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, sequential, verbose)
     
     print("\n\n########################################################")
     print("Energy estimation for CPU: %sJ \n" % round(energy.iloc[0, 0], 2))
@@ -98,7 +98,7 @@ def display_values(language, sequential, code_directory, binary_name, main_file_
     print('Source code directory:', code_directory)
     print('Name of the binary file:', binary_name)
     print('Entrypoint file of the application:', main_file_name)
-    print("################################################################")
+    print("################################################################\n\n")
 
 if __name__ == '__main__':
     main()

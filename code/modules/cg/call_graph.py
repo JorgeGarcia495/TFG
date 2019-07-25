@@ -13,20 +13,25 @@ from . import call_graph_paths as cg_paths
 
 logger = logging.getLogger(__name__)
 
-def main(file):
+def main(file, verbose):
     """Entrypoint of the module
     """
-    execute_doxygen()
+    execute_doxygen(verbose)
     save_main(file)
     delete_generated_files()
     return cg_paths.main()
 
-def execute_doxygen():
+def execute_doxygen(verbose):
     """ Calls the system to execute the Doxygen
     """
     try:
+        print("Start executing doxygen")
         call = ['doxygen', 'Doxyfile']
-        subprocess.check_call(call)
+        if verbose:
+            subprocess.check_call(call)
+        else:
+            subprocess.check_call(call, stdout=subprocess.PIPE, shell=False)
+        print('End of doxygen execution')
     except subprocess.CalledProcessError as e:
         logger.error(e)
         raise

@@ -11,9 +11,10 @@ import subprocess
 logger = logging.getLogger(__name__)
 
 #TODO: Check privileges on creating '.sh' file
-def main(binary_name, code_directory):
+def main(binary_name, code_directory, verbose):
     """Creates and executes a script to generate a binary for every path
     """
+    print("Start of binaries generation")
     #Directory to iterate
     directory = '../../results/cg/source_code_paths/'
     #Directory to store the binaries to generate
@@ -38,12 +39,16 @@ def main(binary_name, code_directory):
             cwd = os.getcwd()
             #Change cwd to execute script generating the binary
             os.chdir(directory+dirs)
-            subprocess.check_call('./make_bin.sh')
-            #Back to original cwd
+            if verbose:
+                subprocess.check_call('./make_bin.sh')
+            else:
+                subprocess.check_call('./make_bin.sh', stdout=subprocess.PIPE, shell=False)
+                
             os.chdir(cwd)
         except FileNotFoundError as e:
             logger.error(e)
             raise
+    print('End of binaries generation')
 
 if __name__ == '__main__':
     main()

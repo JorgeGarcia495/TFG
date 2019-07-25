@@ -11,7 +11,7 @@ import psutil
 import subprocess
 import multiprocessing
 
-def multiprocess_func(path, directory, binary_name):
+def multiprocess_func(path, directory, binary_name, verbose):
     """ Starts the dynamic profiling for a determined period of time
     """
     #Path lo store the profiling data
@@ -31,25 +31,29 @@ def multiprocess_func(path, directory, binary_name):
         time.sleep(0.3)
         pid = int(subprocess.check_output(['pidof', '-s', binary_name]))
         binary_time = float('{}'.format(time.time() - exec_time))
-        print('Executing path: %s' % path)
+        if verbose:
+            print('Executing path: %s' % path)
         
         while pid and binary_time < 40:
             time.sleep(5)
             binary_time = float('{}'.format(time.time() - exec_time))
-            print('Time for path %s: %d seconds' % (path, binary_time))
+            if verbose:
+                print('Time for path %s: %d seconds' % (path, binary_time))
             pid = int(subprocess.check_output(['pidof', '-s', binary_name]))
 
         #Kill subprocess
         proc.kill()
-        print('Time limit reached for path %s' % path)
+        if verbose:
+            print('Time limit reached for path %s' % path)
         #Kill childs of the subprocess(Binary execution)
         os.system('kill -9 '+str(pid))
     except subprocess.CalledProcessError:
-        print(path, "was finished before the limit time")
+        if verbose:
+            print(path, "was finished before the limit time")
         proc.kill()
     return 'Executed path %s ' % path
         
-def run_binaries(binary_name):
+def run_binaries(binary_name, verbose):
     """ Executes the existing binary to carry out a dynamic profiling
     """
     starttime = time.time()
@@ -62,7 +66,7 @@ def run_binaries(binary_name):
     
     #Start of the tasks with parallelism
     with multiprocessing.Pool(processors) as pool:
-        processes = [pool.apply_async(multiprocess_func, (name,directory, binary_name,)) for name in files_number]
+        processes = [pool.apply_async(multiprocess_func, (name,directory, binary_name,verbose,)) for name in files_number]
         for proc in processes:
             print(proc.get())
 

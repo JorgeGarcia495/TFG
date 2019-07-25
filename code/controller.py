@@ -18,30 +18,30 @@ from modules.signals_reconstruction import main as signal_rec
 from modules.energy_estimation import main as energy_estim
 
 
-def run(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, sequential):
+def run(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, sequential, verbose):
     """ Runs every module to estimate the energy consumption of the application to analyze
     """
     modules_time = pd.DataFrame({}, columns=['Module', 'Time'])
-    cg, modules_time = execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, modules_time) #Execute Call Graph Set Module
-    inst_est, modules_time =  execute_instruction_estimation_module(binary_name, code_directory, modules_time) #Run instruction estimation module
-    modules_time = execute_dynamic_profiling(sequential, binary_name, modules_time) #Execute dynamic profiling
-    ipc, counter_means, counters_metrics, execution_times, modules_time = execute_signals_reconstruction(cg, modules_time) #Retrieves the metrics from the profiling
+    cg, modules_time = execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, modules_time, verbose)
+    inst_est, modules_time =  execute_instruction_estimation_module(binary_name, code_directory, modules_time)
+    modules_time = execute_dynamic_profiling(sequential, binary_name, modules_time, verbose)
+    ipc, counter_means, counters_metrics, execution_times, modules_time = execute_signals_reconstruction(cg, modules_time)
     df_decimate, power_profile, energy, modules_time = execute_energy_estimation(counter_means, execution_times, modules_time)
     export_results(cg, ipc, counter_means, counters_metrics, execution_times, df_decimate, power_profile, energy, modules_time)
     return energy
     
     
-def execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, modules_time):
+def execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, modules_time, verbose):
     """ Runs the call graph module
     """
     print('Started execution of Call Graph Module')
     starttime = time.time()
-    os.chdir('modules/cg') #Change of workspace in orden to execute Doxygen
-    cg, labels = call_graph.main(main_file_name) #Get Paths
+    os.chdir('modules/cg')
+    cg, labels = call_graph.main(main_file_name, verbose)
     if cg.empty:
         raise Exception('Error executing CFG module')
-    cg_source_code.main(cg, labels, function_sintax, comment_sintax, code_directory) #Generate source code of the paths
-    cg_binaries.main(binary_name, code_directory) #Compile paths to create binary file
+    cg_source_code.main(cg, labels, function_sintax, comment_sintax, code_directory)
+    cg_binaries.main(binary_name, code_directory, verbose) 
     os.chdir('../..')
     exec_time = time.time() - starttime
     modules_time = modules_time.append({'Time' : round(exec_time, 2), 'Module' : 'Call_Graph'}, ignore_index=True)
@@ -61,16 +61,16 @@ def execute_instruction_estimation_module(binary_name, code_directory, modules_t
     print('Instructions estimation module executed in {} seconds'.format(exec_time))
     return result, modules_time
 
-def execute_dynamic_profiling(sequential, binary_name, modules_time):
+def execute_dynamic_profiling(sequential, binary_name, modules_time, verbose):
     """ Runs the profiling module
     """
     print('Started execution of Dynamic Profiling')
     starttime = time.time()
     os.chdir('modules/profiling')
     if(sequential):
-        sequential_profiling.main(binary_name) #Sequential profiling
+        sequential_profiling.main(binary_name, verbose) #Sequential profiling
     else:
-        profiling.run_binaries(binary_name) #Dynamic Profiling of the module
+        profiling.run_binaries(binary_name, verbose) #Dynamic Profiling of the module
     os.chdir('../..')
     exec_time = time.time() - starttime
     modules_time = modules_time.append({'Time' : round(exec_time, 2), 'Module' : 'Profiling'}, ignore_index=True)
