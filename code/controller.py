@@ -18,11 +18,11 @@ from modules.signals_reconstruction import main as signal_rec
 from modules.energy_estimation import main as energy_estim
 
 
-def run(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, sequential, verbose):
+def run(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, sequential, verbose, clase):
     """ Runs every module to estimate the energy consumption of the application to analyze
     """
     modules_time = pd.DataFrame({}, columns=['Module', 'Time'])
-    cg, modules_time = execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, modules_time, verbose)
+    cg, modules_time = execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, modules_time, verbose, clase)
     inst_est, modules_time =  execute_instruction_estimation_module(binary_name, code_directory, modules_time, verbose)
     modules_time = execute_dynamic_profiling(sequential, binary_name, modules_time, verbose)
     ipc, counter_means, counters_metrics, execution_times, modules_time = execute_signals_reconstruction(cg, modules_time)
@@ -31,7 +31,7 @@ def run(main_file_name, function_sintax, comment_sintax, code_directory, binary_
     return energy
     
     
-def execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, modules_time, verbose):
+def execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, modules_time, verbose, clase):
     """ Runs the call graph module
     """
     print('Started execution of Call Graph Module')
@@ -41,7 +41,7 @@ def execute_call_graph_module(main_file_name, function_sintax, comment_sintax, c
     if cg.empty:
         raise Exception('Error executing CFG module')
     cg_source_code.main(cg, labels, function_sintax, comment_sintax, code_directory)
-    cg_binaries.main(binary_name, code_directory, verbose) 
+    cg_binaries.main(binary_name, code_directory, verbose, clase) 
     os.chdir('../..')
     exec_time = time.time() - starttime
     modules_time = modules_time.append({'Time' : round(exec_time, 2), 'Module' : 'Call_Graph'}, ignore_index=True)
