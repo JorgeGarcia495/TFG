@@ -29,7 +29,7 @@ def main(language, location, sequential, verbose, clase):
     main_file_name = search_file(location, main_function)
     display_values(language, sequential, code_directory, binary_name, main_file_name)
     
-    energy = controller.run(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, sequential, verbose)
+    energy = controller.run(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, sequential, verbose, clase)
     
     print("\n\n########################################################")
     print("Energy estimation for CPU: %sJ \n" % round(energy.iloc[0, 0], 2))
