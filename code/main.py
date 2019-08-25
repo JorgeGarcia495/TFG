@@ -25,7 +25,7 @@ def main(language, location, sequential, verbose, clase):
     """
     main_function, function_sintax, comment_sintax = set_language(language)
     code_directory = get_code_directory(location)
-    binary_name = get_binary_name(clase)
+    binary_name = get_binary_name()
     main_file_name = search_file(location, main_function)
     display_values(language, sequential, code_directory, binary_name, main_file_name)
     
@@ -77,8 +77,7 @@ def get_code_directory(location):
         location += '/'
     return location.split('/')[-2]
 
-def get_binary_name(clase):
-    clase = clase.upper()
+def get_binary_name():
     """ Fetchs amd returns the file name of the binary associated to the application
     """
     directory = '../source_code/bin/'
@@ -88,17 +87,10 @@ def get_binary_name(clase):
     except FileNotFoundError as e:
         logger.error(e)
         raise
-    if len(files) == 0:
-        logger.error("No binary file found")
-        raise Exception("No binary file found")
-    elif clase != None:
-        for file in files:
-            if clase in file:
-                return file
+    if len(files) == 0 or len(files) > 1:
+        logger.error("Multiple or none binary files found")
+        raise Exception("Multiple or none binary filesfound")
     else:
-        if len(files) > 1:
-            logger.error("Multiple binary files found")
-            raise Exception("Multiple binary files found")
         return files[0]
 
 def display_values(language, sequential, code_directory, binary_name, main_file_name):
