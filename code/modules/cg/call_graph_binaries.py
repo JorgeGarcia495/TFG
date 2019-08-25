@@ -11,7 +11,7 @@ import subprocess
 logger = logging.getLogger(__name__)
 
 #TODO: Check privileges on creating '.sh' file
-def main(binary_name, code_directory, verbose):
+def main(binary_name, code_directory, verbose, clase):
     """Creates and executes a script to generate a binary for every path
     """
     print("Start of binaries generation")
@@ -29,7 +29,7 @@ def main(binary_name, code_directory, verbose):
         with open(directory+dirs+'/make_bin.sh', 'w') as bin_file:
             bin_file.write('#! /bin/bash\n')
             bin_file.write(make_clean+'\n')
-            bin_file.write('make '+code_directory+' CLASS=B\n')
+            bin_file.write('make '+code_directory+' CLASS='+clase+'\n')
             bin_file.write('mv '+bin_directory+binary_name+' '+bin_directory+binary_name+'_'+dirs+'\n')
             bin_file.write(make_clean)
         bin_file.close()
