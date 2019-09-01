@@ -29,7 +29,7 @@ def main(binary_name, code_directory, verbose, clase):
         with open(directory+dirs+'/make_bin.sh', 'w') as bin_file:
             bin_file.write('#! /bin/bash\n')
             bin_file.write(make_clean+'\n')
-            bin_file.write('make '+code_directory+' CLASS='+clase+'\n')
+            bin_file.write('make '+code_directory+' CLASS=W\n')
             bin_file.write('mv '+bin_directory+binary_name+' '+bin_directory+binary_name+'_'+dirs+'\n')
             bin_file.write(make_clean)
         bin_file.close()
