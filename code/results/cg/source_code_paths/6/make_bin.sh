@@ -1,6 +1,6 @@
 #! /bin/bash
 make clean
 
-make BT CLASS=B
-mv ./bin/bt.B.x ./bin/bt.B.x_6
+make BT CLASS=W
+mv ./bin/bt.W.x ./bin/bt.W.x_6
 make clean
