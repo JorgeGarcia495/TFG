@@ -2,14 +2,12 @@
 ------------------------------------------+------------------------------------
  _init                                    | 
  _start                                   | 
- deregister_tm_clones                     | 
- register_tm_clones                       | 
+ call_gmon_start                          | 
  __do_global_dtors_aux                    | 
  frame_dummy                              | 
  MAIN__                                   | bt
- main                                     | main
- initialize_                              | initialize
  lhsinit_                                 | lhsinit
+ initialize_                              | initialize
  exact_solution_                          | exact_solution
  exact_rhs_                               | exact_rhs
  set_constants_                           | set_constants
@@ -23,8 +21,8 @@
  binvrhs_                                 | binvrhs
  z_solve_                                 | z_solve
  add_                                     | add
- error_norm_                              | error_norm
  rhs_norm_                                | rhs_norm
+ error_norm_                              | error_norm
  verify_                                  | verify
  print_results_                           | print_results
  elapsed_time_                            | elapsed_time
@@ -33,8 +31,9 @@
  timer_stop_                              | timer_stop
  timer_read_                              | timer_read
  wtime_                                   | 
- __libc_csu_init                          | 
+ main                                     | 
  __libc_csu_fini                          | 
+ __libc_csu_init                          | 
+ __do_global_ctors_aux                    | 
  _fini                                    | 
- .plt.got@start                           | 
 ------------------------------------------+------------------------------------
