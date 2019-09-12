@@ -1,6 +1,6 @@
 Time,Module
-89.65,Call_Graph
-92.53,Profiling
-10.85,Signal_Reconstruction
-2.41,Energy_Estimation
-19.38,Export_Results
+93.73,Call_Graph
+769.6,Profiling
+11.3,Signal_Reconstruction
+108.53,Energy_Estimation
+42.2,Export_Results

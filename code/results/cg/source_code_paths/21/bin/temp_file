@@ -1,13 +1,13 @@
 
-Current time (seconds since epoch): 1568284672.5
-Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/21/bin/sp.B.x_21:
+Current time (seconds since epoch): 1568290981.8
+Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/cg/source_code_paths/21/bin/sp.D.x_21:
 	Event                              Count                    % time counted
-	BR_INST_RETIRED                    115,629                  100.00
-	BR_MISS_PRED_RETIRED               9,421                    100.00
-	CPU_CLK_UNHALTED                   1,573,766                100.00
-	INST_RETIRED                       1,087,905                100.00
-	LLC_MISSES:0x41                    7,021                    100.00
-	LLC_REFS:0x4f                      18,601                   37.26
+	BR_INST_RETIRED                    135,548                  100.00
+	BR_MISS_PRED_RETIRED               10,176                   100.00
+	CPU_CLK_UNHALTED                   1,431,231                100.00
+	INST_RETIRED                       1,117,420                100.00
+	LLC_MISSES:0x41                    1,357                    100.00
+	LLC_REFS:0x4f                      16,009                   25.38
 	arith:fpu_div_active               0                        0.00
 	l1d:0x1                            0                        0.00
 	l2_rqsts:0x1                       0                        0.00

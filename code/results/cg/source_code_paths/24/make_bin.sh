@@ -1,6 +1,6 @@
 #! /bin/bash
 make clean
 
-make SP CLASS=B
-mv ./bin/sp.B.x ./bin/sp.B.x_24
+make SP CLASS=D
+mv ./bin/sp.D.x ./bin/sp.D.x_24
 make clean
