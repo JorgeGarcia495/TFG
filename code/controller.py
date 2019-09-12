@@ -37,7 +37,7 @@ def execute_call_graph_module(main_file_name, function_sintax, comment_sintax, c
     print('Started execution of Call Graph Module')
     starttime = time.time()
     os.chdir('modules/cg')
-    cg, labels = call_graph.main(main_file_name, verbose)
+    cg, labels = call_graph.main(main_file_name, verbose, code_directory)
     if cg.empty:
         raise Exception('Error executing CFG module')
     cg_source_code.main(cg, labels, function_sintax, comment_sintax, code_directory)

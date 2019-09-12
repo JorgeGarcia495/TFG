@@ -13,13 +13,27 @@ from . import call_graph_paths as cg_paths
 
 logger = logging.getLogger(__name__)
 
-def main(file, verbose):
+def main(file, verbose, code_directory):
     """Entrypoint of the module
     """
+    directory = '../../../source_code/'
+    check_code_directory(directory, code_directory)
     execute_doxygen(verbose)
     save_main(file)
     delete_generated_files()
+    delete_code_directory(code_directory)
     return cg_paths.main()
+
+def check_code_directory(directory, code_directory):
+    """ Checks that the application to analyze is located in the same directory
+        as the doxyfile
+    """
+    if not os.path.exists(code_directory):
+        for files in os.listdir(directory):
+            if os.path.isdir(directory+files):
+                shutil.copytree(directory+files, files)
+            else:
+                shutil.copy(directory+files, files)
 
 def execute_doxygen(verbose):
     """ Calls the system to execute the Doxygen
@@ -69,3 +83,11 @@ def delete_generated_files():
     except FileNotFoundError as e:
         logger.error(e)
         raise
+
+def delete_code_directory(code_directory):
+    """ Deletes every folder on the current durectory
+    """
+    if os.path.exists(code_directory):
+        for files in os.listdir():
+            if os.path.isdir(files):
+                shutil.rmtree(files)
