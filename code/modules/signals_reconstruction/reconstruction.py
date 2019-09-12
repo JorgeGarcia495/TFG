@@ -24,7 +24,7 @@ def main(cg, ipc, means, code_directory, clase):
     for counter in means.columns:
         times = time_preparation(path_exec_time)
         values = data_preparation(means[counter])
-        generate_plot(times, values, counter, path)
+        generate_plot(times, values, counter, path, code_directory, clase)
     return path_exec_time
     
 def check_path(path):
