@@ -26,7 +26,7 @@ def run(main_file_name, function_sintax, comment_sintax, code_directory, binary_
     inst_est, modules_time =  execute_instruction_estimation_module(binary_name, code_directory, modules_time, verbose)
     modules_time = execute_dynamic_profiling(sequential, binary_name, modules_time, verbose)
     ipc, counter_means, counters_metrics, execution_times, modules_time = execute_signals_reconstruction(cg, modules_time, code_directory, clase)
-    df_decimate, power_profile, energy, modules_time = execute_energy_estimation(counter_means, execution_times, modules_time)
+    df_decimate, power_profile, energy, modules_time = execute_energy_estimation(counter_means, execution_times, modules_time, code_directory, clase)
     export_results(cg, ipc, counter_means, counters_metrics, execution_times, df_decimate, power_profile, energy, modules_time)
     return energy
     
@@ -90,13 +90,13 @@ def execute_signals_reconstruction(cg, modules_time, code_directory, clase):
     print('Signal Reconstruction executed in {} seconds'.format(exec_time))
     return ipc, counters_means, counters_metrics, execution_times, modules_time
 
-def execute_energy_estimation(means, execution_times, modules_time):
+def execute_energy_estimation(means, execution_times, modules_time, code_directory, clase):
     """ Runs the energy consumption estimation module
     """
     print('Started execution of Energy Estimation Module')
     starttime = time.time()
     os.chdir('modules/energy_estimation')
-    df_decimate, power_profile, energy = energy_estim.main(means, execution_times)
+    df_decimate, power_profile, energy = energy_estim.main(means, execution_times, code_directory, clase)
     os.chdir('../..')
     exec_time = time.time() - starttime
     modules_time = modules_time.append({'Time' : round(exec_time, 2), 'Module' : 'Energy_Estimation'}, ignore_index=True)

@@ -18,20 +18,20 @@ def check_path(path):
     except:
         raise Exception("Error trying to reach energy estimation folder")
 
-def get_power_plots(power_profile):
+def get_power_plots(power_profile, code_directory, clase):
     """ Generates the plots associated to the power profile of the application being analyzed
     """
     path = '../../results/energy_estimation/plots/'
     check_path(path)
-    generate_plot(power_profile.TIME, power_profile.POWER_CPU, 'cpu', path)
-    generate_plot(power_profile.TIME, power_profile.POWER_MEM, 'memory', path)
+    generate_plot(power_profile.TIME, power_profile.POWER_CPU, 'cpu', path, code_directory, clase)
+    generate_plot(power_profile.TIME, power_profile.POWER_MEM, 'memory', path, code_directory, clase)
     
-def generate_plot(x_axis, values, name, path):
+def generate_plot(x_axis, values, name, path, code_directory, clase):
     """ Creates a plot with the data passed as arguments
     """
     plt.figure(figsize=(9,4))
     plt.plot(x_axis, values, label=name)
-    plt.title('BT - CLASS B (Power %s profile)' % name)
+    plt.title(code_directory+ ' - CLASS ' + clase + ' (Power %s profile)' % name)
     plt.xlabel('Time(s)')
     plt.legend()
     plt.ylabel(name)

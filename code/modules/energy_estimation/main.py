@@ -9,14 +9,14 @@ import pandas as pd
 from . import plots
 from . import power_profiles as pow_profiles
 
-def main(means, execution_times):
+def main(means, execution_times, code_directory, clase):
     """ Entrypoint of the script
     """
     
     df_decimate = diezmado(means, execution_times)
     power_profile = pow_profiles.get_power_profile(df_decimate)
     plots.check_path('../../results/energy_estimation/')
-    plots.get_power_plots(power_profile)
+    plots.get_power_plots(power_profile, code_directory, clase)
     energy = estimate_energy(power_profile)
     return df_decimate, power_profile, energy
     
