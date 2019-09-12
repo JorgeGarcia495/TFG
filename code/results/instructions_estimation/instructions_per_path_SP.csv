@@ -1,0 +1,10 @@
+﻿Execution paths,Estimated instructions
+sp,adi,add,17291492930
+sp,adi,compute,4.06551E+11
+sp,adi,txinvr,27721508143
+sp,adi,x_solve,lhsinit,98866377370
+sp,adi,x_solve,ninvr,1.11478E+11
+sp,adi,y_solve,lhsinitj,94519776767
+sp,adi,y_solve,pinvr,1.07544E+11
+sp,adi,z_solve,lhsinitj,96173861466
+sp,adi,z_solve,tzetar,1.22443E+11
