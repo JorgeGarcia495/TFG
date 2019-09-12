@@ -1,0 +1,11 @@
+#!/bin/bash
+
+./maqao.intel64 disass bt.B.x > sp_asm
+
+#sed '/home/d' bt_asm > bt_asm_2
+#sed '/^$/d' bt_asm_2 > bt_asm_3
+#awk 'NF>=2' bt_asm_2 > bt_asm_3
+
+cat sp_asm | sed '/home/d' | sed '/^$/d' | awk 'NF>=2' > sp_asm_3
+
+./parse_python_inst_count.py

@@ -29,7 +29,7 @@
 #---------------------------------------------------------------------------
 # This is the fortran compiler used for Fortran programs
 #---------------------------------------------------------------------------
-F77 = gfortran
+F77 = xlf -q64
 
 #---------------------------------------------------------------------------
 # This links fortran programs; usually the same as ${F77}
@@ -49,13 +49,13 @@ F_INC =
 #---------------------------------------------------------------------------
 # Global *compile time* flags for Fortran programs
 #---------------------------------------------------------------------------
-FFLAGS	= -O -g
+FFLAGS	= -O3 -qarch=auto -qtune=auto -qhot -qnosave
 
 #---------------------------------------------------------------------------
 # Global *link time* flags. Flags for increasing maximum executable 
 # size usually go here. 
 #---------------------------------------------------------------------------
-FLINKFLAGS = -O
+FLINKFLAGS = -O3 -qarch=auto
 
 
 #---------------------------------------------------------------------------
@@ -78,7 +78,7 @@ FLINKFLAGS = -O
 #---------------------------------------------------------------------------
 # This is the C compiler used for C programs
 #---------------------------------------------------------------------------
-CC = cc
+CC = xlc -q64
 
 #---------------------------------------------------------------------------
 # This links C programs; usually the same as ${CC}
@@ -110,13 +110,13 @@ C_INC =
 # _LARGEFILE64_SOURCE - are standard compiler flags which allow to work with 
 # files larger than 2GB.
 #---------------------------------------------------------------------------
-CFLAGS	= -O
+CFLAGS	= -O3 -qarch=auto -qtune=auto -qhot
 
 #---------------------------------------------------------------------------
 # Global *link time* flags. Flags for increasing maximum executable 
 # size usually go here. 
 #---------------------------------------------------------------------------
-CLINKFLAGS = -O
+CLINKFLAGS = -O3 -qarch=auto
 
 
 #---------------------------------------------------------------------------
@@ -148,7 +148,7 @@ RAND   = randi8
 
 #---------------------------------------------------------------------------
 # The variable WTIME is the name of the wtime source code module in the
-# common directory.  
+# NPB3.x/common directory.  
 # For most machines,       use wtime.c
 # For SGI power challenge: use wtime_sgi64.c
 #---------------------------------------------------------------------------
@@ -162,6 +162,6 @@ WTIME  = wtime.c
 # where the C/Fortran binding interface format is determined
 #---------------------------------------------------------------------------
 # MACHINE	=	-DCRAY
-# MACHINE	=	-DIBM
+MACHINE	=	-DIBM
 
 

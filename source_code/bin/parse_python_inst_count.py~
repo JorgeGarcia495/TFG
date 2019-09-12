@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+
+import glob
+import os
+import re
+
+def main():
+
+    new_content = []
+    for file in glob.glob('./bt_asm_3'):
+        with open(file,encoding="utf-8") as f:
+            content = f.readlines()
+        #print((file.partition("/")[2]).partition("/")[2])
+        content = [x.strip('\n') for x in content]
+        #print(content)
+	
+        flag = 0
+        #new_content = []
+        counter = 0
+        lines= 0
+        inst=0
+        funct="fun0"
+        for i in content:
+            #Begin:
+            i2 = i.strip(' ')
+            #print((i2.partition(" ")[2]).encode('utf-8'))
+            i3=i2.partition(" ")[2]
+            i4=(i3.partition("(")[2]).partition(" ")[0]
+            if i4 == "function":
+                new_content.append(str(inst-2))
+                funct=(i3.partition("(")[2]).partition(" ")[2]
+                new_content.append(funct)
+                inst=0
+            elif i2.rpartition(" ")[2]=="entry":
+                new_content.append(str(inst-2))
+                new_content.append("Loop entry"+i2.rpartition(" ")[0])
+                inst=0
+            elif i2.rpartition(" ")[2]=="exit":
+                new_content.append(str(inst-2))
+                new_content.append("Loop exit"+i2.rpartition(" ")[0])
+                inst=0
+            inst=inst+1
+            
+            #End
+            lines += 1
+
+            
+        print(counter)
+        print(lines)
+       
+
+        thefile = open('inst_count', 'w')
+        for item in new_content:
+            thefile.write("%s\n" % item)
+        new_content=[]
+if __name__ == '__main__':
+    main()
