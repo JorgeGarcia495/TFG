@@ -11,13 +11,13 @@ from . import reconstruction as rec
 
 logger = logging.getLogger(__name__)
 
-def reconstruct(cg):
+def reconstruct(cg, code_directory, clase):
     """Executes the steps required to perform the signals reconstructions
     """
     counters_metrics = get_counters_metrics()
     means = calculate_mean_counter_metrics(counters_metrics)
     ipc = calculate_ipc(counters_metrics)
-    execution_times = rec.main(cg, ipc, means)
+    execution_times = rec.main(cg, ipc, means, code_directory, clase)
     return ipc, means, counters_metrics, execution_times
 
 def get_counters_metrics():

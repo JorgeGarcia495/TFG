@@ -25,7 +25,7 @@ def run(main_file_name, function_sintax, comment_sintax, code_directory, binary_
     cg, modules_time = execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, modules_time, verbose, clase)
     inst_est, modules_time =  execute_instruction_estimation_module(binary_name, code_directory, modules_time, verbose)
     modules_time = execute_dynamic_profiling(sequential, binary_name, modules_time, verbose)
-    ipc, counter_means, counters_metrics, execution_times, modules_time = execute_signals_reconstruction(cg, modules_time)
+    ipc, counter_means, counters_metrics, execution_times, modules_time = execute_signals_reconstruction(cg, modules_time, code_directory, clase)
     df_decimate, power_profile, energy, modules_time = execute_energy_estimation(counter_means, execution_times, modules_time)
     export_results(cg, ipc, counter_means, counters_metrics, execution_times, df_decimate, power_profile, energy, modules_time)
     return energy
@@ -77,13 +77,13 @@ def execute_dynamic_profiling(sequential, binary_name, modules_time, verbose):
     print('Profiling executed in {} seconds'.format(exec_time))
     return modules_time
     
-def execute_signals_reconstruction(cg, modules_time):
+def execute_signals_reconstruction(cg, modules_time, code_directory, clase):
     """ Runs the signals reconstruction module
     """
     print('Started execution of Signal Reconstruction')
     starttime = time.time()
     os.chdir('modules/signals_reconstruction')
-    ipc, counters_means, counters_metrics, execution_times = signal_rec.reconstruct(cg)
+    ipc, counters_means, counters_metrics, execution_times = signal_rec.reconstruct(cg, code_directory, clase)
     os.chdir('../..')
     exec_time = time.time() - starttime
     modules_time = modules_time.append({'Time' : round(exec_time, 2), 'Module' : 'Signal_Reconstruction'}, ignore_index=True)

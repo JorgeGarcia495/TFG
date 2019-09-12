@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 
 logger = logging.getLogger(__name__)
 
-def main(cg, ipc, means):
+def main(cg, ipc, means, code_directory, clase):
     """ Generates several files in order to organize the data obtained from the profiling
     """
     path = '../../results/signal_reconstruction/plot/'
@@ -77,12 +77,12 @@ def data_preparation(values):
     result = result.append(values[:-1])
     return result.sort_index()
     
-def generate_plot(x_axis, values, counter, path):
+def generate_plot(x_axis, values, counter, path, code_directory, clase):
     """ Creates a plot with the data contained on the arguements
     """
     plt.figure(figsize=(9,4))
     plt.plot(x_axis, values, label=counter)
-    plt.title('BT - CLASS B (Hardware counter signal reconstruction)')
+    plt.title(code_directory+ ' - CLASS '+clase+' (Hardware counter signal reconstruction)')
     plt.xlabel('Time(s)')
     plt.legend()
     plt.ylabel('Power(w)')
