@@ -21,14 +21,14 @@ def multiprocess_func(path, directory, binary_name, verbose):
     target = temp_directory+binary_name
     #Metrics/counters to retrieves
     counters = 'CPU_CLK_UNHALTED,INST_RETIRED,LLC_MISSES:0x41,LLC_REFS:0x4f,BR_INST_RETIRED,BR_MISS_PRED_RETIRED,misalign_mem_ref:0x01,misalign_mem_ref:0x02,arith:fpu_div_active,resource_stalls:any,uops_dispatched:core,mem_trans_retired:0x02,mem_uops_retired:all_stores,l1d:0x01,l2_rqsts:0x01,l2_rqsts:0x03,l2_rqsts:0x08,l2_rqsts:0x20'
-    args = 'ocount -e %s -i 1 -f %stemp_file %s' % \
-        (counters, temp_directory, target)
+    args = 'ocount -e %s -i 1 -f %stemp_file_%s %s' % \
+        (counters, temp_directory, path, target)
     print('Profiling', path)
     #Start of the profiling
     try:
         exec_time = time.time()
         proc = subprocess.Popen(shlex.split(args), stdout=subprocess.PIPE, shell=False)
-        time.sleep(0.3)
+        time.sleep(1)
         pid = int(subprocess.check_output(['pidof', '-s', binary_name]))
         binary_time = float('{}'.format(time.time() - exec_time))
         if verbose:

@@ -39,7 +39,7 @@ def get_counters_metrics():
         logger.error(e)
         raise
     for path in total_paths:
-            path_metrics = iterate_counters_metrics(path, paths_directory+path+bin_folder+counters, events)
+            path_metrics = iterate_counters_metrics(path, paths_directory+path+bin_folder+counters+'_'+path, events)
             counters_metrics.extend(path_metrics[:])
     aux = pd.DataFrame(counters_metrics)
     result = aux.iloc[:, 2:]
