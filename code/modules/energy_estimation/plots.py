@@ -23,16 +23,16 @@ def get_power_plots(power_profile, code_directory, clase):
     """
     path = '../../results/energy_estimation/plots/'
     check_path(path)
-    generate_plot(power_profile.TIME, power_profile.POWER_CPU, 'cpu', path, code_directory, clase)
-    generate_plot(power_profile.TIME, power_profile.POWER_MEM, 'memory', path, code_directory, clase)
+    generate_plot(power_profile.TIME, power_profile.POWER_CPU, 'CPU', path, code_directory, clase)
+    generate_plot(power_profile.TIME, power_profile.POWER_MEM, 'Memoria', path, code_directory, clase)
     
 def generate_plot(x_axis, values, name, path, code_directory, clase):
     """ Creates a plot with the data passed as arguments
     """
     plt.figure(figsize=(9,4))
     plt.plot(x_axis, values, label=name)
-    plt.title(code_directory+ ' - CLASS ' + clase + ' (Power %s profile)' % name)
-    plt.xlabel('Time(s)')
+    plt.title(code_directory+ ' - CLASE ' + clase + ' (Perfil de potencia de %s)' % name)
+    plt.xlabel('Tiempo(s)')
     plt.legend()
     plt.ylabel(name)
     plt.xlim(xmin=0, xmax=x_axis.max()+5)

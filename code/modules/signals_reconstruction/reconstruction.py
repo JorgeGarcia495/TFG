@@ -83,9 +83,9 @@ def generate_plot(x_axis, values, counter, path, code_directory, clase):
     plt.figure(figsize=(9,4))
     plt.plot(x_axis, values, label=counter)
     plt.title(code_directory+ ' - CLASS '+clase+' (Hardware counter signal reconstruction)')
-    plt.xlabel('Time(s)')
+    plt.xlabel('Tiempo(s)')
     plt.legend()
-    plt.ylabel('Power(w)')
+    plt.ylabel('Potencia(w)')
     plt.xlim(xmin=0, xmax=x_axis.max()+5)
     save_path = path+counter+'.png'
     plt.savefig(save_path.replace(':', '_'))
