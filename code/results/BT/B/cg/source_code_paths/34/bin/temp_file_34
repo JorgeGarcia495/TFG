@@ -1,0 +1,22 @@
+
+Current time (seconds since epoch): 1568648646.9
+Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/BT/B/cg/source_code_paths/34/bin/bt.B.x_34:
+	Event                              Count                    % time counted
+	BR_INST_RETIRED                    5,136,466                16.84
+	BR_MISS_PRED_RETIRED               73,554                   16.84
+	CPU_CLK_UNHALTED                   18,674,802               18.80
+	INST_RETIRED                       10,251,304               100.00
+	LLC_MISSES:0x41                    3,965                    100.00
+	LLC_REFS:0x4f                      35,230                   83.16
+	arith:fpu_div_active               204                      71.32
+	l1d:0x1                            346,198                  62.42
+	l2_rqsts:0x1                       351,048                  44.40
+	l2_rqsts:0x3                       408,630                  39.96
+	l2_rqsts:0x8                       1,356                    36.34
+	l2_rqsts:0x20                      3,837                    33.31
+	mem_trans_retired:0x2              4,251,486                30.74
+	mem_uops_retired:all_stores        4,659,151                14.28
+	misalign_mem_ref:0x1               0                        13.32
+	misalign_mem_ref:0x2               0                        12.49
+	resource_stalls:any                1,503,369                16.77
+	uops_dispatched:core               52,985,304               16.77
