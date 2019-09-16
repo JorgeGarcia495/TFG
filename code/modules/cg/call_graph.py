@@ -13,13 +13,13 @@ from . import call_graph_paths as cg_paths
 
 logger = logging.getLogger(__name__)
 
-def main(file, verbose, code_directory):
+def main(file, verbose, code_directory, clase):
     """Entrypoint of the module
     """
     directory = '../../../source_code/'
     check_code_directory(directory, code_directory)
     execute_doxygen(verbose)
-    save_main(file)
+    save_main(file, code_directory, clase)
     delete_generated_files()
     delete_code_directory(code_directory)
     return cg_paths.main()
@@ -50,11 +50,11 @@ def execute_doxygen(verbose):
         logger.error(e)
         raise
         
-def save_main(main_name):
+def save_main(main_name, code_directory, clase):
     """ Saves the source code based on the paths retrieved from the cg
     """
     try:
-        directory = '../../results/cg/'
+        directory = '../../results/'+code_directory + '/' + clase + '/cg/'
         if not os.path.exists(directory):
             os.mkdir(directory)
         found = False;

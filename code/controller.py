@@ -24,7 +24,7 @@ def run(main_file_name, function_sintax, comment_sintax, code_directory, binary_
     modules_time = pd.DataFrame({}, columns=['Module', 'Time'])
     cg, modules_time = execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, modules_time, verbose, clase)
     inst_est, modules_time =  execute_instruction_estimation_module(binary_name, code_directory, modules_time, verbose)
-    modules_time = execute_dynamic_profiling(sequential, binary_name, modules_time, verbose)
+    modules_time = execute_dynamic_profiling(sequential, binary_name, modules_time, verbose, code_directory, clase)
     ipc, counter_means, counters_metrics, execution_times, modules_time = execute_signals_reconstruction(cg, modules_time, code_directory, clase)
     df_decimate, power_profile, energy, modules_time = execute_energy_estimation(counter_means, execution_times, modules_time, code_directory, clase)
     export_results(cg, ipc, counter_means, counters_metrics, execution_times, df_decimate, power_profile, energy, modules_time)
@@ -37,10 +37,10 @@ def execute_call_graph_module(main_file_name, function_sintax, comment_sintax, c
     print('Started execution of Call Graph Module')
     starttime = time.time()
     os.chdir('modules/cg')
-    cg, labels = call_graph.main(main_file_name, verbose, code_directory)
+    cg, labels = call_graph.main(main_file_name, verbose, code_directory, clase)
     if cg.empty:
         raise Exception('Error executing CFG module')
-    cg_source_code.main(cg, labels, function_sintax, comment_sintax, code_directory)
+    cg_source_code.main(cg, labels, function_sintax, comment_sintax, code_directory, clase)
     cg_binaries.main(binary_name, code_directory, verbose, clase) 
     os.chdir('../..')
     exec_time = time.time() - starttime
@@ -61,16 +61,16 @@ def execute_instruction_estimation_module(binary_name, code_directory, modules_t
     print('Instructions estimation module executed in {} seconds'.format(exec_time))
     return result, modules_time
 
-def execute_dynamic_profiling(sequential, binary_name, modules_time, verbose):
+def execute_dynamic_profiling(sequential, binary_name, modules_time, verbose, code_directory, clase):
     """ Runs the profiling module
     """
     print('Started execution of Dynamic Profiling')
     starttime = time.time()
     os.chdir('modules/profiling')
     if(sequential):
-        sequential_profiling.main(binary_name, verbose)
+        sequential_profiling.main(binary_name, verbose, code_directory)
     else:
-        profiling.run_binaries(binary_name, verbose)
+        profiling.run_binaries(binary_name, verbose, clase)
     os.chdir('../..')
     exec_time = time.time() - starttime
     modules_time = modules_time.append({'Time' : round(exec_time, 2), 'Module' : 'Profiling'}, ignore_index=True)

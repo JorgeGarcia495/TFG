@@ -21,7 +21,7 @@ def check_path(path):
 def get_power_plots(power_profile, code_directory, clase):
     """ Generates the plots associated to the power profile of the application being analyzed
     """
-    path = '../../results/energy_estimation/plots/'
+    path = '../../results/'+code_directory+'_'+clase+'/energy_estimation/plots/'
     check_path(path)
     generate_plot(power_profile.TIME, power_profile.POWER_CPU, 'CPU', path, code_directory, clase)
     generate_plot(power_profile.TIME, power_profile.POWER_MEM, 'Memoria', path, code_directory, clase)

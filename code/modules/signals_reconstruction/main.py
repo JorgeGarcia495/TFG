@@ -14,16 +14,16 @@ logger = logging.getLogger(__name__)
 def reconstruct(cg, code_directory, clase):
     """Executes the steps required to perform the signals reconstructions
     """
-    counters_metrics = get_counters_metrics()
+    counters_metrics = get_counters_metrics(code_directory, clase)
     means = calculate_mean_counter_metrics(counters_metrics)
     ipc = calculate_ipc(counters_metrics)
     execution_times = rec.main(cg, ipc, means, code_directory, clase)
     return ipc, means, counters_metrics, execution_times
 
-def get_counters_metrics():
+def get_counters_metrics(code_directory, clase):
     """ Gets the counters metrics generated during the dynamic profiling
     """
-    paths_directory = '../../results/cg/source_code_paths/'
+    paths_directory = '../../results/'+code_directory+'_'+clase+'/cg/source_code_paths/'
     counters = 'temp_file'
     bin_folder = '/bin/'
     counters_metrics = []

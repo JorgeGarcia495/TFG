@@ -11,12 +11,12 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def main(cg, labels, function_sintax, comment_sintax, code_directory):
+def main(cg, labels, function_sintax, comment_sintax, code_directory, clase):
     """Locates the main file of the application to analyze
     """
     functions = list(labels.values())
     try:
-        workspace = '../../results/cg/source_code_paths/'
+        workspace = '../../results/cg/'+code_directory + '/' + clase + '/source_code_paths/'
         #Delete existing files
         if os.path.exists(workspace):
             shutil.rmtree(workspace)

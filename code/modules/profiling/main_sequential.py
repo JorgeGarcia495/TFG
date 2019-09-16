@@ -40,7 +40,7 @@ def multiprocess_func(path, directory, binary_name, verbose):
     try:
         exec_time = time.time()
         proc = subprocess.Popen(shlex.split(args), stdout=subprocess.PIPE, shell=False)
-        time.sleep(0.3)
+        time.sleep(1)
         pid = int(subprocess.check_output(['pidof', '-s', binary_name]))
         binary_time = float('{}'.format(time.time() - exec_time))
         
@@ -63,11 +63,11 @@ def multiprocess_func(path, directory, binary_name, verbose):
             print("%s was finished before the time limit" % path)
     return 'Executed path %s ' % path
     
-def main(binary_name, verbose):
+def main(binary_name, verbose, code_directory, clase):
     """  Controller of the script
     """
     start_time = time.time()
-    directory = '../../results/cg/source_code_paths/'
+    directory = '../../results/cg/'+code_directory, +'/'+clase+'/source_code_paths/'
     paths = os.listdir(directory)
     #Create queues
     task_queue = multiprocessing.Queue()
