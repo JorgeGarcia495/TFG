@@ -1,0 +1,198 @@
+
+Current time (seconds since epoch): 1568646711.8
+Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/SP/B/cg/source_code_paths/17/bin/sp.B.x_17:
+	Event                              Count                    % time counted
+	BR_INST_RETIRED                    15,434,247               20.68
+	BR_MISS_PRED_RETIRED               79,046                   21.67
+	CPU_CLK_UNHALTED                   117,047,670              22.67
+	INST_RETIRED                       219,819,778              28.68
+	LLC_MISSES:0x41                    866,373                  29.68
+	LLC_REFS:0x4f                      1,275,214                30.03
+	arith:fpu_div_active               948,221                  30.03
+	l1d:0x1                            1,596,362                30.03
+	l2_rqsts:0x1                       207,771                  24.03
+	l2_rqsts:0x3                       258,131                  24.03
+	l2_rqsts:0x8                       759,753                  23.28
+	l2_rqsts:0x20                      18,917                   22.28
+	mem_trans_retired:0x2              15,925,524               21.28
+	mem_uops_retired:all_stores        16,643,742               18.28
+	misalign_mem_ref:0x1               0                        10.01
+	misalign_mem_ref:0x2               2,237                    10.01
+	resource_stalls:any                36,606,574               15.02
+	uops_dispatched:core               293,965,752              20.02
+
+Current time (seconds since epoch): 1568646711.9
+Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/SP/B/cg/source_code_paths/17/bin/sp.B.x_17:
+	Event                              Count                    % time counted
+	BR_INST_RETIRED                    11,586,755               21.74
+	BR_MISS_PRED_RETIRED               37,984                   22.40
+	CPU_CLK_UNHALTED                   121,911,143              23.03
+	INST_RETIRED                       248,482,225              28.69
+	LLC_MISSES:0x41                    38,402                   29.02
+	LLC_REFS:0x4f                      56,899                   28.92
+	arith:fpu_div_active               1,150,342                28.59
+	l1d:0x1                            260,476                  28.29
+	l2_rqsts:0x1                       216,388                  22.63
+	l2_rqsts:0x3                       256,037                  22.63
+	l2_rqsts:0x8                       1,595                    22.38
+	l2_rqsts:0x20                      13,293                   22.05
+	mem_trans_retired:0x2              14,078,775               21.72
+	mem_uops_retired:all_stores        15,976,174               20.06
+	misalign_mem_ref:0x1               18                       10.65
+	misalign_mem_ref:0x2               0                        10.65
+	resource_stalls:any                40,125,626               15.98
+	uops_dispatched:core               356,935,573              21.30
+
+Current time (seconds since epoch): 1568646712.0
+Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/SP/B/cg/source_code_paths/17/bin/sp.B.x_17:
+	Event                              Count                    % time counted
+	BR_INST_RETIRED                    9,437,475                21.60
+	BR_MISS_PRED_RETIRED               32,204                   22.10
+	CPU_CLK_UNHALTED                   104,532,983              22.58
+	INST_RETIRED                       222,926,153              28.23
+	LLC_MISSES:0x41                    115,120                  28.56
+	LLC_REFS:0x4f                      140,252                  28.57
+	arith:fpu_div_active               1,475,109                28.41
+	l1d:0x1                            686,361                  28.26
+	l2_rqsts:0x1                       530,607                  22.61
+	l2_rqsts:0x3                       657,005                  22.61
+	l2_rqsts:0x8                       1,668                    22.48
+	l2_rqsts:0x20                      16,551                   22.31
+	mem_trans_retired:0x2              14,224,679               22.15
+	mem_uops_retired:all_stores        14,773,913               20.91
+	misalign_mem_ref:0x1               0                        10.73
+	misalign_mem_ref:0x2               0                        10.64
+	resource_stalls:any                33,941,947               15.96
+	uops_dispatched:core               292,642,230              21.27
+
+Current time (seconds since epoch): 1568646712.1
+Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/SP/B/cg/source_code_paths/17/bin/sp.B.x_17:
+	Event                              Count                    % time counted
+	BR_INST_RETIRED                    11,007,610               21.79
+	BR_MISS_PRED_RETIRED               36,106                   22.18
+	CPU_CLK_UNHALTED                   124,879,378              22.57
+	INST_RETIRED                       256,876,798              28.25
+	LLC_MISSES:0x41                    264,958                  28.55
+	LLC_REFS:0x4f                      295,634                  28.59
+	arith:fpu_div_active               1,823,161                28.41
+	l1d:0x1                            1,354,895                28.22
+	l2_rqsts:0x1                       954,805                  22.44
+	l2_rqsts:0x3                       1,159,001                22.34
+	l2_rqsts:0x8                       1,096                    22.25
+	l2_rqsts:0x20                      12,950                   22.15
+	mem_trans_retired:0x2              11,406,920               22.05
+	mem_uops_retired:all_stores        12,172,379               21.11
+	misalign_mem_ref:0x1               0                        10.82
+	misalign_mem_ref:0x2               0                        10.76
+	resource_stalls:any                43,256,578               16.14
+	uops_dispatched:core               344,407,706              21.52
+
+Current time (seconds since epoch): 1568646712.2
+Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/SP/B/cg/source_code_paths/17/bin/sp.B.x_17:
+	Event                              Count                    % time counted
+	BR_INST_RETIRED                    9,907,490                21.85
+	BR_MISS_PRED_RETIRED               31,126                   22.11
+	CPU_CLK_UNHALTED                   105,113,141              22.39
+	INST_RETIRED                       217,795,551              28.03
+	LLC_MISSES:0x41                    223,154                  28.30
+	LLC_REFS:0x4f                      245,494                  28.35
+	arith:fpu_div_active               1,695,320                28.23
+	l1d:0x1                            1,299,532                28.10
+	l2_rqsts:0x1                       1,041,132                22.39
+	l2_rqsts:0x3                       1,374,557                22.33
+	l2_rqsts:0x8                       1,271                    22.26
+	l2_rqsts:0x20                      15,264                   22.20
+	mem_trans_retired:0x2              13,967,339               22.13
+	mem_uops_retired:all_stores        14,469,872               21.37
+	misalign_mem_ref:0x1               9                        10.93
+	misalign_mem_ref:0x2               0                        10.89
+	resource_stalls:any                42,117,790               16.32
+	uops_dispatched:core               323,332,159              21.69
+
+Current time (seconds since epoch): 1568646712.3
+Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/SP/B/cg/source_code_paths/17/bin/sp.B.x_17:
+	Event                              Count                    % time counted
+	BR_INST_RETIRED                    9,430,613                21.89
+	BR_MISS_PRED_RETIRED               32,953                   22.13
+	CPU_CLK_UNHALTED                   126,166,992              22.37
+	INST_RETIRED                       233,976,818              28.02
+	LLC_MISSES:0x41                    255,435                  28.26
+	LLC_REFS:0x4f                      365,654                  28.31
+	arith:fpu_div_active               1,411,867                28.22
+	l1d:0x1                            910,291                  28.13
+	l2_rqsts:0x1                       521,119                  22.44
+	l2_rqsts:0x3                       852,025                  22.35
+	l2_rqsts:0x8                       1,482                    22.26
+	l2_rqsts:0x20                      13,011                   22.16
+	mem_trans_retired:0x2              10,697,172               22.07
+	mem_uops_retired:all_stores        10,991,304               21.43
+	misalign_mem_ref:0x1               0                        10.93
+	misalign_mem_ref:0x2               0                        10.91
+	resource_stalls:any                44,241,414               16.35
+	uops_dispatched:core               272,556,752              21.75
+
+Current time (seconds since epoch): 1568646712.4
+Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/SP/B/cg/source_code_paths/17/bin/sp.B.x_17:
+	Event                              Count                    % time counted
+	BR_INST_RETIRED                    9,739,969                21.99
+	BR_MISS_PRED_RETIRED               32,533                   22.19
+	CPU_CLK_UNHALTED                   118,672,074              22.37
+	INST_RETIRED                       205,651,735              27.99
+	LLC_MISSES:0x41                    218,349                  28.17
+	LLC_REFS:0x4f                      328,939                  28.18
+	arith:fpu_div_active               1,114,031                28.10
+	l1d:0x1                            667,065                  28.03
+	l2_rqsts:0x1                       338,362                  22.38
+	l2_rqsts:0x3                       680,532                  22.31
+	l2_rqsts:0x8                       1,713                    22.24
+	l2_rqsts:0x20                      13,320                   22.17
+	mem_trans_retired:0x2              12,411,753               22.10
+	mem_uops_retired:all_stores        12,832,574               21.54
+	misalign_mem_ref:0x1               0                        10.97
+	misalign_mem_ref:0x2               0                        10.95
+	resource_stalls:any                54,521,658               16.42
+	uops_dispatched:core               294,706,277              21.86
+
+Current time (seconds since epoch): 1568646712.5
+Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/SP/B/cg/source_code_paths/17/bin/sp.B.x_17:
+	Event                              Count                    % time counted
+	BR_INST_RETIRED                    7,555,946                21.99
+	BR_MISS_PRED_RETIRED               26,485                   22.17
+	CPU_CLK_UNHALTED                   112,374,198              22.34
+	INST_RETIRED                       198,958,158              27.95
+	LLC_MISSES:0x41                    225,142                  28.12
+	LLC_REFS:0x4f                      381,678                  28.14
+	arith:fpu_div_active               1,353,341                28.07
+	l1d:0x1                            810,075                  28.02
+	l2_rqsts:0x1                       408,777                  22.38
+	l2_rqsts:0x3                       789,450                  22.33
+	l2_rqsts:0x8                       1,939                    22.27
+	l2_rqsts:0x20                      15,654                   22.22
+	mem_trans_retired:0x2              12,160,100               22.14
+	mem_uops_retired:all_stores        11,934,726               21.63
+	misalign_mem_ref:0x1               0                        10.97
+	misalign_mem_ref:0x2               0                        10.95
+	resource_stalls:any                44,874,502               16.42
+	uops_dispatched:core               249,701,246              21.87
+
+Current time (seconds since epoch): 1568646712.6
+Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/SP/B/cg/source_code_paths/17/bin/sp.B.x_17:
+	Event                              Count                    % time counted
+	BR_INST_RETIRED                    8,390,162                22.04
+	BR_MISS_PRED_RETIRED               19,053                   22.18
+	CPU_CLK_UNHALTED                   30,370,190               22.32
+	INST_RETIRED                       56,516,376               27.92
+	LLC_MISSES:0x41                    77,613                   28.06
+	LLC_REFS:0x4f                      255,536                  28.07
+	arith:fpu_div_active               498                      28.09
+	l1d:0x1                            713,267                  28.04
+	l2_rqsts:0x1                       406,087                  22.40
+	l2_rqsts:0x3                       602,431                  22.35
+	l2_rqsts:0x8                       170                      22.30
+	l2_rqsts:0x20                      2,449                    22.25
+	mem_trans_retired:0x2              5,985,771                22.19
+	mem_uops_retired:all_stores        6,654,622                21.72
+	misalign_mem_ref:0x1               0                        11.00
+	misalign_mem_ref:0x2               0                        10.99
+	resource_stalls:any                11,152,606               16.47
+	uops_dispatched:core               99,346,568               21.93
