@@ -23,7 +23,7 @@ def reconstruct(cg, code_directory, clase):
 def get_counters_metrics(code_directory, clase):
     """ Gets the counters metrics generated during the dynamic profiling
     """
-    paths_directory = '../../results/'+code_directory+'_'+clase+'/cg/source_code_paths/'
+    paths_directory = '../../results/'+code_directory+'/'+clase+'/cg/source_code_paths/'
     counters = 'temp_file'
     bin_folder = '/bin/'
     counters_metrics = []

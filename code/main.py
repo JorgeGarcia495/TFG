@@ -26,6 +26,7 @@ def main(language, location, sequential, verbose, clase):
     clase = clase.upper()
     main_function, function_sintax, comment_sintax = set_language(language)
     code_directory = get_code_directory(location)
+    check_results_directory(code_directory, clase)
     binary_name = get_binary_name(clase)
     main_file_name = search_file(location, main_function)
     display_values(language, sequential, code_directory, binary_name, main_file_name)
@@ -77,6 +78,15 @@ def get_code_directory(location):
     if not location.endswith('/'):
         location += '/'
     return location.split('/')[-2]
+
+def check_results_directory(code_directory, clase):
+    directory = 'results/'+code_directory+'/'
+    if not os.path.exists(directory):
+        os.mkdir(directory)
+    directory += clase
+    if not os.path.exists(directory):
+        os.mkdir(directory)
+    return
 
 def get_binary_name(clase):
     """ Fetchs amd returns the file name of the binary associated to the application

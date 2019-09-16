@@ -68,9 +68,9 @@ def execute_dynamic_profiling(sequential, binary_name, modules_time, verbose, co
     starttime = time.time()
     os.chdir('modules/profiling')
     if(sequential):
-        sequential_profiling.main(binary_name, verbose, code_directory)
+        sequential_profiling.main(binary_name, verbose, code_directory, clase)
     else:
-        profiling.run_binaries(binary_name, verbose, clase)
+        profiling.run_binaries(binary_name, verbose, code_directory, clase)
     os.chdir('../..')
     exec_time = time.time() - starttime
     modules_time = modules_time.append({'Time' : round(exec_time, 2), 'Module' : 'Profiling'}, ignore_index=True)

@@ -16,7 +16,7 @@ def main(cg, labels, function_sintax, comment_sintax, code_directory, clase):
     """
     functions = list(labels.values())
     try:
-        workspace = '../../results/cg/'+code_directory + '/' + clase + '/source_code_paths/'
+        workspace = '../../results/'+code_directory + '/' + clase + '/cg/source_code_paths/'
         #Delete existing files
         if os.path.exists(workspace):
             shutil.rmtree(workspace)

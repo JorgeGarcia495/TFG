@@ -1,0 +1,22 @@
+
+Current time (seconds since epoch): 1568644977.6
+Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/SP/D/cg/source_code_paths/22/bin/sp.D.x_22:
+	Event                              Count                    % time counted
+	BR_INST_RETIRED                    5,057                    100.00
+	BR_MISS_PRED_RETIRED               6,553                    100.00
+	CPU_CLK_UNHALTED                   1,716,921                100.00
+	INST_RETIRED                       1,144,860                100.00
+	LLC_MISSES:0x41                    4,953                    100.00
+	LLC_REFS:0x4f                      22,219                   93.80
+	arith:fpu_div_active               3,964                    28.07
+	l1d:0x1                            0                        0.00
+	l2_rqsts:0x1                       0                        0.00
+	l2_rqsts:0x3                       0                        0.00
+	l2_rqsts:0x8                       0                        0.00
+	l2_rqsts:0x20                      0                        0.00
+	mem_trans_retired:0x2              0                        0.00
+	mem_uops_retired:all_stores        0                        0.00
+	misalign_mem_ref:0x1               0                        0.00
+	misalign_mem_ref:0x2               0                        0.00
+	resource_stalls:any                0                        0.00
+	uops_dispatched:core               0                        0.00

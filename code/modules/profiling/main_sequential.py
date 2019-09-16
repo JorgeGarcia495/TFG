@@ -67,7 +67,7 @@ def main(binary_name, verbose, code_directory, clase):
     """  Controller of the script
     """
     start_time = time.time()
-    directory = '../../results/cg/'+code_directory, +'/'+clase+'/source_code_paths/'
+    directory = '../../results/'+code_directory +'/'+clase+'/cg/source_code_paths/'
     paths = os.listdir(directory)
     #Create queues
     task_queue = multiprocessing.Queue()
