@@ -27,7 +27,7 @@ def run(main_file_name, function_sintax, comment_sintax, code_directory, binary_
     modules_time = execute_dynamic_profiling(sequential, binary_name, modules_time, verbose, code_directory, clase)
     ipc, counter_means, counters_metrics, execution_times, modules_time = execute_signals_reconstruction(cg, modules_time, code_directory, clase)
     df_decimate, power_profile, energy, modules_time = execute_energy_estimation(counter_means, execution_times, modules_time, code_directory, clase)
-    export_results(cg, ipc, counter_means, counters_metrics, execution_times, df_decimate, power_profile, energy, modules_time)
+    export_results(cg, ipc, counter_means, counters_metrics, execution_times, df_decimate, power_profile, energy, modules_time, code_directory, clase)
     return energy
     
     
@@ -103,16 +103,17 @@ def execute_energy_estimation(means, execution_times, modules_time, code_directo
     print('Energy Estimation module executed in {} seconds'.format(exec_time))
     return df_decimate, power_profile, energy, modules_time
 
-def export_results(cg, ipc, counters_means, counters_metrics, execution_times, df_decimate, power_profile, energy, modules_time):
+def export_results(cg, ipc, counters_means, counters_metrics, execution_times, df_decimate, power_profile, energy, modules_time, code_directory, clase):
     """ Exports the results obtained by the framework
     """
     print('Start of results exportation')
     starttime = time.time()
-    signal = 'results/signal_reconstruction/'
-    energy_estimation_path = 'results/energy_estimation/'
+    results_dir = 'results/'
+    signal = results_dir+code_directory+'/'+clase+'/signal_reconstruction/'
+    energy_estimation_path = results_dir+code_directory+'/'+clase+'/energy_estimation/'
     if not os.path.exists(signal):
         os.mkdir(signal)
-    export.export_dataframe(cg, 'results/paths')
+    export.export_dataframe(cg, results_dir+code_directory+'/'+clase+'/paths')
     export.export_dataframe(execution_times, signal+'execution_times')
     export.export_dataframe(ipc, signal+'ipc')
     export.export_dataframe(counters_metrics, signal+'counters_metrics')
@@ -123,5 +124,5 @@ def export_results(cg, ipc, counters_means, counters_metrics, execution_times, d
     exec_time = time.time() - starttime
     modules_time = modules_time.append({'Time' : round(exec_time, 2), 'Module' : 'Export_Results'}, ignore_index=True)
     modules_time = modules_time.set_index(['Time'])
-    export.export_dataframe(modules_time, 'results/modules_time')
+    export.export_dataframe(modules_time, results_dir+code_directory+'/'+clase+'/modules_time')
     print('Results exported in {} seconds'.format(exec_time))
