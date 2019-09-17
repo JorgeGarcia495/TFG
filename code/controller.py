@@ -9,8 +9,8 @@ import pandas as pd
 
 from modules import export_data as export
 from modules.cg import call_graph as call_graph
-from modules.cg import call_graph_source_code as cg_source_code
-from modules.cg import call_graph_binaries as cg_binaries
+from modules.application_signature import app_sign_source_code as as_source_code
+from modules.application_signature import app_sign_binaries as as_binaries
 from modules.instruction_estimation import estimate_instructions as estimate
 from modules.profiling import main as profiling
 from modules.profiling import main_sequential as sequential_profiling
@@ -22,8 +22,9 @@ def run(main_file_name, function_sintax, comment_sintax, code_directory, binary_
     """ Runs every module to estimate the energy consumption of the application to analyze
     """
     modules_time = pd.DataFrame({}, columns=['Module', 'Time'])
-    cg, modules_time = execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, modules_time, verbose, clase)
-    #inst_est, modules_time =  execute_instruction_estimation_module(binary_name, code_directory, modules_time, verbose)
+    cg, labels, modules_time = execute_call_graph_module(main_file_name, code_directory, modules_time, verbose, clase)
+    inst_est, modules_time =  execute_instruction_estimation_module(binary_name, code_directory, modules_time, verbose)
+    modules_time = execute_application_signature(cg, labels, function_sintax, comment_sintax, code_directory, clase, binary_name, verbose, modules_time)
     modules_time = execute_dynamic_profiling(sequential, binary_name, modules_time, verbose, code_directory, clase)
     ipc, counter_means, counters_metrics, execution_times, modules_time = execute_signals_reconstruction(cg, modules_time, code_directory, clase)
     df_decimate, power_profile, energy, modules_time = execute_energy_estimation(counter_means, execution_times, modules_time, code_directory, clase)
@@ -31,7 +32,7 @@ def run(main_file_name, function_sintax, comment_sintax, code_directory, binary_
     return energy
     
     
-def execute_call_graph_module(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, modules_time, verbose, clase):
+def execute_call_graph_module(main_file_name, code_directory, modules_time, verbose, clase):
     """ Runs the call graph module
     """
     print('Started execution of Call Graph Module')
@@ -40,13 +41,11 @@ def execute_call_graph_module(main_file_name, function_sintax, comment_sintax, c
     cg, labels = call_graph.main(main_file_name, verbose, code_directory, clase)
     if cg.empty:
         raise Exception('Error executing CFG module')
-    cg_source_code.main(cg, labels, function_sintax, comment_sintax, code_directory, clase)
-    cg_binaries.main(binary_name, code_directory, verbose, clase) 
     os.chdir('../..')
     exec_time = time.time() - starttime
     modules_time = modules_time.append({'Time' : round(exec_time, 2), 'Module' : 'Call_Graph'}, ignore_index=True)
     print('Call Graph module executed in {} seconds'.format(exec_time))
-    return cg, modules_time
+    return cg, labels, modules_time
 
 def execute_instruction_estimation_module(binary_name, code_directory, modules_time, verbose):
     """ Runs the instruction estimation module
@@ -60,6 +59,18 @@ def execute_instruction_estimation_module(binary_name, code_directory, modules_t
     modules_time =  modules_time.append({'Time' : round(exec_time, 2), 'Module' : 'Instruction_estimation'}, ignore_index=True)
     print('Instructions estimation module executed in {} seconds'.format(exec_time))
     return result, modules_time
+
+def execute_application_signature(cg, labels, function_sintax, comment_sintax, code_directory, clase, binary_name, verbose, modules_time):
+    print('Started execution of Application Signature Module')
+    starttime = time.time()
+    os.chdir('modules/application_signature')
+    as_source_code.main(cg, labels, function_sintax, comment_sintax, code_directory, clase)
+    as_binaries.main(binary_name, code_directory, verbose, clase) 
+    os.chdir('../..')
+    exec_time = time.time() - starttime
+    modules_time =  modules_time.append({'Time' : round(exec_time, 2), 'Module' : 'Application_Signature'}, ignore_index=True)
+    print('Instructions estimation module executed in {} seconds'.format(exec_time))
+    return modules_time
 
 def execute_dynamic_profiling(sequential, binary_name, modules_time, verbose, code_directory, clase):
     """ Runs the profiling module

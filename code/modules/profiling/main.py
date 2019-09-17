@@ -61,7 +61,7 @@ def run_binaries(binary_name, verbose, code_directory, clase):
     processors = psutil.cpu_count(logical=False)
     print('Number of processors:', processors)
     #Location of binaries
-    directory = '../../results/'+code_directory+'/'+clase+'/cg/source_code_paths/'
+    directory = '../../results/'+code_directory+'/'+clase+'/application_signature/'
     files_number = os.listdir(directory)
     
     #Start of the tasks with parallelism

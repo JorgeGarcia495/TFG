@@ -16,7 +16,7 @@ def main(binary_name, code_directory, verbose, clase):
     """
     print("Start of binaries generation")
     #Directory to iterate
-    directory = '../../results/'+code_directory + '/' + clase + '/cg/source_code_paths/'
+    directory = '../../results/'+code_directory + '/' + clase + '/application_signature/'
     #Directory to store the binaries to generate
     bin_directory = './bin/'
     #Task to performed on the new script

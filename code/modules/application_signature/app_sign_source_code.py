@@ -16,11 +16,11 @@ def main(cg, labels, function_sintax, comment_sintax, code_directory, clase):
     """
     functions = list(labels.values())
     try:
-        workspace = '../../results/'+code_directory + '/' + clase + '/cg/source_code_paths/'
+        workspace = '../../results/'+code_directory + '/' + clase + '/application_signature/'
         #Delete existing files
         if os.path.exists(workspace):
             shutil.rmtree(workspace)
-            os.mkdir(workspace)
+        os.mkdir(workspace)
         required_files = ['Makefile', 'header.h']
         for index, row in cg.iterrows():
             directory = workspace+str(index)
