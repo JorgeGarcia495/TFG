@@ -1,14 +1,14 @@
 
-Current time (seconds since epoch): 1568800431.3
+Current time (seconds since epoch): 1568804454.4
 Event counts (scaled) for /home/jgarcia/TFG/code/modules/profiling/../../results/SP/D/application_signature/23/bin/sp.D.x_23:
 	Event                              Count                    % time counted
-	BR_INST_RETIRED                    26,526                   100.00
-	BR_MISS_PRED_RETIRED               8,087                    100.00
-	CPU_CLK_UNHALTED                   1,912,937                100.00
-	INST_RETIRED                       1,133,728                100.00
-	LLC_MISSES:0x41                    9,852                    100.00
-	LLC_REFS:0x4f                      19,446                   79.75
-	arith:fpu_div_active               3,579                    19.84
+	BR_INST_RETIRED                    30,011                   100.00
+	BR_MISS_PRED_RETIRED               8,680                    100.00
+	CPU_CLK_UNHALTED                   1,936,593                100.00
+	INST_RETIRED                       1,135,729                100.00
+	LLC_MISSES:0x41                    9,346                    100.00
+	LLC_REFS:0x4f                      20,326                   78.05
+	arith:fpu_div_active               503                      19.06
 	l1d:0x1                            0                        0.00
 	l2_rqsts:0x1                       0                        0.00
 	l2_rqsts:0x3                       0                        0.00

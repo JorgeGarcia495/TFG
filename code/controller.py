@@ -23,7 +23,7 @@ def run(main_file_name, function_sintax, comment_sintax, code_directory, binary_
     """
     modules_time = pd.DataFrame({}, columns=['Module', 'Time'])
     cg, labels, modules_time = execute_call_graph_module(main_file_name, code_directory, modules_time, verbose, clase)
-    inst_est, modules_time =  execute_instruction_estimation_module(binary_name, code_directory, modules_time, verbose)
+    #inst_est, modules_time =  execute_instruction_estimation_module(binary_name, code_directory, modules_time, verbose)
     modules_time = execute_application_signature(cg, labels, function_sintax, comment_sintax, code_directory, clase, binary_name, verbose, modules_time)
     modules_time = execute_dynamic_profiling(sequential, binary_name, modules_time, verbose, code_directory, clase)
     ipc, counter_means, counters_metrics, execution_times, modules_time = execute_signals_reconstruction(cg, modules_time, code_directory, clase)
