@@ -36,7 +36,7 @@ def generate_plot(x_axis, values, name, path, code_directory, clase):
     plt.title(code_directory+ ' - CLASE ' + clase + ' (Perfil de potencia de %s)' % name)
     plt.xlabel('Tiempo(s)')
     plt.legend()
-    plt.ylabel(name)
+    plt.ylabel('Potencia(W)')
     plt.xlim(xmin=0, xmax=x_axis.max()+5)
     save_path = path+name+'.png'
     plt.savefig(save_path.replace(':', '_'))
