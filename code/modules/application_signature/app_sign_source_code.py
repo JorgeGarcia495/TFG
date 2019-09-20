@@ -11,29 +11,26 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def main(cg, labels, function_sintax, comment_sintax, code_directory, clase):
+def main(cg, labels, data):
     """Locates the main file of the application to analyze
     """
     functions = list(labels.values())
     try:
-        workspace = '../../results/'+code_directory + '/' + clase + '/application_signature/'
-        #Delete existing files
-        if os.path.exists(workspace):
-            shutil.rmtree(workspace)
-        os.mkdir(workspace)
+        data.set_results_directory('../../results/'+data.code_directory + '/' + data.clase + '/application_signature/')
+        check_path(data.results_directory)
         required_files = ['Makefile', 'header.h']
         for index, row in cg.iterrows():
-            directory = workspace+str(index)
+            directory = data.results_directory+str(index)
             #Copy source code
-            shutil.copytree('../../../source_code', directory)
-            directory = directory+'/'+code_directory+'/'
+            shutil.copytree(data.source_directory(), directory)
+            directory = directory+'/'+data.code_directory+'/'
             #Iterate source code files
             for file in os.listdir(directory):
                 #Delete if not needed 
                 if not file.endswith('.f') and not file.endswith('.h') and file not in required_files:
                     os.remove(directory+file)
                     #Comment not needed functions on main file
-            remove_unneeded_functions(directory, functions, row, function_sintax, comment_sintax)
+            remove_unneeded_functions(directory, functions, row, data.function_sintax, data.comment_sintax)
     except FileNotFoundError as e:
         logger.error(e)
         raise
@@ -70,7 +67,13 @@ def remove_unneeded_functions(directory, functions, path, function_sintax, comme
                         tmp.write(line)
             os.remove(directory+files)
             os.rename(directory+'tempfile.txt', directory+files)
-    
+            
+def check_path(directory):
+    """ Checks if the directory passed as arguments exists; if so, create a new one
+    """
+    if os.path.exists(directory):
+        shutil.rmtree(directory)
+    os.mkdir(directory)
     
 if __name__ == '__main__':
     main()

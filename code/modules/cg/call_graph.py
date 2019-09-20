@@ -13,15 +13,15 @@ from . import call_graph_paths as cg_paths
 
 logger = logging.getLogger(__name__)
 
-def main(file, verbose, code_directory, clase):
+def main(data):
     """Entrypoint of the module
     """
-    directory = '../../../source_code/'
-    check_code_directory(directory, code_directory)
-    execute_doxygen(verbose)
-    save_main(file, code_directory, clase)
+    data.set_source_directory('../../../source_code/')
+    check_code_directory(data.source_directory, data.code_directory)
+    execute_doxygen(data.verbose)
+    save_main(data.main_file_name, data.code_directory, data.clase)
     delete_generated_files()
-    delete_code_directory(code_directory)
+    delete_code_directory(data.code_directory)
     return cg_paths.main()
 
 def check_code_directory(directory, code_directory):

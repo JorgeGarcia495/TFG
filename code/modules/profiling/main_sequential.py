@@ -63,17 +63,17 @@ def multiprocess_func(path, directory, binary_name, verbose):
             print("%s was finished before the time limit" % path)
     return 'Executed path %s ' % path
     
-def main(binary_name, verbose, code_directory, clase):
+def main(data):
     """  Controller of the script
     """
     start_time = time.time()
-    directory = '../../results/'+code_directory +'/'+clase+'/application_signature/'
+    directory = data.results_directory
     paths = os.listdir(directory)
     #Create queues
     task_queue = multiprocessing.Queue()
     done_queue = multiprocessing.Queue()
     #Creates tasks
-    tasks = [(multiprocess_func, (path, directory, binary_name, verbose)) for path in paths]
+    tasks = [(multiprocess_func, (path, directory, data.binary_name, data.verbose)) for path in paths]
     
     #Adding tasks to queue
     for task in tasks:

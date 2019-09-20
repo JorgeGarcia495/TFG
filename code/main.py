@@ -8,6 +8,7 @@
 import os
 import click
 import logging
+from data import Data
 
 import controller
 
@@ -20,7 +21,7 @@ logger = logging.getLogger(__name__)
 @click.option('-s', '--sequential', help='Executes the dynamic profile in sequential order', is_flag=True)
 @click.option('-v', '--verbose', help='Displays on terminal the information associated to the processes executed', is_flag=True)
 @click.option('-c', '--clase', help='Class type of the application to analyze', required=False)
-def main(language, location, sequential, verbose, clase):
+def main(language='fortran', location='../source_code/SP/', sequential=False, verbose=False, clase='B'):
     """ Framework aimed to analyze an application in order to estimate its energy consumption 
     """
     clase = clase.upper()
@@ -29,9 +30,12 @@ def main(language, location, sequential, verbose, clase):
     check_results_directory(code_directory, clase)
     binary_name = get_binary_name(clase)
     main_file_name = search_file(location, main_function)
-    display_values(language, sequential, code_directory, binary_name, main_file_name)
+    data = Data(clase, code_directory, main_function, function_sintax, 
+                 comment_sintax, binary_name, main_file_name, language, 
+                 sequential, verbose)
+    display_values(data)
     
-    energy = controller.run(main_file_name, function_sintax, comment_sintax, code_directory, binary_name, sequential, verbose, clase)
+    energy = controller.run(data)
     
     print("\n\n########################################################")
     print("Energy estimation for CPU: %sJ \n" % round(energy.iloc[0, 0], 2))
@@ -111,13 +115,13 @@ def get_binary_name(clase):
             raise Exception("Multiple binary files found")
         return files[0]
 
-def display_values(language, sequential, code_directory, binary_name, main_file_name):
+def display_values(data):
     print("\n\n################################################################")
-    print("Language of the application:", language)
-    print('Sequential profiling' if sequential else 'Parallel profiling')
-    print('Source code directory:', code_directory)
-    print('Name of the binary file:', binary_name)
-    print('Entrypoint file of the application:', main_file_name)
+    print("Language of the application:", data.language)
+    print('Sequential profiling' if data.sequential else 'Parallel profiling')
+    print('Source code directory:', data.code_directory)
+    print('Name of the binary file:', data.binary_name)
+    print('Entrypoint file of the application:', data.main_file_name)
     print("################################################################\n\n")
 
 if __name__ == '__main__':

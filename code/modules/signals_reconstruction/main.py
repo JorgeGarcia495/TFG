@@ -11,19 +11,19 @@ from . import reconstruction as rec
 
 logger = logging.getLogger(__name__)
 
-def reconstruct(cg, code_directory, clase):
+def reconstruct(cg, data):
     """Executes the steps required to perform the signals reconstructions
     """
-    counters_metrics = get_counters_metrics(code_directory, clase)
+    counters_metrics = get_counters_metrics(data.results_directory)
     means = calculate_mean_counter_metrics(counters_metrics)
     ipc = calculate_ipc(counters_metrics)
-    execution_times = rec.main(cg, ipc, means, code_directory, clase)
+    execution_times = rec.main(cg, ipc, means, data.code_directory, data.clase)
     return ipc, means, counters_metrics, execution_times
 
-def get_counters_metrics(code_directory, clase):
+def get_counters_metrics(directory):
     """ Gets the counters metrics generated during the dynamic profiling
     """
-    paths_directory = '../../results/'+code_directory+'/'+clase+'/application_signature/'
+    paths_directory = directory
     counters = 'temp_file'
     bin_folder = '/bin/'
     counters_metrics = []

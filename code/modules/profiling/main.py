@@ -53,7 +53,7 @@ def multiprocess_func(path, directory, binary_name, verbose):
         proc.kill()
     return 'Executed path %s ' % path
         
-def run_binaries(binary_name, verbose, code_directory, clase):
+def run_binaries(data):
     """ Executes the existing binary to carry out a dynamic profiling
     """
     starttime = time.time()
@@ -61,12 +61,13 @@ def run_binaries(binary_name, verbose, code_directory, clase):
     processors = psutil.cpu_count(logical=False)
     print('Number of processors:', processors)
     #Location of binaries
-    directory = '../../results/'+code_directory+'/'+clase+'/application_signature/'
+    directory = data.results_directory
     files_number = os.listdir(directory)
     
     #Start of the tasks with parallelism
     with multiprocessing.Pool(processors) as pool:
-        processes = [pool.apply_async(multiprocess_func, (name,directory, binary_name,verbose,)) for name in files_number]
+        processes = [pool.apply_async(multiprocess_func, (name,directory, 
+                    data.binary_name,data.verbose,)) for name in files_number]
         for proc in processes:
             print(proc.get())
 

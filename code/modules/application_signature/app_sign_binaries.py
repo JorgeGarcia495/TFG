@@ -10,13 +10,12 @@ import subprocess
 
 logger = logging.getLogger(__name__)
 
-#TODO: Check privileges on creating '.sh' file
-def main(binary_name, code_directory, verbose, clase):
+def main(data):
     """Creates and executes a script to generate a binary for every path
     """
     print("Start of binaries generation")
     #Directory to iterate
-    directory = '../../results/'+code_directory + '/' + clase + '/application_signature/'
+    directory = data.results_directory
     #Directory to store the binaries to generate
     bin_directory = './bin/'
     #Task to performed on the new script
@@ -29,8 +28,8 @@ def main(binary_name, code_directory, verbose, clase):
         with open(directory+dirs+'/make_bin.sh', 'w') as bin_file:
             bin_file.write('#! /bin/bash\n')
             bin_file.write(make_clean+'\n')
-            bin_file.write('make '+code_directory+' CLASS='+clase+'\n')
-            bin_file.write('mv '+bin_directory+binary_name+' '+bin_directory+binary_name+'_'+dirs+'\n')
+            bin_file.write('make '+data.code_directory+' CLASS='+data.clase+'\n')
+            bin_file.write('mv '+bin_directory+data.binary_name+' '+bin_directory+data.binary_name+'_'+dirs+'\n')
             bin_file.write(make_clean)
         bin_file.close()
         try:
@@ -40,7 +39,7 @@ def main(binary_name, code_directory, verbose, clase):
             cwd = os.getcwd()
             #Change cwd to execute script generating the binary
             os.chdir(directory+dirs)
-            if verbose:
+            if data.results_verbose:
                 subprocess.check_call('./make_bin.sh')
             else:
                 subprocess.check_call('./make_bin.sh', stdout=subprocess.PIPE, shell=False)
